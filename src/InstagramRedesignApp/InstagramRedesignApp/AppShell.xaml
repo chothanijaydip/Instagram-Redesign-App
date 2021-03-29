@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<st:SharedTransitionShell xmlns="http://xamarin.com/schemas/2014/forms"
+<local:MySharedTransitionShell xmlns="http://xamarin.com/schemas/2014/forms"
                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                           xmlns:st="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+                          xmlns:local="clr-namespace:InstagramRedesignApp"
                           x:Class="InstagramRedesignApp.AppShell">
 
-</st:SharedTransitionShell>
+    <local:CustomTabBar x:Name="tabBar"/>
+
+</local:MySharedTransitionShell>

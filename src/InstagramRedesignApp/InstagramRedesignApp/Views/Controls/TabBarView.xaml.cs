@@ -12,9 +12,9 @@ namespace InstagramRedesignApp
 
         public TabBarView()
         {
-            navigationService = ((App)App.Current).ServiceProvider.GetRequiredService<INavigationService>();
-
             InitializeComponent();
+
+            navigationService = ((App)App.Current).ServiceProvider.GetRequiredService<INavigationService>();
         }
     }
 }
