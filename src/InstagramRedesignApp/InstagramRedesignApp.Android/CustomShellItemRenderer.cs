@@ -25,31 +25,30 @@ namespace InstagramRedesignApp.Droid
             bottomView = outerlayout.FindViewById<BottomNavigationView>(Resource.Id.bottomtab_tabbar);
             shellOverlay = outerlayout.FindViewById<FrameLayout>(Resource.Id.bottomtab_tabbar_container);
 
-            if (ShellItem is CustomTabBar tabBar && tabBar.TabBarView != null)
-                SetupLargeTab();
+            if (ShellItem is ShellOverlay overlay && overlay.Content != null)
+                SetupOverlay();
 
             return outerlayout;
         }
 
-        private void SetupLargeTab()
+        private void SetupOverlay()
         {
-            var tabBar = (CustomTabBar)ShellItem;
+            var overlay = (ShellOverlay)ShellItem;
 
             bottomView.Measure((int)MeasureSpecMode.Unspecified, (int)MeasureSpecMode.Unspecified);
 
             outerlayout.Measure((int)MeasureSpecMode.Unspecified, (int)MeasureSpecMode.Unspecified);
 
             shellOverlay.RemoveAllViews();
-            shellOverlay.AddView(ConvertFormsToNative(tabBar.TabBarView,
-                new Xamarin.Forms.Rectangle(0, 0, Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width / Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Density, (double)bottomView?.MeasuredHeight / Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Density)));
-            // If I do not hide navigation bar, I have to use Resources.DisplayMetrics.WidthPixels (instead of DeviceDisplay.MainDisplayInfo.Width) because I want the width of the screen without the height of the navigation bar.
+            shellOverlay.AddView(ConvertFormsToNative(overlay.Content,
+                new Xamarin.Forms.Rectangle(0, 0, Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width / Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Density, Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Height / Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Density)));
         }
 
         public override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
 
-            SetupLargeTab();
+            SetupOverlay();
         }
 
         private View ConvertFormsToNative(Xamarin.Forms.View view, Xamarin.Forms.Rectangle size)

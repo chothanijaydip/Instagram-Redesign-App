@@ -10,5 +10,6 @@ namespace InstagramRedesignApp.Core
         Task OnPageAppearing();
         Task OnPageCreated(params object[] parameters);
         Task OnPageDisappearing();
+        void Dispose();
     }
 }

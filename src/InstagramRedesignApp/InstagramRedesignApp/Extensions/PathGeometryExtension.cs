@@ -12,7 +12,9 @@ namespace InstagramRedesignApp
 
         public Geometry ProvideValue(IServiceProvider serviceProvider)
         {
-            return PathGeometryConverter.ConvertFromInvariantString(Path) as Geometry;
+            var path = PathGeometryConverter.ConvertFromInvariantString(Path) as Geometry;
+
+            return path;
         }
 
         object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)

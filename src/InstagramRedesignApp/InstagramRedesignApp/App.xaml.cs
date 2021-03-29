@@ -13,15 +13,20 @@ namespace InstagramRedesignApp
         {
             InitializeComponent();
 
+            Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
+
             var services = new ServiceCollection();
 
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<IUsersService, UsersService>();
             services.AddSingleton<ICommentsService, CommentsService>();
             services.AddSingleton<IPostsService, PostsService>();
+            services.AddSingleton<IAppThemeService, AppThemeService>();
             services.AddTransient<IHomePageViewModel, HomePageViewModel>();
 
             ServiceProvider = services.BuildServiceProvider();
+
+            ServiceProvider.GetRequiredService<IAppThemeService>().Initialize();
 
             MainPage = new AppShell();
         }

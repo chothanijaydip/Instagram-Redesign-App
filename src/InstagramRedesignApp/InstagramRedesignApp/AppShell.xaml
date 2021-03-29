@@ -1,10 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <local:MySharedTransitionShell xmlns="http://xamarin.com/schemas/2014/forms"
-                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                          xmlns:st="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
-                          xmlns:local="clr-namespace:InstagramRedesignApp"
-                          x:Class="InstagramRedesignApp.AppShell">
+                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                               xmlns:st="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+                               xmlns:local="clr-namespace:InstagramRedesignApp"
+                               x:Class="InstagramRedesignApp.AppShell"
+                               
+                               st:SharedTransitionShell.BackgroundAnimation="Fade"
+                               
+                               Shell.FlyoutBehavior="Disabled"
+                               Shell.TabBarIsVisible="False"
+                               Shell.NavBarIsVisible="False">
 
-    <local:CustomTabBar x:Name="tabBar"/>
+    <local:ShellOverlay x:Name="overlay">
+        <local:ShellOverlay.Content>
+            <Grid VerticalOptions="Fill">
+                <BoxView x:Name="overlayBoxView" VerticalOptions="Fill" IsVisible="false"/>
+
+                <local:SettingsView VerticalOptions="Start" IsVisible="False"/>
+
+                <local:CustomTabBar HeightRequest="100" BackgroundColor="Transparent"
+                                    VerticalOptions="End"/>
+            </Grid>
+        </local:ShellOverlay.Content>
+    </local:ShellOverlay>
 
 </local:MySharedTransitionShell>

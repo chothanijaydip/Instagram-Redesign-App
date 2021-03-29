@@ -1,6 +1,149 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InstagramRedesignApp.TabBarView">
-    <BoxView BackgroundColor="Teal" VerticalOptions="Center" HeightRequest="50"/>
+             xmlns:sh="http://sharpnado.com"
+             x:Class="InstagramRedesignApp.CustomTabBar" 
+             BackgroundColor="Transparent">
+
+    <Grid VerticalOptions="End"
+          BackgroundColor="Transparent">
+        <sh:Shadows CornerRadius="30" Shades="{sh:SingleShade Color=Black, Opacity=0.3, BlurRadius=40}">
+            <BoxView Background="{AppThemeBinding Dark={StaticResource DarkTabBarBrush}, Light={StaticResource LightTabBarBrush}, Default={StaticResource LightTabBarBrush}}" 
+                     VerticalOptions="End" HeightRequest="70" CornerRadius="30,30,0,0"/>
+        </sh:Shadows>
+        <Grid Margin="15,0,15,5" ColumnDefinitions="*,*,*,*,*">
+            <Grid.Resources>
+                <Style TargetType="{x:Type BoxView}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="VerticalOptions" Value="Center"/>
+                    <Setter Property="HeightRequest" Value="40"/>
+                </Style>
+                <Style TargetType="{x:Type Path}">
+                    <Setter Property="VerticalOptions" Value="Center"/>
+                    <Setter Property="HorizontalOptions" Value="Center"/>
+                    <Setter Property="HeightRequest" Value="25"/>
+                    <Setter Property="WidthRequest" Value="25"/>
+                    <Setter Property="Aspect" Value="Uniform"/>
+                </Style>
+            </Grid.Resources>
+
+            <Path x:Name="homePath" Fill="{StaticResource MidBrush}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
+                                <Setter Property="Data" Value="{StaticResource HouseGeometry}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
+                                <Setter Property="Data" Value="{StaticResource HouseFilledGeometry}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Path>
+            <Path x:Name="searchPath" Grid.Column="1">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
+                                <Setter Property="Data" Value="{StaticResource SearchGeometry}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
+                                <Setter Property="Data" Value="{StaticResource SearchFilledGeometry}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Path>
+            <Path x:Name="addPath" Grid.Column="2">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
+                                <Setter Property="Data" Value="{StaticResource AddGeometry}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
+                                <Setter Property="Data" Value="{StaticResource AddFilledGeometry}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Path>
+            <Path x:Name="activityPath" Grid.Column="3">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
+                                <Setter Property="Data" Value="{StaticResource HeartGeometry}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
+                                <Setter Property="Data" Value="{StaticResource HeartFilledGeometry}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Path>
+            <Path x:Name="profilepath" Grid.Column="4">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
+                                <Setter Property="Data" Value="{StaticResource AvatarGeometry}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
+                                <Setter Property="Data" Value="{StaticResource AvatarFilledGeometry}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Path>
+
+            <BoxView>
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="HomeTapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <BoxView Grid.Column="1">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="SearchTapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <BoxView Grid.Column="2">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="AddTapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <BoxView Grid.Column="3">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ActivityTapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <BoxView Grid.Column="4">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ProfileTapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+        </Grid>
+    </Grid>
+    
 </ContentView>

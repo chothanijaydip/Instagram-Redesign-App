@@ -5,6 +5,8 @@ namespace InstagramRedesignApp.Core
 {
     public class BasePageViewModel : INotifyPropertyChanged, IBasePageViewModel
     {
+        protected bool isDisposed;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)
@@ -29,6 +31,11 @@ namespace InstagramRedesignApp.Core
         public async virtual Task OnPageAppearing()
         {
             await Task.CompletedTask;
+        }
+
+        public virtual void Dispose()
+        {
+            isDisposed = true;
         }
     }
 }
