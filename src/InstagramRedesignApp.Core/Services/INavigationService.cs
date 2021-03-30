@@ -7,6 +7,6 @@ namespace InstagramRedesignApp.Core
         Task PushPageAsync(PagesEnum page, bool isRelative = true, params object[] parameters);
         Task PopPageAsync();
         Task PopToRootPageAsync();
-        void OnPageCreated(PagesEnum page, IBasePageViewModel viewModel);
+        void OnPageCreated(PagesEnum page, IBaseViewModel viewModel);
     }
 }

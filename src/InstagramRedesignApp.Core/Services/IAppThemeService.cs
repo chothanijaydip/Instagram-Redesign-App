@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace InstagramRedesignApp.Core
+﻿namespace InstagramRedesignApp.Core
 {
     public interface IAppThemeService
     {
@@ -8,7 +6,5 @@ namespace InstagramRedesignApp.Core
 
         void SetAppTheme(AppThemesEnum appTheme);
         void Initialize();
-
-        event Action<AppThemesEnum> ThemeChanged;
     }
 }

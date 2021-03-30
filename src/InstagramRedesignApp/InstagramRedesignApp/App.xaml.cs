@@ -22,6 +22,7 @@ namespace InstagramRedesignApp
             services.AddSingleton<ICommentsService, CommentsService>();
             services.AddSingleton<IPostsService, PostsService>();
             services.AddSingleton<IAppThemeService, AppThemeService>();
+            services.AddTransient<ISettingsViewModel, SettingsViewModel>();
             services.AddTransient<IHomePageViewModel, HomePageViewModel>();
 
             ServiceProvider = services.BuildServiceProvider();

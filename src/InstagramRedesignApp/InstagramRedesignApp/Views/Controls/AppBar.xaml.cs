@@ -14,7 +14,13 @@ namespace InstagramRedesignApp
 
         private void SettingsTapped(object sender, EventArgs e)
         {
+            if(Shell.Current.CurrentItem is ShellOverlay overlay)
+            {
+                var settingsView = (overlay.Content as Grid)?.FindView<SettingsView>();
 
+                if (settingsView is not null)
+                    _ = settingsView.Show();
+            }
         }
     }
 }

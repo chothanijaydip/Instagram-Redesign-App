@@ -3,43 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InstagramRedesignApp.AppBar">
 
-    <Grid ColumnDefinitions="40,*,40">
-        <Path x:Name="homePath" Fill="{StaticResource MidBrush}">
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup>
-                    <VisualState Name="Normal">
-                        <VisualState.Setters>
-                            <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
-                            <Setter Property="Data" Value="{StaticResource HouseGeometry}"/>
-                        </VisualState.Setters>
-                    </VisualState>
-                    <VisualState Name="Selected">
-                        <VisualState.Setters>
-                            <Setter Property="Fill" Value="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
-                            <Setter Property="Data" Value="{StaticResource HouseFilledGeometry}"/>
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-        </Path>
-        <Path x:Name="searchPath" Grid.Column="1">
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup>
-                    <VisualState Name="Normal">
-                        <VisualState.Setters>
-                            <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
-                            <Setter Property="Data" Value="{StaticResource SearchGeometry}"/>
-                        </VisualState.Setters>
-                    </VisualState>
-                    <VisualState Name="Selected">
-                        <VisualState.Setters>
-                            <Setter Property="Fill" Value="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
-                            <Setter Property="Data" Value="{StaticResource SearchFilledGeometry}"/>
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-        </Path>
+    <Grid ColumnDefinitions="40,*,40" Margin="18,0">
+        <Grid.Resources>
+            <Style TargetType="{x:Type Path}">
+                <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="HeightRequest" Value="25"/>
+                <Setter Property="WidthRequest" Value="25"/>
+                <Setter Property="Aspect" Value="Uniform"/>
+            </Style>
+        </Grid.Resources>
+
+        <Path Data="{StaticResource SettingsGeometry}"/>
+        <Path Grid.Column="1" Data="{StaticResource InstagramTextGeometry}"
+              HeightRequest="30" WidthRequest="200" 
+              Fill="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
+        <Path Grid.Column="2" Data="{StaticResource MessagesGeometry}"/>
 
         <BoxView>
             <BoxView.GestureRecognizers>

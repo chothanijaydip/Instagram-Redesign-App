@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 
 namespace InstagramRedesignApp.Core
 {
-    public interface IBasePageViewModel
+    public interface IBaseViewModel
     {
         event PropertyChangedEventHandler PropertyChanged;
 
         Task OnPageAppearing();
-        Task OnPageCreated(params object[] parameters);
+        Task OnCreated(params object[] parameters);
         Task OnPageDisappearing();
         void Dispose();
     }

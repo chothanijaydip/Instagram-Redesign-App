@@ -1,5 +1,4 @@
 ﻿using InstagramRedesignApp.Core;
-using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -9,12 +8,8 @@ namespace InstagramRedesignApp
     {
         public AppThemesEnum CurrentAppTheme => ConvertOsAppTheme(Application.Current.UserAppTheme);
 
-        public event Action<AppThemesEnum> ThemeChanged;
-
         public void Initialize()
         {
-            App.Current.RequestedThemeChanged += RequestedThemeChanged;
-
             SetAppTheme(ConvertOsAppTheme(Application.Current.UserAppTheme));
         }
 
@@ -42,12 +37,6 @@ namespace InstagramRedesignApp
                     StatusBar.SetLightStatusBar(false);
                     break;
             }
-        }
-
-        private void RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
-        {
-            SetAppTheme(ConvertOsAppTheme(e.RequestedTheme));
-            ThemeChanged?.Invoke(ConvertOsAppTheme(e.RequestedTheme));
         }
 
         private AppThemesEnum ConvertOsAppTheme(OSAppTheme osAppTheme)

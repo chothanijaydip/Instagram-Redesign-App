@@ -1,7 +1,162 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InstagramRedesignApp.SettingsView">
+             xmlns:sh="http://sharpnado.com"
+             x:Class="InstagramRedesignApp.SettingsView"
+             
+             IsVisible="False">
+    
+    <Grid>
+        <BoxView x:Name="overlayBoxView" VerticalOptions="Fill" BackgroundColor="Transparent">
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="CloseTapped"/>
+            </BoxView.GestureRecognizers>
+        </BoxView>
+        <Grid x:Name="grid" 
+              SizeChanged="GridSizeChanged" 
+              HeightRequest="250" VerticalOptions="Start">
 
+            <BoxView CornerRadius="30" BackgroundColor="Black" Opacity="0.35"/>
+
+            <sh:MaterialFrame x:Name="frame" MaterialBlurStyle="Light" MaterialTheme="AcrylicBlur" CornerRadius="30">
+                <Grid RowDefinitions="*,30" ColumnDefinitions="1.3*,*">
+                    <StackLayout Margin="20,10,0,10">
+                        <StackLayout.Resources>
+                            <Style TargetType="{x:Type Label}">
+                                <Setter Property="VerticalOptions" Value="Center"/>
+                                <Setter Property="HorizontalOptions" Value="Center"/>
+                                <Setter Property="TextColor" Value="White"/>
+                                <Setter Property="FontAttributes" Value="Bold"/>
+                            </Style>
+                            
+                            <PathGeometry x:Key="BackgroundGeometry">
+                                <PathFigureCollection>
+                                    <PathFigure StartPoint="22,2" IsClosed="True">
+                                        <PathSegmentCollection>
+                                            <LineSegment Point="38,2"/>
+                                            <QuadraticBezierSegment Point1="58,2" Point2="58,22"/>
+                                            <LineSegment Point="58,58"/>
+                                            <QuadraticBezierSegment Point1="58,78" Point2="38,78"/>
+                                            <LineSegment Point="22,78"/>
+                                            <QuadraticBezierSegment Point1="2,78" Point2="2,58"/>
+                                            <LineSegment Point="2,22"/>
+                                            <QuadraticBezierSegment Point1="2,2" Point2="22,2"/>
+                                        </PathSegmentCollection>
+                                    </PathFigure>
+                                </PathFigureCollection>
+                            </PathGeometry>
+
+                            <ControlTemplate x:Key="RadioButtonTemplate">
+                                <Grid HeightRequest="102">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroupList>
+                                            <VisualStateGroup x:Name="CheckedStates">
+                                                <VisualState x:Name="Checked">
+                                                    <VisualState.Setters>
+                                                        <Setter TargetName="path" Property="Opacity" Value="1" />
+                                                        <Setter TargetName="background" Property="BackgroundColor" Value="Gray" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                                <VisualState x:Name="Unchecked">
+                                                    <VisualState.Setters>
+                                                        <Setter TargetName="path" Property="Opacity" Value="0" />
+                                                        <Setter TargetName="background" Property="BackgroundColor" Value="Black" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateGroupList>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <BoxView x:Name="background" BackgroundColor="Black" HorizontalOptions="Center" VerticalOptions="Start"
+                                             WidthRequest="60" HeightRequest="80" Opacity="0.2" 
+                                             Clip="{StaticResource BackgroundGeometry}"/>
+                                    <Path x:Name="path" Stroke="White" StrokeThickness="3" Data="{StaticResource BackgroundGeometry}"/>
+                                    <ContentPresenter/>
+                                </Grid>
+                            </ControlTemplate>
+                        </StackLayout.Resources>
+                        
+                        <Label Text="Visualisation" TextColor="White" FontSize="16"
+                               HorizontalOptions="Start"/>
+                        <Grid ColumnDefinitions="*,*,*">
+                            <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}">
+                                <RadioButton.Content>
+                                    <Grid>
+                                        <Label Text="1" Margin="0,0,0,22" FontSize="22"/>
+                                        <Label Text="Ample" VerticalOptions="End"/>
+                                    </Grid>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Grid.Column="1" ControlTemplate="{StaticResource RadioButtonTemplate}">
+                                <RadioButton.Content>
+                                    <Grid>
+                                        <Label Text="2" Margin="0,0,0,22" FontSize="22"/>
+                                        <Label Text="Clean" VerticalOptions="End"/>
+                                    </Grid>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Grid.Column="2" ControlTemplate="{StaticResource RadioButtonTemplate}">
+                                <RadioButton.Content>
+                                    <Grid>
+                                        <Label Text="3" Margin="0,0,0,22" FontSize="22"/>
+                                        <Label Text="Old" VerticalOptions="End"/>
+                                    </Grid>
+                                </RadioButton.Content>
+                            </RadioButton>
+                        </Grid>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Orientation="Vertical">
+                        <StackLayout.Resources>
+                            <Style TargetType="{x:Type StackLayout}">
+                                <Setter Property="HorizontalOptions" Value="End"/>
+                                <Setter Property="Orientation" Value="Horizontal"/>
+                                <Setter Property="Margin" Value="8,8"/>
+                            </Style>
+                            <Style TargetType="{x:Type Label}">
+                                <Setter Property="VerticalOptions" Value="Center"/>
+                                <Setter Property="TextColor" Value="White"/>
+                                <Setter Property="FontAttributes" Value="Bold"/>
+                            </Style>
+                            <Style TargetType="{x:Type Switch}">
+                                <Setter Property="HorizontalOptions" Value="Start"/>
+                                <Setter Property="ThumbColor" Value="White"/>
+                                <Setter Property="OnColor" Value="Gray"/>
+                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                            </Style>
+                        </StackLayout.Resources>
+                        
+                        <StackLayout>
+                            <Label Text="Horizontal"/>
+                            <Switch/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="Swift Chat"/>
+                            <Switch/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="Dark Theme"/>
+                            <Switch IsToggled="{Binding DarkTheme, Mode=TwoWay}"/>
+                        </StackLayout>
+                    </StackLayout>
+                    
+                    <Path Grid.Row="1" Grid.ColumnSpan="2"
+                          HorizontalOptions="Center" VerticalOptions="Start"
+                          WidthRequest="25" Aspect="Uniform" Rotation="180"
+                          Data="{StaticResource UpArrowGeometry}" Fill="White"/>
+                    <BoxView Grid.Row="1" Grid.ColumnSpan="2"
+                             HorizontalOptions="Center" WidthRequest="80" BackgroundColor="Transparent">
+                        <BoxView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="CloseTapped"/>
+                        </BoxView.GestureRecognizers>
+                    </BoxView>
+                </Grid>
+            </sh:MaterialFrame>
+
+            <!-- If the TapGestureRecognizer is not added, the Grid behaves as InputTransparent -->
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer/>
+            </Grid.GestureRecognizers>
+        </Grid>
+    </Grid>
     
 </ContentView>

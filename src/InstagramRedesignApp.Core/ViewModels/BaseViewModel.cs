@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace InstagramRedesignApp.Core
 {
-    public class BasePageViewModel : INotifyPropertyChanged, IBasePageViewModel
+    public class BaseViewModel : INotifyPropertyChanged, IBaseViewModel
     {
         protected bool isDisposed;
 
@@ -23,7 +23,7 @@ namespace InstagramRedesignApp.Core
             await Task.CompletedTask;
         }
 
-        public async virtual Task OnPageCreated(params object[] parameters)
+        public async virtual Task OnCreated(params object[] parameters)
         {
             await Task.CompletedTask;
         }

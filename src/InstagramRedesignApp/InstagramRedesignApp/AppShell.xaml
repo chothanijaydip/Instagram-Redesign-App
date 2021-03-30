@@ -14,9 +14,7 @@
     <local:ShellOverlay x:Name="overlay">
         <local:ShellOverlay.Content>
             <Grid VerticalOptions="Fill">
-                <BoxView x:Name="overlayBoxView" VerticalOptions="Fill" IsVisible="false"/>
-
-                <local:SettingsView VerticalOptions="Start" IsVisible="False"/>
+                <local:SettingsView VerticalOptions="Fill"/>
 
                 <local:CustomTabBar HeightRequest="100" BackgroundColor="Transparent"
                                     VerticalOptions="End"/>

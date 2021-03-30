@@ -24,18 +24,25 @@ namespace InstagramRedesignApp
         protected override async void OnNavigating(ShellNavigatingEventArgs e)
         {
             base.OnNavigating(e);
+            if (CurrentItem is ShellOverlay overlay)
+            {
+                var settingsView = (overlay.Content as Grid)?.FindView<SettingsView>();
+
+                if (settingsView is not null)
+                    _ = settingsView.Hide();
+            }
 
             switch (e.Source)
             {
                 case ShellNavigationSource.Pop:
                 case ShellNavigationSource.PopToRoot:
-                    Page page = Shell.Current.CurrentPage;
+                    Page page = CurrentPage;
 
                     await Task.Delay(5000);
 
                     if (page is not null)
                     {
-                        if (page.BindingContext is IBasePageViewModel viewModel)
+                        if (page.BindingContext is IBaseViewModel viewModel)
                             viewModel.Dispose();
 
                         page.BindingContext = null;

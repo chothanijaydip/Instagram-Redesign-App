@@ -6,8 +6,19 @@
              
              Style="{StaticResource BasePageStyle}">
 
-    <Grid x:Name="mainGrid" Padding="{x:Static local:StatusBar.Padding}">
-        <StackLayout>
+    <Grid Padding="{x:Static local:StatusBar.Padding}"
+          RowDefinitions="50,*">
+        <local:AppBar VerticalOptions="Center"/>
+        <StackLayout Grid.Row="1">
+            <BoxView HorizontalOptions="Center" WidthRequest="200" VerticalOptions="Start" HeightRequest="50" Margin="10">
+                <BoxView.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="{StaticResource Yellow}"/>
+                        <GradientStop Color="{StaticResource Pink}"/>
+                        <GradientStop Color="{StaticResource Purple}"/>
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
             <Button Text="LIGHT" Clicked="LightClicked"/>
             <Button Text="DARK" Clicked="DarkClicked"/>
         </StackLayout>
