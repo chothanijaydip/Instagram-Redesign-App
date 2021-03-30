@@ -78,7 +78,7 @@
                         <Label Text="Visualisation" TextColor="White" FontSize="16"
                                HorizontalOptions="Start"/>
                         <Grid ColumnDefinitions="*,*,*">
-                            <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}">
+                            <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}" IsChecked="True">
                                 <RadioButton.Content>
                                     <Grid>
                                         <Label Text="1" Margin="0,0,0,22" FontSize="22"/>

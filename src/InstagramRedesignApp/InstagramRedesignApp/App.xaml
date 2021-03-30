@@ -59,6 +59,9 @@
         <SolidColorBrush x:Key="DarkTabBarBrush" Color="{StaticResource DarkTabBarColor}"/>
         <SolidColorBrush x:Key="MidBrush" Color="{StaticResource MidColor}"/>
 
+        <local:FFImageSourceConverter x:Key="FFImageSourceConverter"/>
+        <local:FFPreviousImageSourceConverter x:Key="FFPreviousImageSourceConverter"/>
+
         <Style x:Key="BasePageStyle" TargetType="{x:Type ContentPage}">
             <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkBackgroundColor}, Light={StaticResource LightBackgroundColor}, Default={StaticResource LightBackgroundColor}}"/>
         </Style>

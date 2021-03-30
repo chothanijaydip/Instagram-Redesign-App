@@ -4,7 +4,8 @@ namespace InstagramRedesignApp.Core
 {
     public class Post
     {
-        public string Image { get; set; }
+        public string[] Images { get; set; }
+        public string FirstImage => Images[0];
         public string AuthorId { get; set; }
         public User Author { get; set; }
         public int Likes { get; set; }

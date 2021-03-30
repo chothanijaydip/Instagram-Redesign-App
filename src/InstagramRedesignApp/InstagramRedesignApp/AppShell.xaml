@@ -5,8 +5,6 @@
                                xmlns:local="clr-namespace:InstagramRedesignApp"
                                x:Class="InstagramRedesignApp.AppShell"
                                
-                               st:SharedTransitionShell.BackgroundAnimation="Fade"
-                               
                                Shell.FlyoutBehavior="Disabled"
                                Shell.TabBarIsVisible="False"
                                Shell.NavBarIsVisible="False">
@@ -14,6 +12,8 @@
     <local:ShellOverlay x:Name="overlay">
         <local:ShellOverlay.Content>
             <Grid VerticalOptions="Fill">
+                <local:AppBar x:Name="appBar" VerticalOptions="Start"/>
+                
                 <local:SettingsView VerticalOptions="Fill"/>
 
                 <local:CustomTabBar HeightRequest="100" BackgroundColor="Transparent"

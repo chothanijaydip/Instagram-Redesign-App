@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace InstagramRedesignApp.Core
 {
@@ -7,7 +8,6 @@ namespace InstagramRedesignApp.Core
     {
         private readonly IUsersService usersService;
         private readonly IPostsService postsService;
-        private readonly IAppThemeService appThemeService;
         private IList<Post> posts;
         private IList<User> followedUsers;
 
@@ -30,11 +30,15 @@ namespace InstagramRedesignApp.Core
             }
         }
         
+        public ICommand PostTappedCommand { get; private set; }
 
-        public HomePageViewModel(IUsersService usersService, IPostsService postsService)
+
+        public HomePageViewModel(IUsersService usersService, IPostsService postsService, INavigationService navigationService)
         {
             this.usersService = usersService;
             this.postsService = postsService;
+
+            PostTappedCommand = new RelayCommand(parameter => navigationService.PushPageAsync(PagesEnum.PostDetailPage, true, parameter));
         }
 
 

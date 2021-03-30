@@ -11,15 +11,12 @@ namespace InstagramRedesignApp
         
         public void OnPageCreated(PagesEnum page, IBaseViewModel viewModel)
         {
-            if (pushViewModelParameter is null || page != pushViewModelParameter.Page)
-                return;
-
-            viewModel.OnCreated(pushViewModelParameter.Parameters);
+            viewModel.OnCreated(pushViewModelParameter?.Parameters);
         }
 
         public async Task PopPageAsync()
         {
-            await Shell.Current.Navigation.PopAsync();
+            await Shell.Current.Navigation.PopAsync(false);
         }
 
         public async Task PopToRootPageAsync()

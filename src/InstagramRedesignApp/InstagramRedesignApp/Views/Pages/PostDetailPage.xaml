@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:InstagramRedesignApp"
+             xmlns:core="clr-namespace:InstagramRedesignApp.Core;assembly=InstagramRedesignApp.Core"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             
+             sharedTransitions:SharedTransitionShell.TransitionDuration="200"
+             
+             x:Class="InstagramRedesignApp.PostDetailPage"
+             
+             Style="{StaticResource BasePageStyle}">
+
+    <Grid Padding="{x:Static local:AppBar.AppBarPadding}">
+        <ff:CachedImage x:Name="image" VerticalOptions="Start" Aspect="AspectFill" Margin="0"
+                        HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=ImageHeight}" 
+                        Source="{Binding CurrentPost.FirstImage, Converter={StaticResource FFImageSourceConverter}}"
+                        sharedTransitions:Transition.Name="Image">
+            <ff:CachedImage.Transformations>
+                <fftransformations:RoundedTransformation Radius="45" CropHeightRatio="4" CropWidthRatio="3"/>
+            </ff:CachedImage.Transformations>
+        </ff:CachedImage>
+    </Grid>
+</ContentPage>

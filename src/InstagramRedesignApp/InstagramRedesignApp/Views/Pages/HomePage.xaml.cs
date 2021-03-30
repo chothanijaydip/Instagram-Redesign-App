@@ -1,27 +1,50 @@
 ﻿using InstagramRedesignApp.Core;
-using Microsoft.Extensions.DependencyInjection;
+using Plugin.SharedTransitions;
 using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace InstagramRedesignApp
 {
     public partial class HomePage : ContentPage
     {
+        readonly double density = DeviceDisplay.MainDisplayInfo.Density;
+        readonly double cornerRadius = 45;
+        IHomePageViewModel viewModel;
+
+        public double ImageHeight { get; set; }
+        public double PostHeight { get; set; }
+        public Thickness PreviousImageMargin { get; set; }
+
         public HomePage()
         {
             InitializeComponent();
 
-            BindingContext = ((App)App.Current).ServiceProvider.GetRequiredService<IHomePageViewModel>();
+            viewModel = this.InitializeViewModel<IHomePageViewModel>(PagesEnum.HomePage);
+            SizeChanged += HomePageSizeChanged;
         }
 
-        private void LightClicked(object sender, EventArgs e)
+        private void HomePageSizeChanged(object sender, EventArgs e)
         {
-            Application.Current.UserAppTheme = OSAppTheme.Light;
+            ImageHeight = DeviceDisplay.MainDisplayInfo.Width / 3d * 4 / density;
+            PostHeight = ImageHeight - cornerRadius;
+            PreviousImageMargin = new Thickness(0, -PostHeight, 0,0);
+
+            OnPropertyChanged(nameof(ImageHeight));
+            OnPropertyChanged(nameof(PostHeight));
+            OnPropertyChanged(nameof(PreviousImageMargin));
         }
 
-        private void DarkClicked(object sender, EventArgs e)
+        private void PostTapped(object sender, EventArgs e)
         {
-            Application.Current.UserAppTheme = OSAppTheme.Dark;
+            Grid grid = sender as Grid;
+
+            if (grid is not null)
+            {
+                Post post = grid.BindingContext as Post;
+
+                SharedTransitionShell.SetTransitionSelectedGroup(this, post.AuthorId);
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ namespace InstagramRedesignApp
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new EmbeddedResourceImageSource("MovieApp.Images." + value?.ToString(), typeof(FFImageSourceConverter).GetTypeInfo().Assembly);
+            return new EmbeddedResourceImageSource("InstagramRedesignApp.Images." + value?.ToString(), typeof(FFImageSourceConverter).GetTypeInfo().Assembly);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -24,6 +24,7 @@ namespace InstagramRedesignApp
             services.AddSingleton<IAppThemeService, AppThemeService>();
             services.AddTransient<ISettingsViewModel, SettingsViewModel>();
             services.AddTransient<IHomePageViewModel, HomePageViewModel>();
+            services.AddTransient<IPostDetailPageViewModel, PostDetailPageViewModel>();
 
             ServiceProvider = services.BuildServiceProvider();
 

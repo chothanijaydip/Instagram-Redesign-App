@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InstagramRedesignApp.AppBar">
+             xmlns:local="clr-namespace:InstagramRedesignApp"
+             x:Class="InstagramRedesignApp.AppBar"
+             Padding="{x:Static local:StatusBar.Padding}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBackgroundColor}, Light={StaticResource LightBackgroundColor}, Default={StaticResource LightBackgroundColor}}">
 
-    <Grid ColumnDefinitions="40,*,40" Margin="18,0">
+    <Grid ColumnDefinitions="40,*,40" Margin="18,0"
+          VerticalOptions="Start" HeightRequest="50">
         <Grid.Resources>
             <Style TargetType="{x:Type Path}">
                 <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
@@ -15,13 +19,13 @@
             </Style>
         </Grid.Resources>
 
-        <Path Data="{StaticResource SettingsGeometry}"/>
+        <Path x:Name="settingsPath" Data="{StaticResource SettingsGeometry}"/>
         <Path Grid.Column="1" Data="{StaticResource InstagramTextGeometry}"
               HeightRequest="30" WidthRequest="200" 
               Fill="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
-        <Path Grid.Column="2" Data="{StaticResource MessagesGeometry}"/>
+        <Path x:Name="messagesPath" Grid.Column="2" Data="{StaticResource MessagesGeometry}"/>
 
-        <BoxView>
+        <BoxView x:Name="settingsBoxView">
             <BoxView.GestureRecognizers>
                 <TapGestureRecognizer Tapped="SettingsTapped"/>
             </BoxView.GestureRecognizers>

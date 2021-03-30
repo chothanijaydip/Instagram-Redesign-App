@@ -18,10 +18,10 @@ namespace InstagramRedesignApp.Core
                 new User
                 {
                     UserId = "1",
-                    Name = "",
-                    ProfileImage = "",
-                    Job = "",
-                    Description = "",
+                    Name = "Jan Novák",
+                    ProfileImage = "Jan.avatar.jpg",
+                    Job = "Xamariner",
+                    Description = "Like to travel, code and take photos of random monkeys.",
                     Followers = random.Next(0,1000000),
                     Following = random.Next(1,50),
                     FollowedUsersIds = new List<string>
@@ -30,77 +30,155 @@ namespace InstagramRedesignApp.Core
                     },
                     Posts = new List<Post>
                     {
-
+                        new Post
+                        {
+                            AuthorId = "1",
+                            Images = new[]{ "Jan.1.jpg" },
+                            Likes = random.Next(0,1000000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            Images = new[]{ "Jan.2.jpg" },
+                            Likes = random.Next(0,1000000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            Images = new[]{ "Jan.3.jpg" },
+                            Likes = random.Next(0,1000000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            Images = new[]{ "Jan.4.jpg" },
+                            Likes = random.Next(0,1000000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            Images = new[]{ "Jan.5.jpg" },
+                            Likes = random.Next(0,1000000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            Images = new[]{ "Jan.6.jpg" },
+                            Likes = random.Next(0,1000000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            Images = new[]{ "Jan.7.jpg" },
+                            Likes = random.Next(0,1000000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            Images = new[]{ "Jan.8.jpg" },
+                            Likes = random.Next(0,1000000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            Images = new[]{ "Jan.9.jpg" },
+                            Likes = random.Next(0,1000000),
+                        },
                     },
                 },
                 new User
                 {
                     UserId = "2",
-                    Name = "",
-                    ProfileImage = "",
+                    Name = "Gordo",
+                    ProfileImage = "Gordo.avatar.jpg",
                     Job = "",
                     Description = "",
                     Followers = random.Next(0,1000000),
                     Following = random.Next(1,50),
                     Posts = new List<Post>
                     {
-
+                        new Post
+                        {
+                            AuthorId = "2",
+                            Images = new[]{ "Gordo.1.jpg", "Gordo.2.jpg", "Gordo.3.jpg" },
+                            Likes = random.Next(0,1000000),
+                        },
                     },
                 },
                 new User
                 {
                     UserId = "3",
-                    Name = "",
-                    ProfileImage = "",
+                    Name = "Jenny",
+                    ProfileImage = "Jenny.avatar.jpg",
                     Job = "",
                     Description = "",
                     Followers = random.Next(0,1000000),
                     Following = random.Next(1,50),
                     Posts = new List<Post>
                     {
-
+                        new Post
+                        {
+                            AuthorId = "3",
+                            Images = new[]{ "Jenny.1.jpg" },
+                            Likes = random.Next(0,1000000),
+                        },
                     },
                 },
                 new User
                 {
                     UserId = "4",
-                    Name = "",
-                    ProfileImage = "",
+                    Name = "Manuel",
+                    ProfileImage = "Manuel.avatar.jpg",
                     Job = "",
                     Description = "",
                     Followers = random.Next(0,1000000),
                     Following = random.Next(1,50),
                     Posts = new List<Post>
                     {
-
+                        new Post
+                        {
+                            AuthorId = "4",
+                            Images = new[]{ "Manuel.1.jpg" },
+                            Likes = random.Next(0,1000000),
+                        },
                     },
                 },
                 new User
                 {
                     UserId = "5",
-                    Name = "",
-                    ProfileImage = "",
+                    Name = "Andrey",
+                    ProfileImage = "Andrey.avatar.jpg",
                     Job = "",
                     Description = "",
                     Followers = random.Next(0,1000000),
                     Following = random.Next(1,50),
                     Posts = new List<Post>
                     {
-
+                        new Post
+                        {
+                            AuthorId = "5",
+                            Images = new[]{ "Andrey.1.jpg" },
+                            Likes = random.Next(0,1000000),
+                        },
                     },
                 },
                 new User
                 {
                     UserId = "6",
-                    Name = "",
-                    ProfileImage = "",
+                    Name = "Laura",
+                    ProfileImage = "Laura.avatar.jpg",
                     Job = "",
                     Description = "",
                     Followers = random.Next(0,1000000),
                     Following = random.Next(1,50),
                     Posts = new List<Post>
                     {
-
+                        new Post
+                        {
+                            AuthorId = "6",
+                            Images = new[]{ "Laura.1.jpg" },
+                            Likes = random.Next(0,1000000),
+                        },
                     },
                 },
             };

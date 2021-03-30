@@ -1,4 +1,6 @@
 ﻿using InstagramRedesignApp.Core;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,7 +20,17 @@ namespace InstagramRedesignApp
             overlay.Items.Add(new ShellContent { Route = PagesEnum.ActivityPage.ToString(), ContentTemplate = new DataTemplate(typeof(ActivityPage)) });
             overlay.Items.Add(new ShellContent { Route = PagesEnum.ProfilePage.ToString(), ContentTemplate = new DataTemplate(typeof(ProfilePage)) });
 
-            Routing.RegisterRoute(PagesEnum.ImageDetailPage.ToString(), typeof(ImageDetailPage));
+            Routing.RegisterRoute(PagesEnum.PostDetailPage.ToString(), typeof(PostDetailPage));
+        }
+
+        protected override void OnNavigated(ShellNavigatedEventArgs e)
+        {
+            PagesEnum targetPage = (PagesEnum)Enum.Parse(typeof(PagesEnum), e.Current.Location.OriginalString.Split('/').Last());
+
+            if (targetPage == PagesEnum.PostDetailPage)
+                appBar.ChangeState(AppBarStates.Detail);
+            else
+                appBar.ChangeState(AppBarStates.Main);
         }
 
         protected override async void OnNavigating(ShellNavigatingEventArgs e)

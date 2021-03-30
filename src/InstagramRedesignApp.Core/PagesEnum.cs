@@ -2,6 +2,6 @@
 {
     public enum PagesEnum
     {
-        HomePage, SearchPage, AddPage, ActivityPage, ProfilePage, ImageDetailPage
+        HomePage, SearchPage, AddPage, ActivityPage, ProfilePage, PostDetailPage
     }
 }
