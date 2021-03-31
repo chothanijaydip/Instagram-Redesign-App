@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Shapes;
 using Xamarin.Forms.Xaml;
 
 namespace InstagramRedesignApp
@@ -10,6 +11,8 @@ namespace InstagramRedesignApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AppShell : MySharedTransitionShell
     {
+        readonly double homePageCornerRadius = 38;
+
         public AppShell()
         {
             InitializeComponent();
@@ -21,6 +24,30 @@ namespace InstagramRedesignApp
             overlay.Items.Add(new ShellContent { Route = PagesEnum.ProfilePage.ToString(), ContentTemplate = new DataTemplate(typeof(ProfilePage)) });
 
             Routing.RegisterRoute(PagesEnum.PostDetailPage.ToString(), typeof(PostDetailPage));
+
+            SizeChanged += AppShellSizeChanged;
+        }
+
+        private void AppShellSizeChanged(object sender, EventArgs e)
+        {
+            homePageCornersPath.Data = new PathGeometry
+            {
+                Figures = new PathFigureCollection
+                {
+                    new PathFigure
+                    {
+                        StartPoint = new Point(0,0), IsClosed = true, IsFilled = true,
+                        Segments = new PathSegmentCollection
+                        {
+                            new LineSegment(new Point(this.Width, 0)),
+                            new LineSegment(new Point(this.Width, homePageCornerRadius)),
+                            new ArcSegment(new Point(this.Width - homePageCornerRadius, 0), new Size(homePageCornerRadius, homePageCornerRadius), 90, SweepDirection.CounterClockwise, false),
+                            new LineSegment(new Point(homePageCornerRadius, 0)),
+                            new ArcSegment(new Point(0, homePageCornerRadius), new Size(homePageCornerRadius, homePageCornerRadius), 90, SweepDirection.CounterClockwise, false),
+                        }
+                    }
+                }
+            };
         }
 
         protected override void OnNavigated(ShellNavigatedEventArgs e)
@@ -28,21 +55,24 @@ namespace InstagramRedesignApp
             PagesEnum targetPage = (PagesEnum)Enum.Parse(typeof(PagesEnum), e.Current.Location.OriginalString.Split('/').Last());
 
             if (targetPage == PagesEnum.PostDetailPage)
+                _ = tabBar.TranslateTo(0, tabBar.Height);
+            else
+                _ = tabBar.TranslateTo(0, 0);
+
+            if (targetPage == PagesEnum.PostDetailPage)
                 appBar.ChangeState(AppBarStates.Detail);
             else
                 appBar.ChangeState(AppBarStates.Main);
+
+            if ((e.Source == ShellNavigationSource.Pop || e.Source == ShellNavigationSource.PopToRoot) && targetPage != PagesEnum.HomePage)
+                HideHomePageCorners();
         }
 
         protected override async void OnNavigating(ShellNavigatingEventArgs e)
         {
             base.OnNavigating(e);
-            if (CurrentItem is ShellOverlay overlay)
-            {
-                var settingsView = (overlay.Content as Grid)?.FindView<SettingsView>();
 
-                if (settingsView is not null)
-                    _ = settingsView.Hide();
-            }
+            _ = settingsView.Hide();
 
             switch (e.Source)
             {
@@ -61,6 +91,16 @@ namespace InstagramRedesignApp
                     }
                     break;
             }
+        }
+
+        public void ShowHomePageCorners()
+        {
+            homePageCornersPath.IsVisible = true;
+        }
+
+        public void HideHomePageCorners()
+        {
+            homePageCornersPath.IsVisible = false;
         }
     }
 }

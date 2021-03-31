@@ -49,6 +49,7 @@
         <Color x:Key="DarkBackgroundColor">#000000</Color>
         <Color x:Key="DarkTabBarColor">#000000</Color>
         <Color x:Key="MidColor">#D0D6DB</Color>
+        <Color x:Key="LightMidColor">#f0f2f4</Color>
         <Color x:Key="Purple">#7C369E</Color>
         <Color x:Key="Pink">#FF0549</Color>
         <Color x:Key="Yellow">#EFC200</Color>
@@ -58,9 +59,10 @@
         <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackgroundColor}"/>
         <SolidColorBrush x:Key="DarkTabBarBrush" Color="{StaticResource DarkTabBarColor}"/>
         <SolidColorBrush x:Key="MidBrush" Color="{StaticResource MidColor}"/>
+        <SolidColorBrush x:Key="LightMidBrush" Color="{StaticResource LightMidColor}"/>
 
         <local:FFImageSourceConverter x:Key="FFImageSourceConverter"/>
-        <local:FFPreviousImageSourceConverter x:Key="FFPreviousImageSourceConverter"/>
+        <local:ImageSourceConverter x:Key="ImageSourceConverter"/>
 
         <Style x:Key="BasePageStyle" TargetType="{x:Type ContentPage}">
             <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkBackgroundColor}, Light={StaticResource LightBackgroundColor}, Default={StaticResource LightBackgroundColor}}"/>

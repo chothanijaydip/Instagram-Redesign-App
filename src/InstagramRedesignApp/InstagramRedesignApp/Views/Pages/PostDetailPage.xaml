@@ -14,13 +14,39 @@
              Style="{StaticResource BasePageStyle}">
 
     <Grid Padding="{x:Static local:AppBar.AppBarPadding}">
-        <ff:CachedImage x:Name="image" VerticalOptions="Start" Aspect="AspectFill" Margin="0"
-                        HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=ImageHeight}" 
+        <ff:CachedImage x:Name="image" Aspect="AspectFill" Margin="0" VerticalOptions="Start"
                         Source="{Binding CurrentPost.FirstImage, Converter={StaticResource FFImageSourceConverter}}"
+                        HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:PostDetailPage}}, Path=ImageHeight}"
                         sharedTransitions:Transition.Name="Image">
             <ff:CachedImage.Transformations>
-                <fftransformations:RoundedTransformation Radius="45" CropHeightRatio="4" CropWidthRatio="3"/>
+                <fftransformations:RoundedTransformation Radius="40" CropHeightRatio="4" CropWidthRatio="3"/>
             </ff:CachedImage.Transformations>
         </ff:CachedImage>
+
+        <Frame Padding="0" CornerRadius="38"
+               VerticalOptions="Start"
+               BackgroundColor="Transparent">
+            <CarouselView x:Name="carouselView"
+                          VerticalOptions="Start"
+                          Loop="False"
+                          ItemsSource="{Binding CurrentPost.Images}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <ff:CachedImage Aspect="AspectFill" Margin="0"
+                                            Source="{Binding ., Converter={StaticResource FFImageSourceConverter}}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </Frame>
+
+        <local:PostAvatarView Source="{Binding CurrentPost.Author.ProfileImage, Converter={StaticResource FFImageSourceConverter}}" 
+                              Name="{Binding CurrentPost.Author.Name}"
+                              HorizontalOptions="Start" VerticalOptions="Start"
+                              Margin="20"
+                              sharedTransitions:Transition.Name="Avatar"/>
+        
+        <Button Text="BACK" Clicked="Button_Clicked" VerticalOptions="End" Margin="0,100" HeightRequest="50"/>
     </Grid>
 </ContentPage>

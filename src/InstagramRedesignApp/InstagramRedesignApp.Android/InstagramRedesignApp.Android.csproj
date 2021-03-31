@@ -73,6 +73,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OverlapItemsEffect.cs" />
     <Compile Include="CustomShellItemRenderer.cs" />
     <Compile Include="CustomShellRenderer.cs" />
     <Compile Include="MainActivity.cs" />

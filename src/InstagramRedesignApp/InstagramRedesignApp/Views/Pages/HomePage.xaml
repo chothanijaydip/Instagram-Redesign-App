@@ -14,73 +14,120 @@
              Style="{StaticResource BasePageStyle}">
 
     <Grid Padding="{x:Static local:AppBar.AppBarPadding}">
-        <CollectionView ItemsSource="{Binding Posts}">
+        <CollectionView ItemsSource="{Binding Posts}"
+                        Scrolled="CollectionViewScrolled">
+            <CollectionView.Effects>
+                <local:OverlapItemsEffect/>
+            </CollectionView.Effects>
+            
             <CollectionView.Header>
-                <Grid>
+                <Grid Margin="0,0,0,45">
                     <Grid.Resources>
                         <PathGeometry x:Key="AvatarGeometry">
                             <PathFigureCollection>
-                                <PathFigure StartPoint="22,2" IsClosed="True">
+                                <PathFigure StartPoint="27,2" IsClosed="True">
                                     <PathSegmentCollection>
-                                        <LineSegment Point="38,2"/>
-                                        <QuadraticBezierSegment Point1="58,2" Point2="58,22"/>
-                                        <LineSegment Point="58,58"/>
-                                        <QuadraticBezierSegment Point1="58,78" Point2="38,78"/>
-                                        <LineSegment Point="22,78"/>
-                                        <QuadraticBezierSegment Point1="2,78" Point2="2,58"/>
-                                        <LineSegment Point="2,22"/>
-                                        <QuadraticBezierSegment Point1="2,2" Point2="22,2"/>
+                                        <LineSegment Point="33,2"/>
+                                        <QuadraticBezierSegment Point1="58,2" Point2="58,27"/>
+                                        <LineSegment Point="58,33"/>
+                                        <QuadraticBezierSegment Point1="58,58" Point2="33,58"/>
+                                        <LineSegment Point="27,58"/>
+                                        <QuadraticBezierSegment Point1="2,58" Point2="2,33"/>
+                                        <LineSegment Point="2,27"/>
+                                        <QuadraticBezierSegment Point1="2,2" Point2="27,2"/>
                                     </PathSegmentCollection>
                                 </PathFigure>
                             </PathFigureCollection>
                         </PathGeometry>
                     </Grid.Resources>
                     
-                    <CollectionView VerticalOptions="Start" HeightRequest="90">
+                    <CollectionView x:Name="headerCollecionView" VerticalOptions="Start" HeightRequest="105"
+                                    ItemsSource="{Binding FollowedUsers}">
+                        <CollectionView.Resources>
+                            <Style TargetType="{x:Type Label}">
+                                <Setter Property="VerticalOptions" Value="Start"/>
+                                <Setter Property="HorizontalOptions" Value="Center"/>
+                                <Setter Property="FontAttributes" Value="Bold"/>
+                                <Setter Property="FontSize" Value="12.5"/>
+                                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource MidColor}, Light={StaticResource DarkBackgroundColor}, Default={StaticResource DarkBackgroundColor}}"/>
+                            </Style>
+                        </CollectionView.Resources>
+                        
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout Orientation="Horizontal"/>
                         </CollectionView.ItemsLayout>
 
                         <CollectionView.Header>
-                            <Grid>
+                            <Grid RowDefinitions="60,auto" RowSpacing="1" HorizontalOptions="Center" WidthRequest="60"
+                                  Padding="22,10,4,0">
+                                <Path Data="{StaticResource AvatarGeometry}" StrokeThickness="2.5" 
+                                      Stroke="{StaticResource MidBrush}" Fill="{AppThemeBinding Dark={StaticResource DarkBackgroundBrush}, Light={StaticResource LightMidBrush}, Default={StaticResource LightMidBrush}}"/>
+                                <Path Data="{StaticResource PlusGeometry}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="Uniform"
+                                      HeightRequest="17" WidthRequest="18"
+                                      Fill="{AppThemeBinding Dark={StaticResource MidBrush}, Light={StaticResource DarkBackgroundBrush}, Default={StaticResource DarkBackgroundBrush}}"/>
                                 
+                                <Label Grid.Row="1" Text="My Story" />
                             </Grid>
                         </CollectionView.Header>
+
+                        <CollectionView.Footer>
+                            <BoxView HorizontalOptions="End" WidthRequest="18"/>
+                        </CollectionView.Footer>
+                        
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="{x:Type core:User}">
+                                <Grid RowDefinitions="60,auto" RowSpacing="1" HorizontalOptions="Center" WidthRequest="60"
+                                      Padding="4,10,4,0">
+                                    <Path Data="{StaticResource AvatarGeometry}" StrokeThickness="2.5">
+                                        <Path.Stroke>
+                                            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                                <GradientStop Offset="0.2" Color="{StaticResource Yellow}"/>
+                                                <GradientStop Offset="0.5" Color="{StaticResource Pink}"/>
+                                                <GradientStop Offset="0.8" Color="{StaticResource Purple}"/>
+                                            </LinearGradientBrush>
+                                        </Path.Stroke>
+                                    </Path>
+
+                                    <Frame Padding="0" HasShadow="False" CornerRadius="19"
+                                           HorizontalOptions="Center" VerticalOptions="Center"
+                                           WidthRequest="50" HeightRequest="50">
+                                        <ff:CachedImage Source="{Binding ProfileImage, Converter={StaticResource FFImageSourceConverter}}"
+                                                        HorizontalOptions="Center" VerticalOptions="Center"
+                                                        WidthRequest="50" HeightRequest="50"
+                                                        Aspect="AspectFill"/>
+                                    </Frame>
+
+                                    <Label Grid.Row="1" Text="{Binding Name}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
                     </CollectionView>
                 </Grid>
             </CollectionView.Header>
 
             <CollectionView.Footer>
-                <BoxView VerticalOptions="End" HeightRequest="35"/>
+                <BoxView VerticalOptions="End" HeightRequest="80"/>
             </CollectionView.Footer>
             
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type core:Post}">
-                    <Grid BackgroundColor="Transparent" VerticalOptions="Start" IsClippedToBounds="False"
-                          HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=PostHeight}">
-
-                        <ff:CachedImage VerticalOptions="Start" 
-                                        Margin="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=PreviousImageMargin}"
-                                        HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=ImageHeight}" >
-                            <ff:CachedImage.Source>
-                                <MultiBinding Converter="{StaticResource FFPreviousImageSourceConverter}">
-                                    <Binding Source="{RelativeSource AncestorType={x:Type core:IHomePageViewModel}}" Path="Posts" />
-                                    <Binding Path="." />
-                                </MultiBinding>
-                            </ff:CachedImage.Source>
-                        </ff:CachedImage>
-
-                        <ff:CachedImage VerticalOptions="Start" Margin="0,0,0,-45" Aspect="AspectFill"
-                                            HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=ImageHeight}" 
-                                            Source="{Binding FirstImage, Converter={StaticResource FFImageSourceConverter}}"
-                                            sharedTransitions:Transition.Name="Image" 
-                                            sharedTransitions:Transition.Group="{Binding AuthorId}">
+                    <Grid BackgroundColor="Transparent" VerticalOptions="Start" IsClippedToBounds="False">
+                        <ff:CachedImage VerticalOptions="Start" Margin="0,0,0,-33" Aspect="AspectFill"
+                                        HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=ImageHeight}" 
+                                        Source="{Binding FirstImage, Converter={StaticResource FFImageSourceConverter}}"
+                                        sharedTransitions:Transition.Name="Image" 
+                                        sharedTransitions:Transition.Group="{Binding AuthorId}">
                             <ff:CachedImage.Transformations>
-                                <fftransformations:RoundedTransformation Radius="45" CropHeightRatio="4" CropWidthRatio="3"/>
+                                <fftransformations:RoundedTransformation Radius="40" CropHeightRatio="4" CropWidthRatio="3"/>
                             </ff:CachedImage.Transformations>
                         </ff:CachedImage>
 
-                        <Label TextColor="White" Text="TEST" Margin="50"/>
+                        <local:PostAvatarView Source="{Binding Author.ProfileImage, Converter={StaticResource FFImageSourceConverter}}" 
+                                              Name="{Binding Author.Name}"
+                                              sharedTransitions:Transition.Name="Avatar" 
+                                              sharedTransitions:Transition.Group="{Binding AuthorId}"
+                                              HorizontalOptions="Start" VerticalOptions="Start"
+                                              Margin="20"/>
 
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding PostTappedCommand, Source={RelativeSource AncestorType={x:Type core:IHomePageViewModel}}}" CommandParameter="{Binding .}" 

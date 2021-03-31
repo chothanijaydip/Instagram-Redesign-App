@@ -12,11 +12,15 @@
     <local:ShellOverlay x:Name="overlay">
         <local:ShellOverlay.Content>
             <Grid VerticalOptions="Fill">
-                <local:AppBar x:Name="appBar" VerticalOptions="Start"/>
-                
-                <local:SettingsView VerticalOptions="Fill"/>
+                <StackLayout Spacing="0">
+                    <local:AppBar x:Name="appBar" VerticalOptions="Start"/>
+                    <Path x:Name="homePageCornersPath" VerticalOptions="Start" HeightRequest="50"
+                          Fill="{AppThemeBinding Dark={StaticResource DarkBackgroundBrush}, Light={StaticResource LightBackgroundBrush}, Default={StaticResource LightBackgroundBrush}}"/>
+                </StackLayout>
 
-                <local:CustomTabBar HeightRequest="100" BackgroundColor="Transparent"
+                <local:SettingsView x:Name="settingsView" VerticalOptions="Fill"/>
+
+                <local:CustomTabBar x:Name="tabBar" HeightRequest="100" BackgroundColor="Transparent"
                                     VerticalOptions="End"/>
             </Grid>
         </local:ShellOverlay.Content>

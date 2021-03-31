@@ -9,12 +9,10 @@ namespace InstagramRedesignApp
     public partial class HomePage : ContentPage
     {
         readonly double density = DeviceDisplay.MainDisplayInfo.Density;
-        readonly double cornerRadius = 45;
         IHomePageViewModel viewModel;
+        double lastScrollPosition = 0;
 
         public double ImageHeight { get; set; }
-        public double PostHeight { get; set; }
-        public Thickness PreviousImageMargin { get; set; }
 
         public HomePage()
         {
@@ -24,15 +22,23 @@ namespace InstagramRedesignApp
             SizeChanged += HomePageSizeChanged;
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            AppShell shell = Shell.Current as AppShell;
+
+            if (lastScrollPosition > headerCollecionView.Height)
+                shell.ShowHomePageCorners();
+            else
+                shell.HideHomePageCorners();
+        }
+
         private void HomePageSizeChanged(object sender, EventArgs e)
         {
             ImageHeight = DeviceDisplay.MainDisplayInfo.Width / 3d * 4 / density;
-            PostHeight = ImageHeight - cornerRadius;
-            PreviousImageMargin = new Thickness(0, -PostHeight, 0,0);
 
             OnPropertyChanged(nameof(ImageHeight));
-            OnPropertyChanged(nameof(PostHeight));
-            OnPropertyChanged(nameof(PreviousImageMargin));
         }
 
         private void PostTapped(object sender, EventArgs e)
@@ -45,6 +51,18 @@ namespace InstagramRedesignApp
 
                 SharedTransitionShell.SetTransitionSelectedGroup(this, post.AuthorId);
             }
+        }
+
+        private void CollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
+        {
+            lastScrollPosition = e.VerticalOffset;
+
+            AppShell shell = Shell.Current as AppShell;
+
+            if (lastScrollPosition > headerCollecionView.Height)
+                shell.ShowHomePageCorners();
+            else
+                shell.HideHomePageCorners();
         }
     }
 }

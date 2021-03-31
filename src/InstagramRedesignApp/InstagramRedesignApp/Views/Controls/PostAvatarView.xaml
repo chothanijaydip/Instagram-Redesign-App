@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:sh="http://sharpnado.com"
+             
+             x:Class="InstagramRedesignApp.PostAvatarView">
+    
+    <Grid ColumnDefinitions="35, *" ColumnSpacing="10">
+        <Frame Padding="0" CornerRadius="12"
+               WidthRequest="35" HeightRequest="35"
+               VerticalOptions="Center" HorizontalOptions="Center">
+            <ff:CachedImage x:Name="image" />
+        </Frame>
+
+        <sh:Shadows Grid.Column="1" CornerRadius="2" Shades="{sh:SingleShade Color=Black, Opacity=0.2, BlurRadius=20}">
+            <Label x:Name="nameLabel" VerticalOptions="Center"
+                   TextColor="White" FontAttributes="Bold"/>
+        </sh:Shadows>
+    </Grid>
+</ContentView>
