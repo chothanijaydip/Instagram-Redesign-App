@@ -144,6 +144,11 @@
                 </BoxView.GestureRecognizers>
             </BoxView>
         </Grid>
+
+        <!-- If the TapGestureRecognizer is not added, the Grid behaves as InputTransparent -->
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer/>
+        </Grid.GestureRecognizers>
     </Grid>
     
 </ContentView>

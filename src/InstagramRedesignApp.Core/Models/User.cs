@@ -11,7 +11,8 @@ namespace InstagramRedesignApp.Core
         public string ProfileImage { get; set; }
         public int Followers { get; set; }
         public int Following { get; set; }
-        public IList<Post> Posts { get; set; }
-        public IList<string> FollowedUsersIds { get; set; }
+        public IList<Post> Posts { get; set; } = new List<Post>();
+        public IList<string> LikedPostsIds { get; set; } = new List<string>();
+        public IList<string> FollowedUsersIds { get; set; } = new List<string>();
     }
 }

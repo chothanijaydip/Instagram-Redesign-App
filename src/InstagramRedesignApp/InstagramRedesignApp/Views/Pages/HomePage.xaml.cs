@@ -25,6 +25,7 @@ namespace InstagramRedesignApp
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            viewModel.OnPageAppearing();
 
             AppShell shell = Shell.Current as AppShell;
 

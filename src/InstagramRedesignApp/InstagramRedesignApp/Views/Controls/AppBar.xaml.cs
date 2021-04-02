@@ -25,6 +25,11 @@ namespace InstagramRedesignApp
             }
         }
 
+        private void BackTapped(object sender, EventArgs e)
+        {
+            Shell.Current.Navigation.PopAsync();
+        }
+
         public void ChangeState(AppBarStates appBarState)
         {
             IsVisible = true;
@@ -35,11 +40,15 @@ namespace InstagramRedesignApp
                     settingsBoxView.IsVisible = true;
                     settingsPath.IsVisible = true;
                     messagesPath.IsVisible = true;
+                    backPath.IsVisible = false;
+                    backBoxView.IsVisible = false;
                     break;
                 case AppBarStates.Detail:
                     settingsBoxView.IsVisible = false;
                     settingsPath.IsVisible = false;
                     messagesPath.IsVisible = false;
+                    backPath.IsVisible = true;
+                    backBoxView.IsVisible = true;
                     break;
                 case AppBarStates.Hidden:
                     IsVisible = false;

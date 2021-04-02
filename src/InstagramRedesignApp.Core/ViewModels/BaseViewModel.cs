@@ -18,6 +18,15 @@ namespace InstagramRedesignApp.Core
             catch { }
         }
 
+        protected void OnPropertyChanged(object sender, string propertyName)
+        {
+            try
+            {
+                PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(propertyName));
+            }
+            catch { }
+        }
+
         public async virtual Task OnPageDisappearing()
         {
             await Task.CompletedTask;

@@ -20,6 +20,8 @@
         </Grid.Resources>
 
         <Path x:Name="settingsPath" Data="{StaticResource SettingsGeometry}"/>
+        <Path x:Name="backPath" Data="{StaticResource UpArrowGeometry}" Rotation="90" WidthRequest="20" HeightRequest="20"
+              Fill="{AppThemeBinding Dark={StaticResource LightBackgroundBrush}, Light={StaticResource DarkBackgroundBrush}, Default={StaticResource DarkBackgroundBrush}}"/>
         <Path Grid.Column="1" Data="{StaticResource InstagramTextGeometry}"
               HeightRequest="30" WidthRequest="200" 
               Fill="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
@@ -28,6 +30,11 @@
         <BoxView x:Name="settingsBoxView">
             <BoxView.GestureRecognizers>
                 <TapGestureRecognizer Tapped="SettingsTapped"/>
+            </BoxView.GestureRecognizers>
+        </BoxView>
+        <BoxView x:Name="backBoxView">
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="BackTapped"/>
             </BoxView.GestureRecognizers>
         </BoxView>
     </Grid>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:sh="http://sharpnado.com"
+             x:Class="InstagramRedesignApp.CustomIndicatorView">
+    <sh:Shadows CornerRadius="5" Shades="{sh:SingleShade Color=Black, Opacity=0.2, BlurRadius=20}">
+        <Grid x:Name="grid" Margin="0" Padding="0"/>
+    </sh:Shadows>
+</ContentView>

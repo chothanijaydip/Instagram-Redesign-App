@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sh="http://sharpnado.com"
+             xmlns:core="clr-namespace:InstagramRedesignApp.Core;assembly=InstagramRedesignApp.Core"
+             x:Class="InstagramRedesignApp.PostInfoView">
+
+    <Grid VerticalOptions="End" HeightRequest="40">
+        <Grid.Resources>
+            <Style TargetType="{x:Type Path}">
+                <Setter Property="Fill" Value="White"/>
+                <Setter Property="Aspect" Value="Uniform"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HeightRequest" Value="22"/>
+                <Setter Property="WidthRequest" Value="22"/>
+            </Style>
+        </Grid.Resources>
+
+        <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" Spacing="22">
+            <Grid BackgroundColor="Transparent">
+                <BoxView CornerRadius="20" BackgroundColor="Gray" Opacity="0.7"/>
+                <sh:Shadows x:Name="likedShadows" IsVisible="{Binding IsLiked}" CornerRadius="20" Shades="{sh:SingleShade Color={StaticResource Pink}, Opacity=0.2, BlurRadius=20}">
+                    <BoxView CornerRadius="20" BackgroundColor="{StaticResource Pink}"/>
+                </sh:Shadows>
+                
+                <StackLayout Orientation="Horizontal" Margin="15,0">
+                    <Path Data="{StaticResource HeartFilledGeometry}" HorizontalOptions="End"/>
+                    <Label Text="{Binding NumberOfLikes, Converter={StaticResource ShortIntConverter}}" VerticalOptions="Center" FontAttributes="Bold" TextColor="White"/>
+                </StackLayout>
+                
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LikePostCommand, Source={RelativeSource AncestorType={x:Type core:ILikePostViewModel}}}"
+                                          CommandParameter="{Binding .}"/>
+                </Grid.GestureRecognizers>
+            </Grid>
+            <StackLayout Orientation="Horizontal">
+                <Path Data="{StaticResource CommentsGeometry}" HorizontalOptions="End"/>
+                <Label Text="{Binding NumberComments, Converter={StaticResource ShortIntConverter}}" VerticalOptions="Center" FontAttributes="Bold" TextColor="White"/>
+            </StackLayout>
+            <Path Data="{StaticResource SendGeometry}" HorizontalOptions="End" Rotation="-30" Margin="0,0,0,5"/>
+        </StackLayout>
+
+        <Path Data="{StaticResource BookmarkGeometry}" HorizontalOptions="End" HeightRequest="25"/>
+    </Grid>
+</ContentView>

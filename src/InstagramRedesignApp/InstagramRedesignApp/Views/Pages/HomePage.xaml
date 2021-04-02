@@ -5,7 +5,8 @@
              xmlns:core="clr-namespace:InstagramRedesignApp.Core;assembly=InstagramRedesignApp.Core"
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions" 
+             xmlns:sh="http://sharpnado.com"
              x:Class="InstagramRedesignApp.HomePage"
              x:DataType="{x:Type core:IHomePageViewModel}"
              
@@ -129,9 +130,22 @@
                                               HorizontalOptions="Start" VerticalOptions="Start"
                                               Margin="20"/>
 
+                        <local:CustomIndicatorView Count="{Binding Images, Converter={StaticResource CollectionToLengthConverter}}"
+                                                   sharedTransitions:Transition.Name="IndicatorView" 
+                                                   sharedTransitions:Transition.Group="{Binding AuthorId}"
+                                                   HorizontalOptions="End" VerticalOptions="Start"
+                                                   Margin="25,30" HeightRequest="6"/>
+
+                        <local:PostInfoView VerticalOptions="End" Margin="20,0,20,60"
+                                            sharedTransitions:Transition.Name="PostInfoView" 
+                                            sharedTransitions:Transition.Group="{Binding AuthorId}"/>
+
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding PostTappedCommand, Source={RelativeSource AncestorType={x:Type core:IHomePageViewModel}}}" CommandParameter="{Binding .}" 
                                                   Tapped="PostTapped"/>
+                            <TapGestureRecognizer Command="{Binding LikePostCommand, Source={RelativeSource AncestorType={x:Type core:ILikePostViewModel}}}"
+                                                  CommandParameter="{Binding .}"
+                                                  NumberOfTapsRequired="2"/>
                         </Grid.GestureRecognizers>
                     </Grid>
                 </DataTemplate>

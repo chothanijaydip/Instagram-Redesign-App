@@ -22,8 +22,11 @@
         <x:String x:Key="PlusPath">m 174.26839,34.311591 h -4.82602 v -4.826015 c 0,-0.666355 -0.54016,-1.206521 -1.20652,-1.206521 -0.66635,0 -1.20653,0.540166 -1.20653,1.206521 v 4.826015 h -4.82594 c -0.66635,0 -1.20651,0.54016 -1.20651,1.206515 0,0.666354 0.54016,1.206461 1.20651,1.206461 h 4.82601 v 4.826006 c 0,0.666355 0.54017,1.206528 1.20653,1.206528 0.66635,0 1.20645,-0.540239 1.20645,-1.206528 v -4.826006 h 4.82602 c 0.66635,0 1.20651,-0.540173 1.20651,-1.206527 0,-0.666355 -0.54024,-1.206449 -1.20651,-1.206449 z</x:String>
         <x:String x:Key="VerifiedPath">m 169.75672,51.606442 c -4.41056,0 -7.9986,3.588036 -7.9986,7.998596 0,4.410559 3.58804,7.998597 7.9986,7.998597 4.41056,0 7.9986,-3.588038 7.9986,-7.998597 0,-4.41056 -3.58804,-7.998596 -7.9986,-7.998596 z m 4.05396,6.303561 -4.33258,4.332572 c -0.12998,0.129977 -0.30061,0.195299 -0.47124,0.195299 -0.17065,0 -0.34128,-0.06532 -0.47126,-0.195299 l -2.16629,-2.166286 c -0.26062,-0.260621 -0.26062,-0.681881 0,-0.942502 0.26063,-0.26062 0.68189,-0.26062 0.94251,0 l 1.69504,1.695036 3.86131,-3.861322 c 0.26062,-0.260621 0.68188,-0.260621 0.94251,0 0.26062,0.260621 0.26062,0.68188 0,0.942502 z</x:String>
         <x:String x:Key="UpArrowPath">m 230.97436,293.08669 c -1.70729,0 -3.41437,-0.65188 -4.71603,-1.95291 L 185.29767,250.1727 c -2.60564,-2.60563 -2.60564,-6.83022 0,-9.4348 2.60458,-2.60458 6.82832,-2.60458 9.43416,0 l 36.24253,36.24463 36.24273,-36.24336 c 2.60564,-2.60458 6.82896,-2.60458 9.43333,0 2.60689,2.60457 2.60689,6.82916 0,9.43479 l -40.96003,40.96109 c -1.30229,1.30123 -3.00937,1.95164 -4.71603,1.95164 z</x:String>
-        <!--<x:String x:Key="Path"></x:String>
-        <x:String x:Key="Path"></x:String>-->
+        <x:String x:Key="BookmarkPath">m 161.40234,-15.234375 c -14.49024,0.0062 -28.93413,4.429492 -40.9414,12.5410156 -13.7358,9.199891 -24.244127,23.1209304 -29.238605,38.8878794 -2.553602,7.907425 -3.654095,16.246929 -3.489913,24.546105 0.003,161.500765 -0.006,323.001625 0.0045,484.502325 0.02788,15.26184 4.959492,30.46748 13.921934,42.82287 9.83023,13.65788 24.45084,23.78853 40.71419,28.13145 16.28865,4.41617 34.09746,3.07502 49.47446,-3.917 5.98598,-2.67201 11.53906,-6.23282 16.66599,-10.30377 31.08078,-23.73957 62.16157,-47.47913 93.24236,-71.21869 32.08105,24.49417 64.14438,49.01178 96.23652,73.49129 11.6302,8.66352 25.86576,13.78545 40.36153,14.41189 15.10023,0.74499 30.39364,-3.28876 43.13828,-11.42857 12.63021,-8.0036 22.77093,-19.90183 28.52535,-33.71491 4.02933,-9.50408 5.93755,-19.86324 5.76371,-30.17571 -0.003,-161.70207 0.006,-323.40423 -0.005,-485.106236 -0.0393,-14.983631 -4.82087,-29.901973 -13.49083,-42.121728 -9.47201,-13.4770552 -23.55907,-23.6470979 -39.36871,-28.300144 -7.47806,-2.249517 -15.31347,-3.197173 -23.11285,-3.05002 -92.80065,0.0013 -185.60134,-0.0026 -278.40196,0.002 z M 441.4668,59.076172 c 0,161.628258 0,323.256508 0,484.884768 -40.45615,-30.89201 -80.8979,-61.80324 -121.36305,-92.68323 -7.1839,-5.33628 -16.74237,-7.27533 -25.44164,-5.18591 -4.78461,1.09091 -9.22677,3.42338 -13.01568,6.52 -39.86717,30.44971 -79.73434,60.89943 -119.60151,91.34914 0,-161.62826 0,-323.25651 0,-484.884768 93.14063,0 186.28125,0 279.42188,0 z</x:String>
+        <!--<x:String x:Key="Path"></x:String>-->
+        <!--<x:String x:Key="Path"></x:String>-->
+        <!--<x:String x:Key="Path"></x:String>-->
+        <!--<x:String x:Key="Path"></x:String>-->
 
         <local:PathGeometryExtension x:Key="HouseGeometry" Path="{StaticResource HousePath}"/>
         <local:PathGeometryExtension x:Key="HouseFilledGeometry" Path="{StaticResource HouseFilledPath}"/>
@@ -43,11 +46,14 @@
         <local:PathGeometryExtension x:Key="PlusGeometry" Path="{StaticResource PlusPath}"/>
         <local:PathGeometryExtension x:Key="VerifiedGeometry" Path="{StaticResource VerifiedPath}"/>
         <local:PathGeometryExtension x:Key="UpArrowGeometry" Path="{StaticResource UpArrowPath}"/>
+        <local:PathGeometryExtension x:Key="BookmarkGeometry" Path="{StaticResource BookmarkPath}"/>
 
         <Color x:Key="LightBackgroundColor">#F3F6F9</Color>
         <Color x:Key="LightTabBarColor">#FFFFFF</Color>
+        <Color x:Key="LightEntryColor">#eef2f6</Color>
         <Color x:Key="DarkBackgroundColor">#000000</Color>
         <Color x:Key="DarkTabBarColor">#000000</Color>
+        <Color x:Key="DarkEntryColor">#333333</Color>
         <Color x:Key="MidColor">#D0D6DB</Color>
         <Color x:Key="LightMidColor">#f0f2f4</Color>
         <Color x:Key="Purple">#7C369E</Color>
@@ -63,6 +69,8 @@
 
         <local:FFImageSourceConverter x:Key="FFImageSourceConverter"/>
         <local:ImageSourceConverter x:Key="ImageSourceConverter"/>
+        <local:CollectionToLengthConverter x:Key="CollectionToLengthConverter"/>
+        <local:ShortIntConverter x:Key="ShortIntConverter"/>
 
         <Style x:Key="BasePageStyle" TargetType="{x:Type ContentPage}">
             <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkBackgroundColor}, Light={StaticResource LightBackgroundColor}, Default={StaticResource LightBackgroundColor}}"/>

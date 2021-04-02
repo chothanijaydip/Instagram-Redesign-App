@@ -4,12 +4,13 @@ using System.Windows.Input;
 
 namespace InstagramRedesignApp.Core
 {
-    public class HomePageViewModel : BaseViewModel, IHomePageViewModel
+    public class HomePageViewModel : BaseViewModel, IHomePageViewModel, ILikePostViewModel
     {
-        private readonly IUsersService usersService;
-        private readonly IPostsService postsService;
-        private IList<Post> posts;
-        private IList<User> followedUsers;
+        readonly IUsersService usersService;
+        readonly IPostsService postsService;
+        IList<Post> posts;
+        IList<User> followedUsers;
+        Post currentPost;
 
         public IList<Post> Posts
         {
@@ -31,6 +32,7 @@ namespace InstagramRedesignApp.Core
         }
         
         public ICommand PostTappedCommand { get; private set; }
+        public ICommand LikePostCommand { get; private set; }
 
 
         public HomePageViewModel(IUsersService usersService, IPostsService postsService, INavigationService navigationService)
@@ -38,7 +40,16 @@ namespace InstagramRedesignApp.Core
             this.usersService = usersService;
             this.postsService = postsService;
 
-            PostTappedCommand = new RelayCommand(parameter => navigationService.PushPageAsync(PagesEnum.PostDetailPage, true, parameter));
+            PostTappedCommand = new RelayCommand(parameter => 
+            {
+                currentPost = parameter as Post;
+                navigationService.PushPageAsync(PagesEnum.PostDetailPage, true, currentPost);
+            });
+            LikePostCommand = new RelayCommand(parameter =>
+            {
+                Post post = parameter as Post;
+                postsService.ReverseLikePost(post, usersService.CurrentUser);
+            });
         }
 
 
@@ -48,6 +59,17 @@ namespace InstagramRedesignApp.Core
             FollowedUsers = usersService.GetUsersByIds(usersService.CurrentUser.FollowedUsersIds);
 
             await base.OnCreated(parameters);
+        }
+
+        public override Task OnPageAppearing()
+        {
+            if (currentPost is not null)
+            {
+                var s = currentPost.IsLiked;
+                currentPost.IsLiked = !currentPost.IsLiked;
+                currentPost.IsLiked = s;
+            }
+            return base.OnPageAppearing();
         }
     }
 }

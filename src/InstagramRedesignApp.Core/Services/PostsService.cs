@@ -11,6 +11,24 @@ namespace InstagramRedesignApp.Core
             this.usersService = usersService;
         }
 
+        public void ReverseLikePost(Post post, User user)
+        {
+            post.IsLiked = !post.IsLiked;
+
+            if (post.IsLiked)
+            {
+                if (!post.LikeUserIds.Contains(user.UserId))
+                    post.LikeUserIds.Add(user.UserId);
+                if (!user.LikedPostsIds.Contains(post.PostId))
+                    user.LikedPostsIds.Add(post.PostId);
+            }
+            else
+            {
+                post.LikeUserIds.Remove(user.UserId);
+                user.LikedPostsIds.Remove(post.PostId);
+            }
+        }
+
         public IList<Post> GetRandomPosts(string currentUserId)
         {
             IList<Post> posts = new List<Post>();
@@ -25,15 +43,7 @@ namespace InstagramRedesignApp.Core
                 }
             }
 
-            return AssignUsers(posts);
-        }
-
-        public IList<Post> AssignUsers(IList<Post> posts)
-        {
-            foreach (var post in posts)
-                post.Author = usersService.AllUsers[post.AuthorId];
-
-            return posts;
+            return usersService.AssignUsers(posts);
         }
     }
 }

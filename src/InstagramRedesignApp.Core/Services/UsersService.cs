@@ -22,7 +22,7 @@ namespace InstagramRedesignApp.Core
                     ProfileImage = "Jan.avatar.jpg",
                     Job = "Xamariner",
                     Description = "Like to travel, code and take photos of random monkeys.",
-                    Followers = random.Next(0,1000000),
+                    Followers = random.Next(0,100000),
                     Following = random.Next(1,50),
                     FollowedUsersIds = new List<string>
                     {
@@ -33,56 +33,66 @@ namespace InstagramRedesignApp.Core
                         new Post
                         {
                             AuthorId = "1",
+                            PostId = "1#1",
+                            Description = "Hello friends ",
                             Images = new[]{ "Jan.1.jpg" },
-                            Likes = random.Next(0,1000000),
+                            NumberOfLikes = random.Next(0,100000),
                         },
                         new Post
                         {
                             AuthorId = "1",
+                            PostId = "1#2",
                             Images = new[]{ "Jan.2.jpg" },
-                            Likes = random.Next(0,1000000),
+                            NumberOfLikes = random.Next(0,10000),
                         },
                         new Post
                         {
                             AuthorId = "1",
+                            PostId = "1#3",
                             Images = new[]{ "Jan.3.jpg" },
-                            Likes = random.Next(0,1000000),
+                            NumberOfLikes = random.Next(0,1000),
                         },
                         new Post
                         {
                             AuthorId = "1",
+                            PostId = "1#4",
                             Images = new[]{ "Jan.4.jpg" },
-                            Likes = random.Next(0,1000000),
+                            NumberOfLikes = random.Next(0,100000),
                         },
                         new Post
                         {
                             AuthorId = "1",
+                            PostId = "1#5",
                             Images = new[]{ "Jan.5.jpg" },
-                            Likes = random.Next(0,1000000),
+                            NumberOfLikes = random.Next(0,100000),
                         },
                         new Post
                         {
                             AuthorId = "1",
+                            PostId = "1#6",
                             Images = new[]{ "Jan.6.jpg" },
-                            Likes = random.Next(0,1000000),
+                            NumberOfLikes = random.Next(0,10000),
                         },
                         new Post
                         {
                             AuthorId = "1",
+                            PostId = "1#7",
                             Images = new[]{ "Jan.7.jpg" },
-                            Likes = random.Next(0,1000000),
+                            NumberOfLikes = random.Next(0,10000),
                         },
                         new Post
                         {
                             AuthorId = "1",
+                            PostId = "1#8",
                             Images = new[]{ "Jan.8.jpg" },
-                            Likes = random.Next(0,1000000),
+                            NumberOfLikes = random.Next(0,100),
                         },
                         new Post
                         {
                             AuthorId = "1",
+                            PostId = "1#9",
                             Images = new[]{ "Jan.9.jpg" },
-                            Likes = random.Next(0,1000000),
+                            NumberOfLikes = random.Next(0,100000),
                         },
                     },
                 },
@@ -93,15 +103,45 @@ namespace InstagramRedesignApp.Core
                     ProfileImage = "Gordo.avatar.jpg",
                     Job = "",
                     Description = "",
-                    Followers = random.Next(0,1000000),
+                    Followers = random.Next(0,10000),
                     Following = random.Next(1,50),
                     Posts = new List<Post>
                     {
                         new Post
                         {
                             AuthorId = "2",
+                            PostId = "2#1",
+                            Description = "Monkey is a common name that may refer to certain groups or species of simian mammals of infraorder Simiiformes.",
                             Images = new[]{ "Gordo.1.jpg", "Gordo.2.jpg", "Gordo.3.jpg" },
-                            Likes = random.Next(0,1000000),
+                            NumberOfLikes = random.Next(0,10000),
+                            Comments = new List<Comment>
+                            {
+                                new Comment
+                                {
+                                    AuthorId = "1",
+                                    Text = "🐒",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "3",
+                                    Text = "Awesome!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "5",
+                                    Text = "Super photography!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "6",
+                                    Text = "Oh My Monkey! That is nice!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "4",
+                                    Text = "🍌",
+                                },
+                            },
                         },
                     },
                 },
@@ -112,15 +152,39 @@ namespace InstagramRedesignApp.Core
                     ProfileImage = "Jenny.avatar.jpg",
                     Job = "",
                     Description = "",
-                    Followers = random.Next(0,1000000),
+                    Followers = random.Next(0,10000),
                     Following = random.Next(1,50),
                     Posts = new List<Post>
                     {
                         new Post
                         {
                             AuthorId = "3",
+                            PostId = "3#1",
                             Images = new[]{ "Jenny.1.jpg" },
-                            Likes = random.Next(0,1000000),
+                            NumberOfLikes = random.Next(0,10000),
+                            Comments = new List<Comment>
+                            {
+                                new Comment
+                                {
+                                    AuthorId = "6",
+                                    Text = "❤ 💕 ❤ 💕 ❤",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "2",
+                                    Text = "Awesome!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "5",
+                                    Text = "Lovely photography!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "4",
+                                    Text = "So cute!",
+                                },
+                            },
                         },
                     },
                 },
@@ -131,15 +195,24 @@ namespace InstagramRedesignApp.Core
                     ProfileImage = "Manuel.avatar.jpg",
                     Job = "",
                     Description = "",
-                    Followers = random.Next(0,1000000),
+                    Followers = random.Next(0,10000),
                     Following = random.Next(1,50),
                     Posts = new List<Post>
                     {
                         new Post
                         {
                             AuthorId = "4",
+                            PostId = "4#1",
                             Images = new[]{ "Manuel.1.jpg" },
-                            Likes = random.Next(0,1000000),
+                            NumberOfLikes = random.Next(0,1000),
+                            Comments = new List<Comment>
+                            {
+                                new Comment
+                                {
+                                    AuthorId = "2",
+                                    Text = "🍌 🐒",
+                                },
+                            },
                         },
                     },
                 },
@@ -150,15 +223,34 @@ namespace InstagramRedesignApp.Core
                     ProfileImage = "Andrey.avatar.jpg",
                     Job = "",
                     Description = "",
-                    Followers = random.Next(0,1000000),
+                    Followers = random.Next(0,100000),
                     Following = random.Next(1,50),
                     Posts = new List<Post>
                     {
                         new Post
                         {
                             AuthorId = "5",
+                            PostId = "5#1",
                             Images = new[]{ "Andrey.1.jpg" },
-                            Likes = random.Next(0,1000000),
+                            NumberOfLikes = random.Next(0,100000),
+                            Comments = new List<Comment>
+                            {
+                                new Comment
+                                {
+                                    AuthorId = "3",
+                                    Text = "Awesome!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "4",
+                                    Text = "Nice!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "2",
+                                    Text = "Super photography!",
+                                },
+                            },
                         },
                     },
                 },
@@ -176,8 +268,33 @@ namespace InstagramRedesignApp.Core
                         new Post
                         {
                             AuthorId = "6",
+                            PostId = "6#1",
+                            Description = "Monkeys are generally considered to be intelligent, especially the Old World monkeys of Catarrhini.",
                             Images = new[]{ "Laura.1.jpg" },
-                            Likes = random.Next(0,1000000),
+                            NumberOfLikes = random.Next(0,1000000),
+                            Comments = new List<Comment>
+                            {
+                                new Comment
+                                {
+                                    AuthorId = "1",
+                                    Text = "🐒",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "3",
+                                    Text = "Awesome!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "5",
+                                    Text = "Super photography!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "2",
+                                    Text = "Oh My Monkey! You are beautiful!",
+                                },
+                            },
                         },
                     },
                 },
@@ -195,6 +312,25 @@ namespace InstagramRedesignApp.Core
                 users.Add(AllUsers[userId]);
 
             return users;
+        }
+
+        public IList<Post> AssignUsers(IEnumerable<Post> posts)
+        {
+            foreach (var post in posts)
+            {
+                post.Author = AllUsers[post.AuthorId];
+                post.IsLiked = post.LikeUserIds.Contains(CurrentUser.UserId);
+            }
+
+            return posts.ToList();
+        }
+
+        public IList<Comment> AssignUsers(IEnumerable<Comment> comments)
+        {
+            foreach (var comment in comments)
+                comment.Author = AllUsers[comment.AuthorId];
+
+            return comments.ToList();
         }
     }
 }
