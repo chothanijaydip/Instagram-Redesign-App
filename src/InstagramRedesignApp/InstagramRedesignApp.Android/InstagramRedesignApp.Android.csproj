@@ -73,13 +73,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomEntryRenderer.cs" />
     <Compile Include="OverlapItemsEffect.cs" />
     <Compile Include="CustomShellItemRenderer.cs" />
     <Compile Include="CustomShellRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StatusBar.cs" />
+    <Compile Include="StatusBarService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

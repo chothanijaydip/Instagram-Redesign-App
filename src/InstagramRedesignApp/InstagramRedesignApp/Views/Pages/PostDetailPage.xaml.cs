@@ -13,8 +13,9 @@ namespace InstagramRedesignApp
     public partial class PostDetailPage : ContentPage
     {
         readonly double density = DeviceDisplay.MainDisplayInfo.Density;
-        IPostDetailPageViewModel viewModel;
+        readonly double commentsGridShowedPosition = 40;
         double lastVelocity;
+        IPostDetailPageViewModel viewModel;
 
         public double ImageHeight { get; set; }
 
@@ -28,6 +29,7 @@ namespace InstagramRedesignApp
             SizeChanged += PostDetailPageSizeChanged;
         }
 
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -36,7 +38,7 @@ namespace InstagramRedesignApp
 
             shell.TransitionEnded += PostDetailPageTransitionEnded;
             shell.TransitionStarted += PostDetailPageTransitionStarted;
-            shell.Navigating += PostDetailPageNavigating; ;
+            shell.Navigating += PostDetailPageNavigating;
         }
 
         protected override void OnDisappearing()
@@ -47,7 +49,7 @@ namespace InstagramRedesignApp
 
             shell.TransitionEnded -= PostDetailPageTransitionEnded;
             shell.TransitionStarted -= PostDetailPageTransitionStarted;
-            shell.Navigating -= PostDetailPageNavigating; ;
+            shell.Navigating -= PostDetailPageNavigating;
         }
 
         private void PostDetailPageTransitionStarted(object sender, SharedTransitionEventArgs e)
@@ -92,7 +94,7 @@ namespace InstagramRedesignApp
         {
             carouselView.HeightRequest = ImageHeight = DeviceDisplay.MainDisplayInfo.Width / 3d * 4 / density;
             _ = HideComments();
-            commentsGrid.HeightRequest = this.Height - AppBar.AppBarPadding.VerticalThickness;
+            commentsGrid.HeightRequest = this.Height - AppBar.AppBarPadding.VerticalThickness - commentsGridShowedPosition - downArrowGrid.Height + 5;
 
             OnPropertyChanged(nameof(ImageHeight));
         }
@@ -106,35 +108,67 @@ namespace InstagramRedesignApp
         private async Task ShowComments()
         {
             commentsOverlayBoxView.InputTransparent = true;
-            await commentsGrid.TranslateTo(commentsGrid.X, 0);
+            downArrowGrid.InputTransparent = false;
+            await Task.WhenAll(
+                commentsGrid.TranslateTo(commentsGrid.X, commentsGridShowedPosition),
+                upArrowPath.FadeTo(0),
+                downArrowGrid.FadeTo(1)
+                );
         }
 
         private async Task HideComments()
         {
             commentsOverlayBoxView.InputTransparent = false;
-            await commentsGrid.TranslateTo(commentsGrid.X, ImageHeight);
+            downArrowGrid.InputTransparent = true;
+            await Task.WhenAll(
+                commentsGrid.TranslateTo(commentsGrid.X, ImageHeight),
+                upArrowPath.FadeTo(1),
+                downArrowGrid.FadeTo(0)
+                );
         }
 
-        private async void ArrowTapped(object sender, EventArgs e)
+        private async void UpArrowTapped(object sender, EventArgs e)
         {
             await ShowComments();
         }
 
-        private async void CommentsPanUpdated(object sender, PanUpdatedEventArgs e)
+        private async void DownArrowTapped(object sender, EventArgs e)
+        {
+            await HideComments();
+        }
+
+        private async void UpCommentsPanUpdated(object sender, PanUpdatedEventArgs e)
+        {
+            switch (e.StatusType)
+            {
+                case GestureStatus.Running:
+                    lastVelocity = commentsGrid.TranslationY + e.TotalY;
+                    await commentsGrid.TranslateTo(0, Math.Min(Math.Max(lastVelocity, commentsGridShowedPosition), ImageHeight), length: 50);
+                    break;
+                case GestureStatus.Canceled:
+                case GestureStatus.Completed:
+                    if (lastVelocity < ImageHeight  - 40)
+                        await ShowComments();
+                    else
+                        await HideComments();
+                    break;
+            }
+        }
+
+        private async void DownCommentsPanUpdated(object sender, PanUpdatedEventArgs e)
         {
             switch (e.StatusType)
             {
                 case GestureStatus.Running:
                     lastVelocity = e.TotalY;
-                    System.Diagnostics.Debug.WriteLine(e.TotalY);
-                    await commentsGrid.TranslateTo(0, Math.Min(Math.Max(commentsGrid.TranslationY + lastVelocity, 0), ImageHeight), length: 50);
+                    await commentsGrid.TranslateTo(0, Math.Min(Math.Max(lastVelocity, commentsGridShowedPosition), ImageHeight), length: 50);
                     break;
                 case GestureStatus.Canceled:
                 case GestureStatus.Completed:
-                    if (lastVelocity < -20)
-                        await ShowComments();
-                    else
+                    if (lastVelocity > 40)
                         await HideComments();
+                    else
+                        await ShowComments();
                     break;
             }
         }

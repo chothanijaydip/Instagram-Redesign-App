@@ -1,6 +1,7 @@
 ﻿using InstagramRedesignApp.Core;
 using Plugin.SharedTransitions;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -64,6 +65,16 @@ namespace InstagramRedesignApp
                 shell.ShowHomePageCorners();
             else
                 shell.HideHomePageCorners();
+        }
+
+        private async void LikeTapped(object sender, EventArgs e)
+        {
+            Grid mainGrid = sender as Grid;
+
+            HeartView heartView = mainGrid.FindView<HeartView>();
+
+            if (heartView is not null)
+                await heartView.ShowHeart();
         }
     }
 }

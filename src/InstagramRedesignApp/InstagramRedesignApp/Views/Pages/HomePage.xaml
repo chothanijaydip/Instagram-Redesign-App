@@ -20,7 +20,7 @@
             <CollectionView.Effects>
                 <local:OverlapItemsEffect/>
             </CollectionView.Effects>
-            
+
             <CollectionView.Header>
                 <Grid Margin="0,0,0,45">
                     <Grid.Resources>
@@ -41,7 +41,7 @@
                             </PathFigureCollection>
                         </PathGeometry>
                     </Grid.Resources>
-                    
+
                     <CollectionView x:Name="headerCollecionView" VerticalOptions="Start" HeightRequest="105"
                                     ItemsSource="{Binding FollowedUsers}">
                         <CollectionView.Resources>
@@ -53,7 +53,7 @@
                                 <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource MidColor}, Light={StaticResource DarkBackgroundColor}, Default={StaticResource DarkBackgroundColor}}"/>
                             </Style>
                         </CollectionView.Resources>
-                        
+
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout Orientation="Horizontal"/>
                         </CollectionView.ItemsLayout>
@@ -66,7 +66,7 @@
                                 <Path Data="{StaticResource PlusGeometry}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="Uniform"
                                       HeightRequest="17" WidthRequest="18"
                                       Fill="{AppThemeBinding Dark={StaticResource MidBrush}, Light={StaticResource DarkBackgroundBrush}, Default={StaticResource DarkBackgroundBrush}}"/>
-                                
+
                                 <Label Grid.Row="1" Text="My Story" />
                             </Grid>
                         </CollectionView.Header>
@@ -74,7 +74,7 @@
                         <CollectionView.Footer>
                             <BoxView HorizontalOptions="End" WidthRequest="18"/>
                         </CollectionView.Footer>
-                        
+
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="{x:Type core:User}">
                                 <Grid RowDefinitions="60,auto" RowSpacing="1" HorizontalOptions="Center" WidthRequest="60"
@@ -109,7 +109,7 @@
             <CollectionView.Footer>
                 <BoxView VerticalOptions="End" HeightRequest="80"/>
             </CollectionView.Footer>
-            
+
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type core:Post}">
                     <Grid BackgroundColor="Transparent" VerticalOptions="Start" IsClippedToBounds="False">
@@ -140,30 +140,21 @@
                                             sharedTransitions:Transition.Name="PostInfoView" 
                                             sharedTransitions:Transition.Group="{Binding AuthorId}"/>
 
+                        <local:HeartView Margin="0,0,0,60" VerticalOptions="Center" HorizontalOptions="Center"/>
+
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding PostTappedCommand, Source={RelativeSource AncestorType={x:Type core:IHomePageViewModel}}}" CommandParameter="{Binding .}" 
                                                   Tapped="PostTapped"/>
                             <TapGestureRecognizer Command="{Binding LikePostCommand, Source={RelativeSource AncestorType={x:Type core:ILikePostViewModel}}}"
                                                   CommandParameter="{Binding .}"
+                                                  Tapped="LikeTapped"
                                                   NumberOfTapsRequired="2"/>
                         </Grid.GestureRecognizers>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-            
-        </CollectionView>
 
-        <!--<StackLayout Grid.Row="1">
-            <BoxView HorizontalOptions="Center" WidthRequest="200" VerticalOptions="Start" HeightRequest="50" Margin="10">
-                <BoxView.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="{StaticResource Yellow}"/>
-                        <GradientStop Color="{StaticResource Pink}"/>
-                        <GradientStop Color="{StaticResource Purple}"/>
-                    </LinearGradientBrush>
-                </BoxView.Background>
-            </BoxView>
-        </StackLayout>-->
+        </CollectionView>
     </Grid>
     
 </ContentPage>

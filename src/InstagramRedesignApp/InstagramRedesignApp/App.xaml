@@ -64,6 +64,7 @@
         <SolidColorBrush x:Key="LightTabBarBrush" Color="{StaticResource LightTabBarColor}"/>
         <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackgroundColor}"/>
         <SolidColorBrush x:Key="DarkTabBarBrush" Color="{StaticResource DarkTabBarColor}"/>
+        <SolidColorBrush x:Key="DarkEntryBrush" Color="{StaticResource DarkEntryColor}"/>
         <SolidColorBrush x:Key="MidBrush" Color="{StaticResource MidColor}"/>
         <SolidColorBrush x:Key="LightMidBrush" Color="{StaticResource LightMidColor}"/>
 

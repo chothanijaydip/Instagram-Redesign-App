@@ -18,7 +18,10 @@ namespace InstagramRedesignApp.Core
             if (post.IsLiked)
             {
                 if (!post.LikeUserIds.Contains(user.UserId))
+                {
                     post.LikeUserIds.Add(user.UserId);
+                    post.NumberOfLikes++;
+                }
                 if (!user.LikedPostsIds.Contains(post.PostId))
                     user.LikedPostsIds.Add(post.PostId);
             }
@@ -26,6 +29,8 @@ namespace InstagramRedesignApp.Core
             {
                 post.LikeUserIds.Remove(user.UserId);
                 user.LikedPostsIds.Remove(post.PostId);
+
+                post.NumberOfLikes--;
             }
         }
 

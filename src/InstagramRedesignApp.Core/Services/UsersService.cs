@@ -134,7 +134,7 @@ namespace InstagramRedesignApp.Core
                                 new Comment
                                 {
                                     AuthorId = "6",
-                                    Text = "Oh My Monkey! That is nice!",
+                                    Text = "Oh My Monkey! Nice selfie!",
                                 },
                                 new Comment
                                 {

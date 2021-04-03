@@ -12,6 +12,7 @@ namespace InstagramRedesignApp.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             Window.AddFlags(WindowManagerFlags.LayoutNoLimits);
+            //Window.SetSoftInputMode(SoftInput.AdjustPan);
 
             base.OnCreate(savedInstanceState);
 
