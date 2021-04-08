@@ -21,13 +21,14 @@ namespace InstagramRedesignApp
             viewModel = this.InitializeViewModel<IProfilePageViewModel>(PagesEnum.ProfilePage);
 
             headerGrid.SizeChanged += ProfilePageSizeChanged;
+            VisualStateManager.GoToState(postsPath, "Selected");
         }
 
         private void ProfilePageSizeChanged(object sender, EventArgs e)
         {
-            tabsGridDefaultTranslation = -(Height - headerGrid.Height - tabsGrid.Height - headerGrid.RowSpacing - 4) - verticalOffset;
+            tabsGridDefaultTranslation = -(mainCollectionView.Height - headerGrid.Height - 2) - verticalOffset;
 
-            ImageHeight = (postsCollectionView.Width - (3 * 4)) / 3d;
+            ImageHeight = (mainCollectionView.Width - (3 * 4)) / 3d;
             OnPropertyChanged(nameof(ImageHeight));
 
             tabsGrid.TranslationY = tabsGridDefaultTranslation;
@@ -39,6 +40,54 @@ namespace InstagramRedesignApp
 
             headerGrid.TranslationY = verticalOffset;
             tabsGrid.TranslationY = tabsGridDefaultTranslation - verticalOffset;
+        }
+
+        private void PostsTapped(object sender, EventArgs e)
+        {
+            ResetAllTabs();
+            VisualStateManager.GoToState(postsPath, "Selected");
+        }
+
+        private void ClipTapped(object sender, EventArgs e)
+        {
+            ResetAllTabs();
+            VisualStateManager.GoToState(clipPath, "Selected");
+        }
+
+        private void TvTapped(object sender, EventArgs e)
+        {
+            ResetAllTabs();
+            VisualStateManager.GoToState(tvPath, "Selected");
+        }
+
+        private void UserTapped(object sender, EventArgs e)
+        {
+            ResetAllTabs();
+            VisualStateManager.GoToState(userPath, "Selected");
+        }
+
+        private void LinkTapped(object sender, EventArgs e)
+        {
+            ResetAllTabs();
+            VisualStateManager.GoToState(linkPath, "Selected");
+        }
+
+        private void BookmarkTapped(object sender, EventArgs e)
+        {
+            ResetAllTabs();
+            VisualStateManager.GoToState(bookmarkPath, "Selected");
+        }
+
+        private void ResetAllTabs()
+        {
+            mainCollectionView.ScrollTo(0);
+
+            VisualStateManager.GoToState(postsPath, "Normal");
+            VisualStateManager.GoToState(clipPath, "Normal");
+            VisualStateManager.GoToState(tvPath, "Normal");
+            VisualStateManager.GoToState(userPath, "Normal");
+            VisualStateManager.GoToState(linkPath, "Normal");
+            VisualStateManager.GoToState(bookmarkPath, "Normal");
         }
     }
 }

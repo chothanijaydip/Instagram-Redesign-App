@@ -11,12 +11,12 @@
              x:DataType="{x:Type core:IProfilePageViewModel}">
 
     <Grid Padding="{x:Static local:AppBar.AppBarPadding}">
-        <CollectionView x:Name="postsCollectionView"
+        <CollectionView x:Name="mainCollectionView"
                         Scrolled="PostsScrolled"
                         ItemsSource="{Binding CurrentUser.Posts}">
             <CollectionView.Header>
                 <Grid x:Name="headerGrid" VerticalOptions="Start" RowSpacing="15"
-                      RowDefinitions="80,20,20,35,80,60" IsClippedToBounds="False">
+                      RowDefinitions="80,20,20,35,80,40">
                     <Grid.Resources>
                         <Style TargetType="{x:Type Label}" x:Key="LargerLabelStyle">
                             <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource LightBackgroundColor}, Light={StaticResource DarkBackgroundColor}, Default={StaticResource DarkBackgroundColor}}"/>
@@ -196,8 +196,152 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Grid x:Name="tabsGrid" VerticalOptions="End" Background="red" HeightRequest="60">
+        <Grid x:Name="tabsGrid" ColumnDefinitions="*,*,*,*,*,*" VerticalOptions="End" HeightRequest="50" Padding="10,0"
+              BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBackgroundColor}, Light={StaticResource LightBackgroundColor}, Default={StaticResource LightBackgroundColor}}">
+            <Grid.Resources>
+                <Style TargetType="{x:Type BoxView}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="VerticalOptions" Value="Center"/>
+                    <Setter Property="HeightRequest" Value="40"/>
+                </Style>
+                <Style TargetType="{x:Type Path}">
+                    <Setter Property="VerticalOptions" Value="Center"/>
+                    <Setter Property="HorizontalOptions" Value="Center"/>
+                    <Setter Property="HeightRequest" Value="28"/>
+                    <Setter Property="WidthRequest" Value="28"/>
+                    <Setter Property="Aspect" Value="Uniform"/>
+                </Style>
+            </Grid.Resources>
             
+            <Path x:Name="postsPath" Data="{StaticResource PostsGeometry}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Path>
+            <Path x:Name="clipPath" Grid.Column="1" Data="{StaticResource ClipGeometry}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Path>
+            <Path x:Name="tvPath" Grid.Column="2" Data="{StaticResource TvGeometry}"
+                  HeightRequest="30">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Path>
+            <Path x:Name="userPath" Grid.Column="3" Data="{StaticResource UserGeometry}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Path>
+            <Path x:Name="linkPath" Grid.Column="4" Data="{StaticResource LinkGeometry}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Path>
+            <Path x:Name="bookmarkPath" Grid.Column="5" Data="{StaticResource ThinBookmarkGeometry}"
+                  HeightRequest="25" WidthRequest="25">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{StaticResource MidBrush}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{AppThemeBinding Dark={StaticResource LightTabBarBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Path>
+
+            <BoxView>
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="PostsTapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <BoxView Grid.Column="1">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ClipTapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <BoxView Grid.Column="2">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TvTapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <BoxView Grid.Column="3">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="UserTapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <BoxView Grid.Column="4">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="LinkTapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <BoxView Grid.Column="5">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="BookmarkTapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
         </Grid>
     </Grid>
 </ContentPage>
