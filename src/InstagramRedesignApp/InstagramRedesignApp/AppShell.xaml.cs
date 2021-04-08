@@ -64,7 +64,7 @@ namespace InstagramRedesignApp
             else
                 appBar.ChangeState(AppBarStates.Main);
 
-            if ((e.Source == ShellNavigationSource.Pop || e.Source == ShellNavigationSource.PopToRoot) && targetPage != PagesEnum.HomePage)
+            if (targetPage != PagesEnum.HomePage && targetPage != PagesEnum.PostDetailPage)
                 HideHomePageCorners();
         }
 

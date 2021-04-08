@@ -1,7 +1,6 @@
 ﻿using InstagramRedesignApp.Core;
 using Plugin.SharedTransitions;
 using System;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -51,7 +50,8 @@ namespace InstagramRedesignApp
             {
                 Post post = grid.BindingContext as Post;
 
-                SharedTransitionShell.SetTransitionSelectedGroup(this, post.AuthorId);
+                if(post is not null)
+                    SharedTransitionShell.SetTransitionSelectedGroup(this, post.AuthorId);
             }
         }
 

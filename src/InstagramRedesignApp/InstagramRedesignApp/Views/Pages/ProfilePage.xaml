@@ -1,14 +1,203 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:local="clr-namespace:InstagramRedesignApp"
+             xmlns:local="clr-namespace:InstagramRedesignApp"
+             xmlns:core="clr-namespace:InstagramRedesignApp.Core;assembly=InstagramRedesignApp.Core"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="InstagramRedesignApp.ProfilePage"
              
-             Style="{StaticResource BasePageStyle}">
+             Style="{StaticResource BasePageStyle}"
+             
+             x:DataType="{x:Type core:IProfilePageViewModel}">
 
-    <Grid Padding="{x:Static local:StatusBar.Padding}"
-          RowDefinitions="50,*">
-        <local:AppBar VerticalOptions="Center"/>
+    <Grid Padding="{x:Static local:AppBar.AppBarPadding}">
+        <CollectionView x:Name="postsCollectionView"
+                        Scrolled="PostsScrolled"
+                        ItemsSource="{Binding CurrentUser.Posts}">
+            <CollectionView.Header>
+                <Grid x:Name="headerGrid" VerticalOptions="Start" RowSpacing="15"
+                      RowDefinitions="80,20,20,35,80,60" IsClippedToBounds="False">
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type Label}" x:Key="LargerLabelStyle">
+                            <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource LightBackgroundColor}, Light={StaticResource DarkBackgroundColor}, Default={StaticResource DarkBackgroundColor}}"/>
+                            <Setter Property="FontAttributes" Value="Bold"/>
+                            <Setter Property="FontSize" Value="17"/>
+                        </Style>
+                        <Style TargetType="{x:Type Label}" x:Key="SmallerLabelStyle">
+                            <Setter Property="FontAttributes" Value="Bold"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource MidColor}, Light={StaticResource DarkMidColor}, Default={StaticResource DarkMidColor}}"/>
+                        </Style>
+                        <PathGeometry x:Key="AvatarGeometry">
+                            <PathFigureCollection>
+                                <PathFigure StartPoint="27,2" IsClosed="True">
+                                    <PathSegmentCollection>
+                                        <LineSegment Point="33,2"/>
+                                        <QuadraticBezierSegment Point1="58,2" Point2="58,27"/>
+                                        <LineSegment Point="58,33"/>
+                                        <QuadraticBezierSegment Point1="58,58" Point2="33,58"/>
+                                        <LineSegment Point="27,58"/>
+                                        <QuadraticBezierSegment Point1="2,58" Point2="2,33"/>
+                                        <LineSegment Point="2,27"/>
+                                        <QuadraticBezierSegment Point1="2,2" Point2="27,2"/>
+                                    </PathSegmentCollection>
+                                </PathFigure>
+                            </PathFigureCollection>
+                        </PathGeometry>
+                    </Grid.Resources>
 
+                    <Grid ColumnDefinitions="*,80,*">
+                        <StackLayout HorizontalOptions="End" VerticalOptions="Center" Spacing="0">
+                            <Label Text="{Binding CurrentUser.Followers, Converter={StaticResource ShortIntConverter}}" 
+                                   HorizontalOptions="End" Style="{StaticResource LargerLabelStyle}"/>
+                            <Label Text="Followers" HorizontalOptions="End" Style="{StaticResource SmallerLabelStyle}"/>
+                        </StackLayout>
+
+                        <Frame Grid.Column="1" Padding="0" CornerRadius="18" HasShadow="False"
+                               VerticalOptions="Center" HorizontalOptions="Center"
+                               HeightRequest="50" WidthRequest="50">
+                            <ff:CachedImage VerticalOptions="Center" Aspect="AspectFill"
+                                            Source="{Binding CurrentUser.ProfileImage, Converter={StaticResource FFImageSourceConverter}}"/>
+                        </Frame>
+
+                        <Path Grid.Column="1" StrokeThickness="2.3" Scale="1.05"
+                              VerticalOptions="Center" HorizontalOptions="Center"
+                              Data="{StaticResource AvatarGeometry}">
+                            <Path.Stroke>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Offset="0.1" Color="{StaticResource Purple}"/>
+                                    <GradientStop Offset="0.6" Color="{StaticResource Pink}"/>
+                                    <GradientStop Offset="1" Color="{StaticResource Yellow}"/>
+                                </LinearGradientBrush>
+                            </Path.Stroke>
+                        </Path>
+
+                        <Frame Grid.Column="1" VerticalOptions="End" HorizontalOptions="Center"
+                               HeightRequest="24" WidthRequest="24" Padding="0" CornerRadius="9">
+                            <Frame.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Offset="0" Color="{StaticResource Purple}"/>
+                                    <GradientStop Offset="0.3" Color="{StaticResource Pink}"/>
+                                    <GradientStop Offset="0.8" Color="{StaticResource Yellow}"/>
+                                </LinearGradientBrush>
+                            </Frame.Background>
+
+                            <Path Data="{StaticResource PlusGeometry}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="Uniform"
+                                  HeightRequest="12" WidthRequest="12"
+                                  Fill="White"/>
+                        </Frame>
+
+                        <StackLayout Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" Spacing="0">
+                            <Label Text="{Binding CurrentUser.Following, Converter={StaticResource ShortIntConverter}}" 
+                                   HorizontalOptions="Start" Style="{StaticResource LargerLabelStyle}"/>
+                            <Label Text="Following" HorizontalOptions="Start" Style="{StaticResource SmallerLabelStyle}"/>
+                        </StackLayout>
+                    </Grid>
+
+                    <Grid Grid.Row="1" ColumnDefinitions="*,10,*">
+                        <Label Grid.Column="0" Text="{Binding CurrentUser.Name}" 
+                               HorizontalOptions="End" Style="{StaticResource LargerLabelStyle}"/>
+
+                        <BoxView Grid.Column="1" HorizontalOptions="Center" WidthRequest="1.8" Margin="0,2,0,0"
+                                 BackgroundColor="{StaticResource MidColor}"/>
+
+                        <Label Grid.Column="2" Text="{Binding CurrentUser.Job}" 
+                               HorizontalOptions="Start" Style="{StaticResource LargerLabelStyle}"/>
+                    </Grid>
+
+                    <Label Grid.Row="2" HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                           Text="{Binding CurrentUser.Description}" Style="{StaticResource SmallerLabelStyle}"/>
+
+                    <StackLayout Grid.Row="3" Orientation="Horizontal" HorizontalOptions="Center"
+                                 Spacing="12">
+                        <StackLayout.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="TextTransform" Value="None"/>
+                                <Setter Property="CornerRadius" Value="14"/>
+                                <Setter Property="Padding" Value="20,0"/>
+                                <Setter Property="VerticalOptions" Value="Center"/>
+                                <Setter Property="HorizontalOptions" Value="Center"/>
+                                <Setter Property="HeightRequest" Value="34"/>
+                                <Setter Property="WidthRequest" Value="110"/>
+                                <Setter Property="FontSize" Value="13.5"/>
+                                <Setter Property="FontAttributes" Value="Bold"/>
+                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkMidColor}, Light={StaticResource MidColor}, Default={StaticResource MidColor}}"/>
+                                <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black, Default=Black}"/>
+                            </Style>
+                        </StackLayout.Resources>
+                        <Button Text="Edit profile"/>
+                        <Button Text="Statistics"/>
+                        <Button Text="Contact" BackgroundColor="{StaticResource Blue}" TextColor="White"/>
+                    </StackLayout>
+
+                    <CollectionView Grid.Row="4" ItemsSource="{Binding FollowedUsers}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal"/>
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.Header>
+                            <Grid RowDefinitions="60,auto" RowSpacing="0" HorizontalOptions="Center" WidthRequest="60"
+                                  Padding="15,0,4,0">
+                                <Path Data="{StaticResource AvatarGeometry}" StrokeThickness="2.5" Scale="0.9"
+                                      Stroke="{StaticResource MidBrush}" Fill="{AppThemeBinding Dark={StaticResource DarkBackgroundBrush}, Light={StaticResource LightMidBrush}, Default={StaticResource LightMidBrush}}"/>
+                                <Path Data="{StaticResource PlusGeometry}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="Uniform"
+                                      HeightRequest="17" WidthRequest="18"
+                                      Fill="{AppThemeBinding Dark={StaticResource MidBrush}, Light={StaticResource DarkBackgroundBrush}, Default={StaticResource DarkBackgroundBrush}}"/>
+
+                                <Label Grid.Row="1" Text="New" Style="{StaticResource SmallerLabelStyle}"
+                                       HorizontalOptions="Center"/>
+                            </Grid>
+                        </CollectionView.Header>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="{x:Type core:User}">
+                                <Grid RowDefinitions="60,auto" RowSpacing="0" HorizontalOptions="Center" WidthRequest="60"
+                                      Padding="4,0,4,0">
+                                    <Frame Padding="0" HasShadow="False" CornerRadius="19"
+                                           HorizontalOptions="Center" VerticalOptions="Center"
+                                           WidthRequest="50" HeightRequest="50">
+                                        <ff:CachedImage Source="{Binding ProfileImage, Converter={StaticResource FFImageSourceConverter}}"
+                                                        HorizontalOptions="Center" VerticalOptions="Center"
+                                                        WidthRequest="50" HeightRequest="50"
+                                                        Aspect="AspectFill"/>
+                                    </Frame>
+
+                                    <Label Grid.Row="1" Text="{Binding Name}" Style="{StaticResource SmallerLabelStyle}" 
+                                           HorizontalOptions="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </CollectionView.Header>
+
+            <CollectionView.Footer>
+                <BoxView VerticalOptions="Start" HeightRequest="80" BackgroundColor="Transparent"/>
+            </CollectionView.Footer>
+            
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Span="3" Orientation="Vertical" VerticalItemSpacing="0" HorizontalItemSpacing="0"/>
+            </CollectionView.ItemsLayout>
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type core:Post}">
+                    <Grid VerticalOptions="Start" Padding="2" 
+                          BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBackgroundColor}, Light={StaticResource LightBackgroundColor}, Default={StaticResource LightBackgroundColor}}">
+                        <ff:CachedImage VerticalOptions="Start" Aspect="AspectFill"
+                                        HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:ProfilePage}}, Path=ImageHeight}" 
+                                        Source="{Binding FirstImage, Converter={StaticResource FFImageSourceConverter}}"/>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type core:IProfilePageViewModel}}, Path=PostTappedCommand}"
+                                                  CommandParameter="{Binding .}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid x:Name="tabsGrid" VerticalOptions="End" Background="red" HeightRequest="60">
+            
+        </Grid>
     </Grid>
 </ContentPage>

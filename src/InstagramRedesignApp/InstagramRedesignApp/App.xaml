@@ -53,18 +53,19 @@
         <Color x:Key="LightEntryColor">#eef2f6</Color>
         <Color x:Key="DarkBackgroundColor">#000000</Color>
         <Color x:Key="DarkTabBarColor">#000000</Color>
-        <Color x:Key="DarkEntryColor">#333333</Color>
+        <Color x:Key="DarkMidColor">#333333</Color>
         <Color x:Key="MidColor">#D0D6DB</Color>
         <Color x:Key="LightMidColor">#f0f2f4</Color>
         <Color x:Key="Purple">#7C369E</Color>
         <Color x:Key="Pink">#FF0549</Color>
         <Color x:Key="Yellow">#EFC200</Color>
+        <Color x:Key="Blue">#003AFF</Color>
         
         <SolidColorBrush x:Key="LightBackgroundBrush" Color="{StaticResource LightBackgroundColor}"/>
         <SolidColorBrush x:Key="LightTabBarBrush" Color="{StaticResource LightTabBarColor}"/>
         <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackgroundColor}"/>
         <SolidColorBrush x:Key="DarkTabBarBrush" Color="{StaticResource DarkTabBarColor}"/>
-        <SolidColorBrush x:Key="DarkEntryBrush" Color="{StaticResource DarkEntryColor}"/>
+        <SolidColorBrush x:Key="DarkMidBrush" Color="{StaticResource DarkMidColor}"/>
         <SolidColorBrush x:Key="MidBrush" Color="{StaticResource MidColor}"/>
         <SolidColorBrush x:Key="LightMidBrush" Color="{StaticResource LightMidColor}"/>
 

@@ -90,7 +90,7 @@
                             </Frame>
                             <StackLayout Grid.Column="1">
                                 <Label FontAttributes="Bold" Text="{Binding Author.Name}"
-                                       TextColor="{AppThemeBinding Dark={StaticResource MidColor}, Light={StaticResource DarkEntryColor}, Default={StaticResource DarkEntryColor}}"/>
+                                       TextColor="{AppThemeBinding Dark={StaticResource MidColor}, Light={StaticResource DarkMidColor}, Default={StaticResource DarkMidColor}}"/>
                                 <Label FontAttributes="Bold" Text="{Binding Text}" FontSize="13"
                                        TextColor="{AppThemeBinding Dark={StaticResource LightBackgroundColor}, Light={StaticResource DarkBackgroundColor}, Default={StaticResource DarkBackgroundColor}}"/>
                             </StackLayout>
@@ -98,7 +98,7 @@
                                 <BoxView BackgroundColor="{StaticResource MidColor}" VerticalOptions="Center" 
                                          HeightRequest="36" CornerRadius="18"/>
                                 <Label FontAttributes="Bold" Text="Reply" FontSize="13"
-                                       TextColor="{StaticResource DarkEntryColor}"
+                                       TextColor="{StaticResource DarkMidColor}"
                                        VerticalOptions="Center" HorizontalOptions="Center"/>
                             </Grid>
                             <Grid Grid.Column="3">
@@ -107,7 +107,7 @@
                                 <Path Data="{StaticResource HeartGeometry}" 
                                       HorizontalOptions="Center" VerticalOptions="Center" Aspect="Uniform"
                                       WidthRequest="20" HeightRequest="20"
-                                      Fill="{StaticResource DarkEntryBrush}"/>
+                                      Fill="{StaticResource DarkMidBrush}"/>
                             </Grid>
                         </Grid>
                     </DataTemplate>
@@ -153,7 +153,7 @@
                 <BoxView Background="{AppThemeBinding Dark={StaticResource DarkTabBarBrush}, Light={StaticResource LightTabBarBrush}, Default={StaticResource LightTabBarBrush}}" 
                          VerticalOptions="End" HeightRequest="80" CornerRadius="30,30,0,0"/>
 
-                <BoxView BackgroundColor="{AppThemeBinding Dark={StaticResource DarkEntryColor}, Light={StaticResource LightEntryColor}, Default={StaticResource LightEntryColor}}" 
+                <BoxView BackgroundColor="{AppThemeBinding Dark={StaticResource DarkMidColor}, Light={StaticResource LightEntryColor}, Default={StaticResource LightEntryColor}}" 
                          VerticalOptions="Start" HeightRequest="60" CornerRadius="25"
                          Margin="18,10,18,0"/>
                 <Grid VerticalOptions="Center" ColumnDefinitions="40,*,30"
@@ -166,7 +166,7 @@
                     </Frame>
 
                     <Entry Grid.Column="1" Placeholder="Add comment" FontAttributes="Bold" FontSize="15"
-                           TextColor="{AppThemeBinding Dark={StaticResource LightEntryColor}, Light={StaticResource DarkEntryColor}, Default={StaticResource DarkEntryColor}}" 
+                           TextColor="{AppThemeBinding Dark={StaticResource LightEntryColor}, Light={StaticResource DarkMidColor}, Default={StaticResource DarkMidColor}}" 
                            PlaceholderColor="Gray"
                            VerticalOptions="Center"/>
 

@@ -94,6 +94,70 @@ namespace InstagramRedesignApp.Core
                             Images = new[]{ "Jan.9.jpg" },
                             NumberOfLikes = random.Next(0,100000),
                         },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            PostId = "1#10",
+                            Description = "Hello friends ",
+                            Images = new[]{ "Jan.1.jpg" },
+                            NumberOfLikes = random.Next(0,100000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            PostId = "1#11",
+                            Images = new[]{ "Jan.2.jpg" },
+                            NumberOfLikes = random.Next(0,10000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            PostId = "1#12",
+                            Images = new[]{ "Jan.3.jpg" },
+                            NumberOfLikes = random.Next(0,1000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            PostId = "1#13",
+                            Images = new[]{ "Jan.4.jpg" },
+                            NumberOfLikes = random.Next(0,100000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            PostId = "1#14",
+                            Images = new[]{ "Jan.5.jpg" },
+                            NumberOfLikes = random.Next(0,100000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            PostId = "1#15",
+                            Images = new[]{ "Jan.6.jpg" },
+                            NumberOfLikes = random.Next(0,10000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            PostId = "1#16",
+                            Images = new[]{ "Jan.7.jpg" },
+                            NumberOfLikes = random.Next(0,10000),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            PostId = "1#17",
+                            Images = new[]{ "Jan.8.jpg" },
+                            NumberOfLikes = random.Next(0,100),
+                        },
+                        new Post
+                        {
+                            AuthorId = "1",
+                            PostId = "1#18",
+                            Images = new[]{ "Jan.9.jpg" },
+                            NumberOfLikes = random.Next(0,100000),
+                        },
                     },
                 },
                 new User
