@@ -5,8 +5,8 @@
              xmlns:sh="http://sharpnado.com"
              
              x:Class="InstagramRedesignApp.PostAvatarView">
-    
-    <Grid ColumnDefinitions="35, *" ColumnSpacing="10">
+
+    <Grid ColumnDefinitions="35, *" ColumnSpacing="10" CompressedLayout.IsHeadless="True">
         <Frame Padding="0" CornerRadius="12"
                WidthRequest="35" HeightRequest="35"
                VerticalOptions="Center" HorizontalOptions="Center">

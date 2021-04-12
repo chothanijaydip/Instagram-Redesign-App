@@ -22,9 +22,9 @@ namespace InstagramRedesignApp
 
         public PostDetailPage()
         {
-            InitializeComponent();
-
             viewModel = this.InitializeViewModel<IPostDetailPageViewModel>(PagesEnum.PostDetailPage);
+
+            InitializeComponent();
 
             SizeChanged += PostDetailPageSizeChanged;
         }
@@ -80,9 +80,10 @@ namespace InstagramRedesignApp
                 var deferral = e.GetDeferral();
 
                 carouselView.ScrollTo(0);
+                _ = HideComments(200);
 
                 await Task.Delay(200);
-
+                
                 deferral.Complete();
 
                 carouselView.Opacity = 0;
@@ -116,14 +117,14 @@ namespace InstagramRedesignApp
                 );
         }
 
-        private async Task HideComments()
+        private async Task HideComments(uint length = 250)
         {
             commentsOverlayBoxView.InputTransparent = false;
             downArrowGrid.InputTransparent = true;
             await Task.WhenAll(
                 commentsGrid.TranslateTo(commentsGrid.X, ImageHeight),
-                upArrowPath.FadeTo(1),
-                downArrowGrid.FadeTo(0)
+                upArrowPath.FadeTo(1, length),
+                downArrowGrid.FadeTo(0, length)
                 );
         }
 

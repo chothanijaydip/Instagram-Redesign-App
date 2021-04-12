@@ -5,7 +5,7 @@
              xmlns:core="clr-namespace:InstagramRedesignApp.Core;assembly=InstagramRedesignApp.Core"
              x:Class="InstagramRedesignApp.PostInfoView">
 
-    <Grid VerticalOptions="End" HeightRequest="40">
+    <Grid VerticalOptions="End" HeightRequest="40" CompressedLayout.IsHeadless="True">
         <Grid.Resources>
             <Style TargetType="{x:Type Path}">
                 <Setter Property="Fill" Value="White"/>
@@ -17,7 +17,8 @@
             </Style>
         </Grid.Resources>
 
-        <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" Spacing="22">
+        <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" Spacing="22"
+                     CompressedLayout.IsHeadless="True">
             <Grid BackgroundColor="Transparent">
                 <BoxView CornerRadius="20" BackgroundColor="Gray" Opacity="0.7"/>
                 <sh:Shadows x:Name="likedShadows" IsVisible="{Binding IsLiked}" CornerRadius="20" Shades="{sh:SingleShade Color={StaticResource Pink}, Opacity=0.2, BlurRadius=20}">
@@ -35,10 +36,13 @@
                                           Tapped="LikeTapped"/>
                 </Grid.GestureRecognizers>
             </Grid>
-            <StackLayout Orientation="Horizontal">
+            
+            <StackLayout Orientation="Horizontal"
+                         CompressedLayout.IsHeadless="True">
                 <Path Data="{StaticResource CommentsGeometry}" HorizontalOptions="End"/>
                 <Label Text="{Binding NumberComments, Converter={StaticResource ShortIntConverter}}" VerticalOptions="Center" FontAttributes="Bold" TextColor="White"/>
             </StackLayout>
+            
             <Path Data="{StaticResource SendGeometry}" HorizontalOptions="End" Rotation="-30" Margin="0,0,0,5"/>
         </StackLayout>
 

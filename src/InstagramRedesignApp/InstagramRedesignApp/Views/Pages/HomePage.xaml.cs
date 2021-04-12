@@ -16,9 +16,10 @@ namespace InstagramRedesignApp
 
         public HomePage()
         {
+            viewModel = this.InitializeViewModel<IHomePageViewModel>(PagesEnum.HomePage);
+
             InitializeComponent();
 
-            viewModel = this.InitializeViewModel<IHomePageViewModel>(PagesEnum.HomePage);
             SizeChanged += HomePageSizeChanged;
         }
 

@@ -7,7 +7,7 @@
           Opacity="0">
         <Path Data="{StaticResource HeartGeometry}" 
               HorizontalOptions="Center" VerticalOptions="Center" Aspect="Uniform"
-              WidthRequest="105" HeightRequest="105" Stroke="White" StrokeThickness="2.3"
+              WidthRequest="105" HeightRequest="105" Stroke="White" StrokeThickness="2.6"
               Margin="2,2,0,0"/>
 
         <Path Data="{StaticResource HeartFilledGeometry}" 

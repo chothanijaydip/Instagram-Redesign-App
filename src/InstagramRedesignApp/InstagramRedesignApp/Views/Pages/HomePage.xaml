@@ -22,7 +22,8 @@
             </CollectionView.Effects>
 
             <CollectionView.Header>
-                <Grid Margin="0,0,0,45">
+                <Grid Margin="0,0,0,45"
+                      CompressedLayout.IsHeadless="True">
                     <Grid.Resources>
                         <PathGeometry x:Key="AvatarGeometry">
                             <PathFigureCollection>
@@ -59,8 +60,9 @@
                         </CollectionView.ItemsLayout>
 
                         <CollectionView.Header>
-                            <Grid RowDefinitions="60,auto" RowSpacing="1" HorizontalOptions="Center" WidthRequest="60"
-                                  Padding="22,10,4,0">
+                            <Grid RowDefinitions="60,20" RowSpacing="1" HorizontalOptions="Center" WidthRequest="60"
+                                  Padding="22,10,4,0" 
+                                  CompressedLayout.IsHeadless="True">
                                 <Path Data="{StaticResource AvatarGeometry}" StrokeThickness="2.5" 
                                       Stroke="{StaticResource MidBrush}" Fill="{AppThemeBinding Dark={StaticResource DarkBackgroundBrush}, Light={StaticResource LightMidBrush}, Default={StaticResource LightMidBrush}}"/>
                                 <Path Data="{StaticResource PlusGeometry}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="Uniform"
@@ -77,8 +79,9 @@
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="{x:Type core:User}">
-                                <Grid RowDefinitions="60,auto" RowSpacing="1" HorizontalOptions="Center" WidthRequest="60"
-                                      Padding="4,10,4,0">
+                                <Grid RowDefinitions="60,20" RowSpacing="1" HorizontalOptions="Center" WidthRequest="60"
+                                      Padding="4,10,4,0" 
+                                      CompressedLayout.IsHeadless="True">
                                     <Path Data="{StaticResource AvatarGeometry}" StrokeThickness="2.5">
                                         <Path.Stroke>
                                             <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
@@ -92,13 +95,13 @@
                                     <Frame Padding="0" HasShadow="False" CornerRadius="19"
                                            HorizontalOptions="Center" VerticalOptions="Center"
                                            WidthRequest="50" HeightRequest="50">
-                                        <ff:CachedImage Source="{Binding ProfileImage, Converter={StaticResource FFImageSourceConverter}}"
+                                        <ff:CachedImage Source="{Binding ProfileImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"
                                                         HorizontalOptions="Center" VerticalOptions="Center"
                                                         WidthRequest="50" HeightRequest="50"
                                                         Aspect="AspectFill"/>
                                     </Frame>
 
-                                    <Label Grid.Row="1" Text="{Binding Name}"/>
+                                    <Label Grid.Row="1" Text="{Binding Name, Mode=OneTime}"/>
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
@@ -115,7 +118,7 @@
                     <Grid BackgroundColor="Transparent" VerticalOptions="Start" IsClippedToBounds="False">
                         <ff:CachedImage VerticalOptions="Start" Margin="0,0,0,-33" Aspect="AspectFill"
                                         HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=ImageHeight}" 
-                                        Source="{Binding FirstImage, Converter={StaticResource FFImageSourceConverter}}"
+                                        Source="{Binding FirstImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"
                                         sharedTransitions:Transition.Name="Image" 
                                         sharedTransitions:Transition.Group="{Binding AuthorId}">
                             <ff:CachedImage.Transformations>
@@ -123,14 +126,14 @@
                             </ff:CachedImage.Transformations>
                         </ff:CachedImage>
 
-                        <local:PostAvatarView Source="{Binding Author.ProfileImage, Converter={StaticResource FFImageSourceConverter}}" 
-                                              Name="{Binding Author.Name}"
+                        <local:PostAvatarView Source="{Binding Author.ProfileImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}" 
+                                              Name="{Binding Author.Name, Mode=OneTime}"
                                               sharedTransitions:Transition.Name="Avatar" 
                                               sharedTransitions:Transition.Group="{Binding AuthorId}"
                                               HorizontalOptions="Start" VerticalOptions="Start"
                                               Margin="20"/>
 
-                        <local:CustomIndicatorView Count="{Binding Images, Converter={StaticResource CollectionToLengthConverter}}"
+                        <local:CustomIndicatorView Count="{Binding Images, Converter={StaticResource CollectionToLengthConverter}, Mode=OneTime}"
                                                    sharedTransitions:Transition.Name="IndicatorView" 
                                                    sharedTransitions:Transition.Group="{Binding AuthorId}"
                                                    HorizontalOptions="End" VerticalOptions="Start"
@@ -143,10 +146,10 @@
                         <local:HeartView Margin="0,0,0,60" VerticalOptions="Center" HorizontalOptions="Center"/>
 
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding PostTappedCommand, Source={RelativeSource AncestorType={x:Type core:IHomePageViewModel}}}" CommandParameter="{Binding .}" 
+                            <TapGestureRecognizer Command="{Binding PostTappedCommand, Source={RelativeSource AncestorType={x:Type core:IHomePageViewModel}}, Mode=OneTime}" CommandParameter="{Binding ., Mode=OneTime}" 
                                                   Tapped="PostTapped"/>
-                            <TapGestureRecognizer Command="{Binding LikePostCommand, Source={RelativeSource AncestorType={x:Type core:ILikePostViewModel}}}"
-                                                  CommandParameter="{Binding .}"
+                            <TapGestureRecognizer Command="{Binding LikePostCommand, Source={RelativeSource AncestorType={x:Type core:ILikePostViewModel}}, Mode=OneTime}"
+                                                  CommandParameter="{Binding ., Mode=OneTime}"
                                                   Tapped="LikeTapped"
                                                   NumberOfTapsRequired="2"/>
                         </Grid.GestureRecognizers>

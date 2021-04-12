@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:core="clr-namespace:InstagramRedesignApp.Core;assembly=InstagramRedesignApp.Core"
+             xmlns:local="clr-namespace:InstagramRedesignApp"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="InstagramRedesignApp.ProfilePostsView"
+             
+             x:DataType="{x:Type core:IProfilePageViewModel}"
+             
+             CompressedLayout.IsHeadless="True">
+    
+    <CollectionView x:Name="collectionView" Margin="4,0"
+                    ItemsSource="{Binding CurrentUser.Posts}">
+        <CollectionView.Header>
+            <BoxView VerticalOptions="Start" HeightRequest="350" BackgroundColor="Transparent"
+                     CompressedLayout.IsHeadless="True"/>
+        </CollectionView.Header>
+
+        <CollectionView.Footer>
+            <BoxView VerticalOptions="Start" HeightRequest="80" BackgroundColor="Transparent"
+                     CompressedLayout.IsHeadless="True"/>
+        </CollectionView.Footer>
+
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Span="3" Orientation="Vertical" VerticalItemSpacing="0" HorizontalItemSpacing="0"/>
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="{x:Type core:Post}">
+                <Grid VerticalOptions="Start" Padding="2" BackgroundColor="transparent"
+                      CompressedLayout.IsHeadless="True">
+                    <ff:CachedImage VerticalOptions="Start" Aspect="AspectFill"
+                                    HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:ProfilePage}}, Path=ImageHeight}" 
+                                    Source="{Binding FirstImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}">
+                        <ff:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type core:IProfilePageViewModel}}, Path=PostTappedCommand, Mode=OneTime}"
+                                                  CommandParameter="{Binding ., Mode=OneTime}"/>
+                        </ff:CachedImage.GestureRecognizers>
+                    </ff:CachedImage>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    
+</ContentView>

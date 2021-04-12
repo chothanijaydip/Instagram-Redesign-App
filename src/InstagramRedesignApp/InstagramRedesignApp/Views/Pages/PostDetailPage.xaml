@@ -27,14 +27,14 @@
                BackgroundColor="Transparent">
             <Grid>
                 <CarouselView x:Name="carouselView"
-                          VerticalOptions="Start"
-                          Loop="False" CurrentItemChanged="CurrentItemChanged"
-                          ItemsSource="{Binding CurrentPost.Images}">
+                              VerticalOptions="Start"
+                              Loop="False" CurrentItemChanged="CurrentItemChanged"
+                              ItemsSource="{Binding CurrentPost.Images}">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid CompressedLayout.IsHeadless="True">
                                 <ff:CachedImage Aspect="AspectFill" Margin="0"
-                                                Source="{Binding ., Converter={StaticResource FFImageSourceConverter}}"/>
+                                                Source="{Binding ., Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"/>
                             </Grid>
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
@@ -58,7 +58,8 @@
                 <local:HeartView VerticalOptions="Center" HorizontalOptions="Center"/>
 
                 <StackLayout VerticalOptions="End" Orientation="Horizontal" Margin="25,0,20,12"
-                             HeightRequest="38">
+                             HeightRequest="38"
+                             CompressedLayout.IsHeadless="True">
                     <Label Text="{Binding CurrentPost.Description}" LineBreakMode="TailTruncation" 
                            HorizontalOptions="FillAndExpand" VerticalOptions="Center"
                            TextColor="White" FontAttributes="Bold"/>
@@ -81,27 +82,28 @@
                 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="{x:Type core:Comment}">
-                        <Grid VerticalOptions="Center" ColumnDefinitions="40,*,70,36" ColumnSpacing="15">
+                        <Grid VerticalOptions="Center" ColumnDefinitions="40,*,70,36" ColumnSpacing="15"
+                              CompressedLayout.IsHeadless="True">
                             <Frame Padding="0" CornerRadius="18" VerticalOptions="Center" HorizontalOptions="Center"
                                    HasShadow="False"
                                    WidthRequest="40" HeightRequest="40">
                                 <ff:CachedImage Aspect="AspectFill" 
-                                                Source="{Binding Author.ProfileImage, Converter={StaticResource FFImageSourceConverter}}"/>
+                                                Source="{Binding Author.ProfileImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"/>
                             </Frame>
-                            <StackLayout Grid.Column="1">
-                                <Label FontAttributes="Bold" Text="{Binding Author.Name}"
+                            <StackLayout Grid.Column="1" CompressedLayout.IsHeadless="True">
+                                <Label FontAttributes="Bold" Text="{Binding Author.Name, Mode=OneTime}"
                                        TextColor="{AppThemeBinding Dark={StaticResource MidColor}, Light={StaticResource DarkMidColor}, Default={StaticResource DarkMidColor}}"/>
                                 <Label FontAttributes="Bold" Text="{Binding Text}" FontSize="13"
                                        TextColor="{AppThemeBinding Dark={StaticResource LightBackgroundColor}, Light={StaticResource DarkBackgroundColor}, Default={StaticResource DarkBackgroundColor}}"/>
                             </StackLayout>
-                            <Grid Grid.Column="2">
+                            <Grid Grid.Column="2" CompressedLayout.IsHeadless="True">
                                 <BoxView BackgroundColor="{StaticResource MidColor}" VerticalOptions="Center" 
                                          HeightRequest="36" CornerRadius="18"/>
                                 <Label FontAttributes="Bold" Text="Reply" FontSize="13"
                                        TextColor="{StaticResource DarkMidColor}"
                                        VerticalOptions="Center" HorizontalOptions="Center"/>
                             </Grid>
-                            <Grid Grid.Column="3">
+                            <Grid Grid.Column="3" CompressedLayout.IsHeadless="True">
                                 <BoxView BackgroundColor="{StaticResource MidColor}" VerticalOptions="Center" 
                                          HeightRequest="36" CornerRadius="18"/>
                                 <Path Data="{StaticResource HeartGeometry}" 
@@ -115,10 +117,8 @@
             </CollectionView>
 
             <BoxView x:Name="commentsOverlayBoxView" BackgroundColor="Transparent"
-                     InputTransparent="False">
-                
-            </BoxView>
-
+                     InputTransparent="False"/>
+            
             <Path x:Name="upArrowPath" Data="{StaticResource UpArrowGeometry}" 
                   WidthRequest="20" HeightRequest="20" 
                   Rotation="180" Margin="0,5,0,0"
@@ -136,16 +136,17 @@
 
         <Grid x:Name="downArrowGrid" VerticalOptions="Start" HeightRequest="40"
               InputTransparent="True">
-            <BoxView VerticalOptions="Start" HeightRequest="40" BackgroundColor="Transparent"/>
             <Path x:Name="downArrowPath" Data="{StaticResource UpArrowGeometry}" 
                   WidthRequest="20" HeightRequest="20" 
                   HorizontalOptions="Center" VerticalOptions="Center" Aspect="Uniform"
                   Fill="{StaticResource LightBackgroundBrush}"/>
 
-            <Grid.GestureRecognizers>
-                <TapGestureRecognizer Tapped="DownArrowTapped"/>
-                <PanGestureRecognizer PanUpdated="DownCommentsPanUpdated"/>
-            </Grid.GestureRecognizers>
+            <BoxView VerticalOptions="Start" HeightRequest="40" BackgroundColor="Transparent">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="DownArrowTapped"/>
+                    <PanGestureRecognizer PanUpdated="DownCommentsPanUpdated"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
         </Grid>
         
         <sh:Shadows x:Name="entryShadows" CornerRadius="30" Shades="{sh:SingleShade Color=Black, Opacity=0.3, BlurRadius=40}" VerticalOptions="End">
@@ -162,7 +163,7 @@
                            HasShadow="False"
                            WidthRequest="40" HeightRequest="40">
                         <ff:CachedImage Aspect="AspectFill" 
-                                        Source="{Binding CurrentUser.ProfileImage, Converter={StaticResource FFImageSourceConverter}}"/>
+                                        Source="{Binding CurrentUser.ProfileImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"/>
                     </Frame>
 
                     <Entry Grid.Column="1" Placeholder="Add comment" FontAttributes="Bold" FontSize="15"

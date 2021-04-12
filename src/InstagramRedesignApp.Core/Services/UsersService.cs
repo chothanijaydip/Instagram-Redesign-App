@@ -159,6 +159,49 @@ namespace InstagramRedesignApp.Core
                             NumberOfLikes = random.Next(0,100000),
                         },
                     },
+                    Links = new List<Link>
+                    {
+                        new Link
+                        {
+                            LinkType = LinkTypesEnum.Website,
+                        },
+                        new Link
+                        {
+                            LinkType = LinkTypesEnum.Behance,
+                        },
+                        new Link
+                        {
+                            LinkType = LinkTypesEnum.Dribbble,
+                        },
+                        new Link
+                        {
+                            LinkType = LinkTypesEnum.Twitch,
+                        },
+                        new Link
+                        {
+                            LinkType = LinkTypesEnum.TikTok,
+                        },
+                        new Link
+                        {
+                            LinkType = LinkTypesEnum.SnapChat,
+                        },
+                        new Link
+                        {
+                            LinkType = LinkTypesEnum.Unsplash,
+                        },
+                        new Link
+                        {
+                            LinkType = LinkTypesEnum.Discord,
+                        },
+                        new Link
+                        {
+                            LinkType = LinkTypesEnum.YouTube,
+                        },
+                        new Link
+                        {
+                            LinkType = LinkTypesEnum.GitHub,
+                        },
+                    },
                 },
                 new User
                 {
