@@ -49,7 +49,7 @@ namespace InstagramRedesignApp
         private void PostsTapped(object sender, EventArgs e)
         {
             tabView.SelectedIndex = (int)TabsEnum.Posts;
-            _ = TabViewSelectionChangedAsync(tabView.SelectedIndex);
+            TabViewSelectionChangedAsync(tabView.SelectedIndex);
 
             ResetAllTabs();
             VisualStateManager.GoToState(postsPath, "Selected");
@@ -58,7 +58,7 @@ namespace InstagramRedesignApp
         private void ClipTapped(object sender, EventArgs e)
         {
             tabView.SelectedIndex = (int)TabsEnum.Clips;
-            _ = TabViewSelectionChangedAsync(tabView.SelectedIndex);
+            TabViewSelectionChangedAsync(tabView.SelectedIndex);
 
             ResetAllTabs();
             VisualStateManager.GoToState(clipPath, "Selected");
@@ -67,7 +67,7 @@ namespace InstagramRedesignApp
         private void TvTapped(object sender, EventArgs e)
         {
             tabView.SelectedIndex = (int)TabsEnum.Tv;
-            _ = TabViewSelectionChangedAsync(tabView.SelectedIndex);
+            TabViewSelectionChangedAsync(tabView.SelectedIndex);
 
             ResetAllTabs();
             VisualStateManager.GoToState(tvPath, "Selected");
@@ -76,7 +76,7 @@ namespace InstagramRedesignApp
         private void UserTapped(object sender, EventArgs e)
         {
             tabView.SelectedIndex = (int)TabsEnum.Users;
-            _ = TabViewSelectionChangedAsync(tabView.SelectedIndex);
+            TabViewSelectionChangedAsync(tabView.SelectedIndex);
 
             ResetAllTabs();
             VisualStateManager.GoToState(userPath, "Selected");
@@ -85,7 +85,7 @@ namespace InstagramRedesignApp
         private void LinkTapped(object sender, EventArgs e)
         {
             tabView.SelectedIndex = (int)TabsEnum.Links;
-            _ = TabViewSelectionChangedAsync(tabView.SelectedIndex);
+            TabViewSelectionChangedAsync(tabView.SelectedIndex);
 
             ResetAllTabs();
             VisualStateManager.GoToState(linkPath, "Selected");
@@ -94,7 +94,7 @@ namespace InstagramRedesignApp
         private void BookmarkTapped(object sender, EventArgs e)
         {
             tabView.SelectedIndex = (int)TabsEnum.Bookmarks;
-            _ = TabViewSelectionChangedAsync(tabView.SelectedIndex);
+            TabViewSelectionChangedAsync(tabView.SelectedIndex);
 
             ResetAllTabs();
             VisualStateManager.GoToState(bookmarkPath, "Selected");
@@ -110,12 +110,12 @@ namespace InstagramRedesignApp
             VisualStateManager.GoToState(bookmarkPath, "Normal");
         }
 
-        private async void TabViewSelectionChanged(object sender, TabSelectionChangedEventArgs e)
+        private void TabViewSelectionChanged(object sender, TabSelectionChangedEventArgs e)
         {
-            await TabViewSelectionChangedAsync(e.NewPosition);
+            TabViewSelectionChangedAsync(e.NewPosition);
         }
 
-        private async Task TabViewSelectionChangedAsync(int newPosition)
+        private void TabViewSelectionChangedAsync(int newPosition)
         {
             if (tabView.TabItems[newPosition].Content is LazyView<ProfilePostsView> newProfilePostsLazyView)
             {
@@ -128,16 +128,15 @@ namespace InstagramRedesignApp
             {
                 var collectionView = oldProfilePostsLazyView.Content.FindByName<CollectionView>("collectionView");
                 collectionView.Scrolled -= PostsScrolled;
-                collectionView.ScrollTo(0);
 
                 Animation animation = new Animation();
 
                 animation.Add(0, 1, new Animation(v => headerFrame.HeightRequest = v, headerFrame.Height, headerGridHeight));
                 animation.Add(0, 1, new Animation(v => tabsGrid.TranslationY = v, tabsGrid.TranslationY, tabsGridDefaultTranslation));
 
-                animation.Commit(this, "Animation");
+                animation.Commit(this, "Animation", length: 200);
 
-                await Task.Delay(250);
+                collectionView.ScrollTo(0);
             }
 
             oldPosition = newPosition;

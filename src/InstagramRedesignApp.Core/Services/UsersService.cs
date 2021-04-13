@@ -172,10 +172,12 @@ namespace InstagramRedesignApp.Core
                         new Link
                         {
                             LinkType = LinkTypesEnum.Dribbble,
+                            Url = "https://dribbble.com/shots/14057207-Instagram-Redesign-Part-2",
                         },
                         new Link
                         {
                             LinkType = LinkTypesEnum.Twitch,
+                            Url = "https://www.twitch.tv/kymphillpotts",
                         },
                         new Link
                         {
@@ -196,10 +198,12 @@ namespace InstagramRedesignApp.Core
                         new Link
                         {
                             LinkType = LinkTypesEnum.YouTube,
+                            Url = "https://www.youtube.com/channel/UCBBZ2kXWmd8eXlHg2wEaClw",
                         },
                         new Link
                         {
                             LinkType = LinkTypesEnum.GitHub,
+                            Url = "https://github.com/RadekVyM",
                         },
                     },
                 },

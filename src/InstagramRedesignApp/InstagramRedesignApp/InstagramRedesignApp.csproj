@@ -35,6 +35,16 @@
     <None Remove="Images\Jenny\avatar.jpg" />
     <None Remove="Images\Laura\1.jpg" />
     <None Remove="Images\Laura\avatar.jpg" />
+    <None Remove="Images\Links\behance.png" />
+    <None Remove="Images\Links\discord.png" />
+    <None Remove="Images\Links\dribbble.png" />
+    <None Remove="Images\Links\github.png" />
+    <None Remove="Images\Links\snapchat.png" />
+    <None Remove="Images\Links\tiktok.png" />
+    <None Remove="Images\Links\twitch.png" />
+    <None Remove="Images\Links\unsplash.png" />
+    <None Remove="Images\Links\website.png" />
+    <None Remove="Images\Links\youtube.png" />
     <None Remove="Images\Manuel\1.jpg" />
     <None Remove="Images\Manuel\avatar.jpg" />
   </ItemGroup>
@@ -100,6 +110,36 @@
     <EmbeddedResource Include="Images\Laura\avatar.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\Links\behance.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Links\discord.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Links\dribbble.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Links\github.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Links\snapchat.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Links\tiktok.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Links\twitch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Links\unsplash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Links\website.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Links\youtube.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Images\Manuel\1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -137,6 +177,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\Controls\ProfileDefaultView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Controls\ProfileLinksView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

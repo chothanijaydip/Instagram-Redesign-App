@@ -12,8 +12,8 @@
              
              Style="{StaticResource BasePageStyle}">
 
-    <Grid Padding="{x:Static local:AppBar.AppBarPadding}">
-        <ff:CachedImage x:Name="image" Aspect="AspectFill" Margin="0" VerticalOptions="Start" FadeAnimationEnabled="False"
+    <Grid Margin="{x:Static local:AppBar.AppBarPadding}">
+        <ff:CachedImage x:Name="image" Aspect="AspectFill" Margin="0" VerticalOptions="Start" FadeAnimationEnabled="False" IsOpaque="True"
                         Source="{Binding CurrentPost.FirstImage, Converter={StaticResource FFImageSourceConverter}}"
                         HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:PostDetailPage}}, Path=ImageHeight}"
                         sharedTransitions:Transition.Name="Image">
@@ -149,7 +149,8 @@
             </BoxView>
         </Grid>
         
-        <sh:Shadows x:Name="entryShadows" CornerRadius="30" Shades="{sh:SingleShade Color=Black, Opacity=0.3, BlurRadius=40}" VerticalOptions="End">
+        <sh:Shadows x:Name="entryShadows" CornerRadius="30" Shades="{sh:SingleShade Color=Black, Opacity=0.3, BlurRadius=40}" VerticalOptions="End"
+                    Margin="0,0,0,-2">
             <Grid>
                 <BoxView Background="{AppThemeBinding Dark={StaticResource DarkTabBarBrush}, Light={StaticResource LightTabBarBrush}, Default={StaticResource LightTabBarBrush}}" 
                          VerticalOptions="End" HeightRequest="80" CornerRadius="30,30,0,0"/>
@@ -162,7 +163,7 @@
                     <Frame Padding="0" CornerRadius="18" VerticalOptions="Center" HorizontalOptions="Center"
                            HasShadow="False"
                            WidthRequest="40" HeightRequest="40">
-                        <ff:CachedImage Aspect="AspectFill" 
+                        <ff:CachedImage Aspect="AspectFill" IsOpaque="True"
                                         Source="{Binding CurrentUser.ProfileImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"/>
                     </Frame>
 

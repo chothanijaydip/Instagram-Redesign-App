@@ -2,7 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:sh="http://sharpnado.com"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              
              x:Class="InstagramRedesignApp.PostAvatarView">
 
@@ -10,12 +10,13 @@
         <Frame Padding="0" CornerRadius="12"
                WidthRequest="35" HeightRequest="35"
                VerticalOptions="Center" HorizontalOptions="Center">
-            <ff:CachedImage x:Name="image" />
+            <ff:CachedImage x:Name="image" IsOpaque="True"/>
         </Frame>
 
-        <sh:Shadows Grid.Column="1" CornerRadius="2" Shades="{sh:SingleShade Color=Black, Opacity=0.2, BlurRadius=20}">
-            <Label x:Name="nameLabel" VerticalOptions="Center"
-                   TextColor="White" FontAttributes="Bold"/>
-        </sh:Shadows>
+        <Label Grid.Column="1" x:Name="nameLabel" VerticalTextAlignment="Center"
+               TextColor="White" FontAttributes="Bold"
+               xct:ShadowEffect.Color="Black"
+               xct:ShadowEffect.Radius="10"
+               xct:ShadowEffect.Opacity="0.8"/>
     </Grid>
 </ContentView>

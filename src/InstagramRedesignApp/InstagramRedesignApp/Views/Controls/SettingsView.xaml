@@ -24,8 +24,8 @@
                                  CompressedLayout.IsHeadless="True">
                         <StackLayout.Resources>
                             <Style TargetType="{x:Type Label}">
-                                <Setter Property="VerticalOptions" Value="Center"/>
-                                <Setter Property="HorizontalOptions" Value="Center"/>
+                                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                                <Setter Property="HorizontalTextAlignment" Value="Center"/>
                                 <Setter Property="TextColor" Value="White"/>
                                 <Setter Property="FontAttributes" Value="Bold"/>
                             </Style>
@@ -115,7 +115,7 @@
                                 <Setter Property="Margin" Value="8,8"/>
                             </Style>
                             <Style TargetType="{x:Type Label}">
-                                <Setter Property="VerticalOptions" Value="Center"/>
+                                <Setter Property="VerticalTextAlignment" Value="Center"/>
                                 <Setter Property="TextColor" Value="White"/>
                                 <Setter Property="FontAttributes" Value="Bold"/>
                             </Style>

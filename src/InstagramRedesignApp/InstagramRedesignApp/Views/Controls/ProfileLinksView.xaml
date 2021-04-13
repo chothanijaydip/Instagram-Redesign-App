@@ -1,9 +1,53 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InstagramRedesignApp.ProfileLinksView">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:InstagramRedesignApp"
+             xmlns:core="clr-namespace:InstagramRedesignApp.Core;assembly=InstagramRedesignApp.Core"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="InstagramRedesignApp.ProfileLinksView"
+             
+             x:DataType="{x:Type core:IProfilePageViewModel}"
+             
+             CompressedLayout.IsHeadless="True">
 
-    <StackLayout CompressedLayout.IsHeadless="True">
-        <Label Text="Hello Xamarin.Forms!" />
-    </StackLayout>
+    <CollectionView x:Name="collectionView" Margin="8,0"
+                    ItemsSource="{Binding CurrentUser.Links}">
+        <CollectionView.Header>
+            <BoxView VerticalOptions="Start" HeightRequest="350" BackgroundColor="Transparent"
+                     CompressedLayout.IsHeadless="True"/>
+        </CollectionView.Header>
+
+        <CollectionView.Footer>
+            <BoxView VerticalOptions="Start" HeightRequest="80" BackgroundColor="Transparent"
+                     CompressedLayout.IsHeadless="True"/>
+        </CollectionView.Footer>
+
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Span="2" Orientation="Vertical" VerticalItemSpacing="6" HorizontalItemSpacing="6"/>
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="{x:Type core:Link}">
+                <Grid VerticalOptions="Start" BackgroundColor="transparent"
+                      CompressedLayout.IsHeadless="True">
+                    <BoxView BackgroundColor="{Binding LinkType, Converter={StaticResource LinkTypeToColorConverter}, Mode=OneTime}" CornerRadius="16" VerticalOptions="Center" HeightRequest="60">
+                        <BoxView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type core:IProfilePageViewModel}}, Path=LinkTappedCommand, Mode=OneTime}"
+                                                  CommandParameter="{Binding .}"/>
+                        </BoxView.GestureRecognizers>
+                    </BoxView>
+                    <ff:CachedImage Source="{Binding LinkType, Converter={StaticResource LinkTypeToFFImageSourceConverter}, Mode=OneTime}"
+                                    VerticalOptions="Center" HorizontalOptions="Start"
+                                    HeightRequest="22" Margin="16,0,60,0"
+                                    Aspect="AspectFit"
+                                    InputTransparent="True"/>
+                    <Path Data="{StaticResource SendLinkGeometry}" Aspect="Uniform"
+                          VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,16,0"
+                          HeightRequest="18" WidthRequest="18"
+                          InputTransparent="True"
+                          Fill="{Binding LinkType, Converter={StaticResource LinkTypeToGeometryBrushConverter}, Mode=OneTime}"/>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentView>

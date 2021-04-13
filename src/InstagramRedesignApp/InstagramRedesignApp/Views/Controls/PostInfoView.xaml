@@ -27,11 +27,11 @@
                 
                 <StackLayout Orientation="Horizontal" Margin="15,0">
                     <Path Data="{StaticResource HeartFilledGeometry}" HorizontalOptions="End"/>
-                    <Label Text="{Binding NumberOfLikes, Converter={StaticResource ShortIntConverter}}" VerticalOptions="Center" FontAttributes="Bold" TextColor="White"/>
+                    <Label Text="{Binding NumberOfLikes, Converter={StaticResource ShortIntConverter}}" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White"/>
                 </StackLayout>
                 
                 <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding LikePostCommand, Source={RelativeSource AncestorType={x:Type core:ILikePostViewModel}}}"
+                    <TapGestureRecognizer Command="{Binding LikePostCommand, Source={RelativeSource AncestorType={x:Type core:ILikePostViewModel}}, Mode=OneTime}"
                                           CommandParameter="{Binding .}"
                                           Tapped="LikeTapped"/>
                 </Grid.GestureRecognizers>
@@ -40,7 +40,7 @@
             <StackLayout Orientation="Horizontal"
                          CompressedLayout.IsHeadless="True">
                 <Path Data="{StaticResource CommentsGeometry}" HorizontalOptions="End"/>
-                <Label Text="{Binding NumberComments, Converter={StaticResource ShortIntConverter}}" VerticalOptions="Center" FontAttributes="Bold" TextColor="White"/>
+                <Label Text="{Binding NumberComments, Converter={StaticResource ShortIntConverter}}" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White"/>
             </StackLayout>
             
             <Path Data="{StaticResource SendGeometry}" HorizontalOptions="End" Rotation="-30" Margin="0,0,0,5"/>

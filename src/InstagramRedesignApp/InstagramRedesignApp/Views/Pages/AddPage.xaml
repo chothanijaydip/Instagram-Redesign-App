@@ -5,8 +5,8 @@
              x:Class="InstagramRedesignApp.AddPage"
              
              Style="{StaticResource BasePageStyle}">
-    
-    <Grid Padding="{x:Static local:StatusBar.Padding}"
+
+    <Grid Margin="{x:Static local:StatusBar.Padding}"
           RowDefinitions="50,*">
         <local:AppBar VerticalOptions="Center"/>
         

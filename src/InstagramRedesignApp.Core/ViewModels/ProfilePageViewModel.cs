@@ -30,16 +30,22 @@ namespace InstagramRedesignApp.Core
         }
 
         public ICommand PostTappedCommand { get; private set; }
+        public ICommand LinkTappedCommand { get; private set; }
 
-
-        public ProfilePageViewModel(IUsersService usersService, INavigationService navigationService)
+        public ProfilePageViewModel(IUsersService usersService, INavigationService navigationService, IBrowser browser)
         {
             this.usersService = usersService;
 
-            PostTappedCommand = new RelayCommand(parameter =>
+            PostTappedCommand = new RelayCommand(async parameter =>
             {
-                var currentPost = parameter as Post;
-                navigationService.PushPageAsync(PagesEnum.PostDetailPage, true, currentPost);
+                Post currentPost = parameter as Post;
+                await navigationService.PushPageAsync(PagesEnum.PostDetailPage, true, currentPost);
+            });
+            LinkTappedCommand = new RelayCommand(async parameter =>
+            {
+                Link link = parameter as Link;
+                if (!string.IsNullOrWhiteSpace(link.Url))
+                    await browser.OpenAsync(link.Url);
             });
         }
 

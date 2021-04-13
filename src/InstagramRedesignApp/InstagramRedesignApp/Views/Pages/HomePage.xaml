@@ -14,7 +14,7 @@
              
              Style="{StaticResource BasePageStyle}">
 
-    <Grid Padding="{x:Static local:AppBar.AppBarPadding}">
+    <Grid Margin="{x:Static local:AppBar.AppBarPadding}">
         <CollectionView ItemsSource="{Binding Posts}"
                         Scrolled="CollectionViewScrolled">
             <CollectionView.Effects>
@@ -47,8 +47,8 @@
                                     ItemsSource="{Binding FollowedUsers}">
                         <CollectionView.Resources>
                             <Style TargetType="{x:Type Label}">
-                                <Setter Property="VerticalOptions" Value="Start"/>
-                                <Setter Property="HorizontalOptions" Value="Center"/>
+                                <Setter Property="VerticalTextAlignment" Value="Start"/>
+                                <Setter Property="HorizontalTextAlignment" Value="Center"/>
                                 <Setter Property="FontAttributes" Value="Bold"/>
                                 <Setter Property="FontSize" Value="12.5"/>
                                 <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource MidColor}, Light={StaticResource DarkBackgroundColor}, Default={StaticResource DarkBackgroundColor}}"/>
@@ -98,7 +98,7 @@
                                         <ff:CachedImage Source="{Binding ProfileImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"
                                                         HorizontalOptions="Center" VerticalOptions="Center"
                                                         WidthRequest="50" HeightRequest="50"
-                                                        Aspect="AspectFill"/>
+                                                        Aspect="AspectFill" IsOpaque="True"/>
                                     </Frame>
 
                                     <Label Grid.Row="1" Text="{Binding Name, Mode=OneTime}"/>
@@ -116,7 +116,8 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type core:Post}">
                     <Grid BackgroundColor="Transparent" VerticalOptions="Start" IsClippedToBounds="False">
-                        <ff:CachedImage VerticalOptions="Start" Margin="0,0,0,-33" Aspect="AspectFill"
+                        <ff:CachedImage VerticalOptions="Start" Margin="0,0,0,-33" 
+                                        Aspect="AspectFill" IsOpaque="True"
                                         HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:HomePage}}, Path=ImageHeight}" 
                                         Source="{Binding FirstImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"
                                         sharedTransitions:Transition.Name="Image" 

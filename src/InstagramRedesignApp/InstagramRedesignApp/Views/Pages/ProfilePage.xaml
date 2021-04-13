@@ -3,14 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:InstagramRedesignApp"
              xmlns:core="clr-namespace:InstagramRedesignApp.Core;assembly=InstagramRedesignApp.Core"
-             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="InstagramRedesignApp.ProfilePage"
              
              Style="{StaticResource BasePageStyle}"
              
              x:DataType="{x:Type core:IProfilePageViewModel}">
 
-    <Grid Padding="{x:Static local:AppBar.AppBarPadding}">
+    <Grid Margin="{x:Static local:AppBar.AppBarPadding}">
         <xct:TabView x:Name="tabView"
                      IsSwipeEnabled="False"
                      IsTabStripVisible="False"
@@ -20,7 +21,15 @@
             </xct:TabViewItem>
 
             <xct:TabViewItem>
-                <xct:LazyView x:TypeArguments="local:ProfileLinksView" CompressedLayout.IsHeadless="True" />
+                <xct:LazyView x:TypeArguments="local:ProfileDefaultView" CompressedLayout.IsHeadless="True" />
+            </xct:TabViewItem>
+
+            <xct:TabViewItem>
+                <xct:LazyView x:TypeArguments="local:ProfileDefaultView" CompressedLayout.IsHeadless="True" />
+            </xct:TabViewItem>
+
+            <xct:TabViewItem>
+                <xct:LazyView x:TypeArguments="local:ProfileDefaultView" CompressedLayout.IsHeadless="True" />
             </xct:TabViewItem>
 
             <xct:TabViewItem>
@@ -28,15 +37,7 @@
             </xct:TabViewItem>
 
             <xct:TabViewItem>
-                <xct:LazyView x:TypeArguments="local:ProfileLinksView" CompressedLayout.IsHeadless="True" />
-            </xct:TabViewItem>
-
-            <xct:TabViewItem>
-                <xct:LazyView x:TypeArguments="local:ProfileLinksView" CompressedLayout.IsHeadless="True" />
-            </xct:TabViewItem>
-
-            <xct:TabViewItem>
-                <xct:LazyView x:TypeArguments="local:ProfileLinksView" CompressedLayout.IsHeadless="True" />
+                <xct:LazyView x:TypeArguments="local:ProfileDefaultView" CompressedLayout.IsHeadless="True" />
             </xct:TabViewItem>
         </xct:TabView>
         
@@ -76,15 +77,15 @@
                 <Grid ColumnDefinitions="*,80,*" RowDefinitions="*,*" RowSpacing="0"
                       CompressedLayout.IsHeadless="true">
                     <Label Text="{Binding CurrentUser.Followers, Converter={StaticResource ShortIntConverter}, Mode=OneTime}" 
-                           HorizontalOptions="End" VerticalOptions="End"
+                           HorizontalTextAlignment="End" VerticalTextAlignment="End"
                            Style="{StaticResource LargerLabelStyle}"/>
-                    <Label Grid.Row="1" Text="Followers" HorizontalOptions="End" VerticalOptions="Start"
+                    <Label Grid.Row="1" Text="Followers" HorizontalTextAlignment="End" VerticalTextAlignment="Start"
                            Style="{StaticResource SmallerLabelStyle}"/>
 
                     <Frame Grid.Column="1" Grid.RowSpan="2" Padding="0" CornerRadius="18" HasShadow="False"
                            VerticalOptions="Center" HorizontalOptions="Center"
                            HeightRequest="50" WidthRequest="50">
-                        <ff:CachedImage VerticalOptions="Center" Aspect="AspectFill"
+                        <ff:CachedImage VerticalOptions="Center" Aspect="AspectFill" IsOpaque="True"
                                         Source="{Binding CurrentUser.ProfileImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"/>
                     </Frame>
 
@@ -116,26 +117,26 @@
                     </Frame>
 
                     <Label Grid.Column="2" Text="{Binding CurrentUser.Following, Converter={StaticResource ShortIntConverter}, Mode=OneTime}" 
-                           HorizontalOptions="Start" VerticalOptions="End"
+                           HorizontalTextAlignment="Start" VerticalTextAlignment="End"
                            Style="{StaticResource LargerLabelStyle}"/>
                     <Label Grid.Column="2" Grid.Row="1" Text="Following" 
-                           HorizontalOptions="Start"  VerticalOptions="Start"
+                           HorizontalTextAlignment="Start"  VerticalTextAlignment="Start"
                            Style="{StaticResource SmallerLabelStyle}"/>
                 </Grid>
 
                 <Grid Grid.Row="1" ColumnDefinitions="*,10,*" CompressedLayout.IsHeadless="true">
                     <Label Grid.Column="0" Text="{Binding CurrentUser.Name, Mode=OneTime}" 
-                           HorizontalOptions="End" Style="{StaticResource LargerLabelStyle}"/>
+                           HorizontalTextAlignment="End" Style="{StaticResource LargerLabelStyle}"/>
 
                     <BoxView Grid.Column="1" HorizontalOptions="Center" WidthRequest="1.8" Margin="0,2,0,0"
                              BackgroundColor="{StaticResource MidColor}"/>
 
                     <Label Grid.Column="2" Text="{Binding CurrentUser.Job, Mode=OneTime}" 
-                           HorizontalOptions="Start" Style="{StaticResource LargerLabelStyle}"/>
+                           HorizontalTextAlignment="Start" Style="{StaticResource LargerLabelStyle}"/>
                 </Grid>
 
-                <Label Grid.Row="2" HorizontalOptions="Center" HorizontalTextAlignment="Center"
-                            Text="{Binding CurrentUser.Description, Mode=OneTime}" Style="{StaticResource SmallerLabelStyle}"/>
+                <Label Grid.Row="2"  HorizontalTextAlignment="Center"
+                       Text="{Binding CurrentUser.Description, Mode=OneTime}" Style="{StaticResource SmallerLabelStyle}"/>
 
                 <StackLayout Grid.Row="3" Orientation="Horizontal" HorizontalOptions="Center"
                              Spacing="12" CompressedLayout.IsHeadless="true">
@@ -174,25 +175,25 @@
                                   Fill="{AppThemeBinding Dark={StaticResource MidBrush}, Light={StaticResource DarkBackgroundBrush}, Default={StaticResource DarkBackgroundBrush}}"/>
 
                             <Label Grid.Row="1" Text="New" Style="{StaticResource SmallerLabelStyle}"
-                                   HorizontalOptions="Center"/>
+                                   HorizontalTextAlignment="Center"/>
                         </Grid>
                     </CollectionView.Header>
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="{x:Type core:User}">
                             <Grid RowDefinitions="60,20" RowSpacing="0" HorizontalOptions="Center" WidthRequest="60"
-                                  Padding="4,0,4,0" CompressedLayout.IsHeadless="true">
+                                  Margin="4,0,4,0" CompressedLayout.IsHeadless="true">
                                 <Frame Padding="0" HasShadow="False" CornerRadius="19"
                                        HorizontalOptions="Center" VerticalOptions="Center"
                                        WidthRequest="50" HeightRequest="50">
                                     <ff:CachedImage Source="{Binding ProfileImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"
                                                     HorizontalOptions="Center" VerticalOptions="Center"
                                                     WidthRequest="50" HeightRequest="50"
-                                                    Aspect="AspectFill"/>
+                                                    Aspect="AspectFill" IsOpaque="True"/>
                                 </Frame>
 
                                 <Label Grid.Row="1" Text="{Binding Name, Mode=OneTime}" Style="{StaticResource SmallerLabelStyle}" 
-                                       HorizontalOptions="Center"/>
+                                       HorizontalTextAlignment="Center"/>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

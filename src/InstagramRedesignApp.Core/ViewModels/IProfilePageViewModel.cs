@@ -8,5 +8,6 @@ namespace InstagramRedesignApp.Core
         User CurrentUser { get; set; }
         IList<User> FollowedUsers { get; set; }
         ICommand PostTappedCommand { get; }
+        ICommand LinkTappedCommand { get; }
     }
 }
