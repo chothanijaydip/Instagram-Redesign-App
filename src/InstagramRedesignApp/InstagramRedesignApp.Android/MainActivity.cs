@@ -37,11 +37,11 @@ namespace InstagramRedesignApp.Droid
                 HideSoftwareMenuBars();
         }
 
-        private void HideSoftwareMenuBars()
+        public void HideSoftwareMenuBars()
         {
             if (Build.VERSION.SdkInt >= BuildVersionCodes.R)
             {
-                Window.SetDecorFitsSystemWindows(false);
+                Window.SetDecorFitsSystemWindows(true);
                 Window.InsetsController.Hide(WindowInsets.Type.NavigationBars());
                 Window.InsetsController.SystemBarsBehavior = (int)WindowInsetsControllerBehavior.ShowBarsBySwipe;
 
@@ -53,6 +53,25 @@ namespace InstagramRedesignApp.Droid
             uiOptions |= (int)SystemUiFlags.LayoutHideNavigation;
             uiOptions |= (int)SystemUiFlags.HideNavigation;
             uiOptions |= (int)SystemUiFlags.ImmersiveSticky;
+
+            Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
+        }
+
+        public void ShowSoftwareMenuBars()
+        {
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.R)
+            {
+                Window.SetDecorFitsSystemWindows(true);
+                Window.InsetsController.Show(WindowInsets.Type.NavigationBars());
+
+                return;
+            }
+
+            int uiOptions = (int)Window.DecorView.SystemUiVisibility;
+
+            uiOptions &= ~(int)SystemUiFlags.LayoutHideNavigation;
+            uiOptions &= ~(int)SystemUiFlags.HideNavigation;
+            uiOptions &= ~(int)SystemUiFlags.ImmersiveSticky;
 
             Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
         }

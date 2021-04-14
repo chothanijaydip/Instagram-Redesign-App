@@ -21,6 +21,7 @@ namespace InstagramRedesignApp
             services.AddSingleton<IUsersService, UsersService>();
             services.AddSingleton<ICommentsService, CommentsService>();
             services.AddSingleton<IPostsService, PostsService>();
+            services.AddSingleton<IActivitiesService, ActivitiesService>();
             services.AddSingleton<IAppThemeService, AppThemeService>();
             services.AddSingleton<IBrowser, Browser>();
             services.AddTransient<ISettingsViewModel, SettingsViewModel>();
@@ -41,6 +42,8 @@ namespace InstagramRedesignApp
 
         protected override void OnSleep()
         {
+            if (Shell.Current.CurrentPage is PostDetailPage postDetailPage)
+                postDetailPage.UnfocuseEntry();
         }
 
         protected override void OnResume()

@@ -27,8 +27,24 @@ namespace InstagramRedesignApp
             InitializeComponent();
 
             SizeChanged += PostDetailPageSizeChanged;
+
+            entry.Focused += Entry_Focused;
+            entry.Unfocused += Entry_Focused;
         }
 
+        public void UnfocuseEntry()
+        {
+            entry.Unfocus();
+        }
+
+        private void Entry_Focused(object sender, FocusEventArgs e)
+        {
+            // I have to turn off fullscreen to move the entry up (above the keyboard) when the entry is focused
+            if (e.IsFocused)
+                DependencyService.Get<IStatusBar>().SetFullscreen(false);
+            else
+                DependencyService.Get<IStatusBar>().SetFullscreen(true);
+        }
 
         protected override void OnAppearing()
         {
@@ -50,6 +66,8 @@ namespace InstagramRedesignApp
             shell.TransitionEnded -= PostDetailPageTransitionEnded;
             shell.TransitionStarted -= PostDetailPageTransitionStarted;
             shell.Navigating -= PostDetailPageNavigating;
+
+            entry.Unfocus();
         }
 
         private void PostDetailPageTransitionStarted(object sender, SharedTransitionEventArgs e)

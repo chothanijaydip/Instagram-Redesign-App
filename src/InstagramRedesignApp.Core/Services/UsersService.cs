@@ -37,6 +37,44 @@ namespace InstagramRedesignApp.Core
                             Description = "Hello friends ",
                             Images = new[]{ "Jan.1.jpg" },
                             NumberOfLikes = random.Next(0,100000),
+                            Comments = new List<Comment>
+                            {
+                                new Comment
+                                {
+                                    AuthorId = "2",
+                                    PostId = "1#1",
+                                    CommentId = "1#1#1",
+                                    Text = "🐒",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "3",
+                                    PostId = "1#1",
+                                    CommentId = "1#1#2",
+                                    Text = "Awesome!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "5",
+                                    PostId = "1#1",
+                                    CommentId = "1#1#3",
+                                    Text = "Super photography!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "6",
+                                    PostId = "1#1",
+                                    CommentId = "1#1#4",
+                                    Text = "Oh My Monkey! Nice!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "4",
+                                    PostId = "1#1",
+                                    CommentId = "1#1#5",
+                                    Text = "🍌",
+                                },
+                            },
                         },
                         new Post
                         {
@@ -44,6 +82,37 @@ namespace InstagramRedesignApp.Core
                             PostId = "1#2",
                             Images = new[]{ "Jan.2.jpg" },
                             NumberOfLikes = random.Next(0,10000),
+                            Comments = new List<Comment>
+                            {
+                                new Comment
+                                {
+                                    AuthorId = "6",
+                                    PostId = "1#2",
+                                    CommentId = "1#2#1",
+                                    Text = "❤ 💕 ❤ 💕 ❤",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "2",
+                                    PostId = "1#2",
+                                    CommentId = "1#2#2",
+                                    Text = "Awesome!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "5",
+                                    PostId = "1#2",
+                                    CommentId = "1#2#3",
+                                    Text = "Awesome photography!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "4",
+                                    PostId = "1#2",
+                                    CommentId = "1#2#4",
+                                    Text = "So cute!",
+                                },
+                            },
                         },
                         new Post
                         {
@@ -51,6 +120,16 @@ namespace InstagramRedesignApp.Core
                             PostId = "1#3",
                             Images = new[]{ "Jan.3.jpg" },
                             NumberOfLikes = random.Next(0,1000),
+                            Comments = new List<Comment>
+                            {
+                                new Comment
+                                {
+                                    AuthorId = "2",
+                                    PostId = "1#3",
+                                    CommentId = "1#3#1",
+                                    Text = "🍌 🐒",
+                                },
+                            },
                         },
                         new Post
                         {
@@ -230,26 +309,36 @@ namespace InstagramRedesignApp.Core
                                 new Comment
                                 {
                                     AuthorId = "1",
+                                    PostId = "2#1",
+                                    CommentId = "2#1#1",
                                     Text = "🐒",
                                 },
                                 new Comment
                                 {
                                     AuthorId = "3",
+                                    PostId = "2#1",
+                                    CommentId = "2#1#2",
                                     Text = "Awesome!",
                                 },
                                 new Comment
                                 {
                                     AuthorId = "5",
+                                    PostId = "2#1",
+                                    CommentId = "2#1#3",
                                     Text = "Super photography!",
                                 },
                                 new Comment
                                 {
                                     AuthorId = "6",
+                                    PostId = "2#1",
+                                    CommentId = "2#1#4",
                                     Text = "Oh My Monkey! Nice selfie!",
                                 },
                                 new Comment
                                 {
                                     AuthorId = "4",
+                                    PostId = "2#1",
+                                    CommentId = "2#1#5",
                                     Text = "🍌",
                                 },
                             },
@@ -278,21 +367,29 @@ namespace InstagramRedesignApp.Core
                                 new Comment
                                 {
                                     AuthorId = "6",
+                                    PostId = "3#1",
+                                    CommentId = "3#1#1",
                                     Text = "❤ 💕 ❤ 💕 ❤",
                                 },
                                 new Comment
                                 {
                                     AuthorId = "2",
+                                    PostId = "3#1",
+                                    CommentId = "3#1#2",
                                     Text = "Awesome!",
                                 },
                                 new Comment
                                 {
                                     AuthorId = "5",
+                                    PostId = "3#1",
+                                    CommentId = "3#1#3",
                                     Text = "Lovely photography!",
                                 },
                                 new Comment
                                 {
                                     AuthorId = "4",
+                                    PostId = "3#1",
+                                    CommentId = "3#1#4",
                                     Text = "So cute!",
                                 },
                             },
@@ -321,6 +418,8 @@ namespace InstagramRedesignApp.Core
                                 new Comment
                                 {
                                     AuthorId = "2",
+                                    PostId = "4#1",
+                                    CommentId = "4#1#1",
                                     Text = "🍌 🐒",
                                 },
                             },
@@ -349,16 +448,22 @@ namespace InstagramRedesignApp.Core
                                 new Comment
                                 {
                                     AuthorId = "3",
+                                    PostId = "5#1",
+                                    CommentId = "5#1#1",
                                     Text = "Awesome!",
                                 },
                                 new Comment
                                 {
                                     AuthorId = "4",
+                                    PostId = "5#1",
+                                    CommentId = "5#1#2",
                                     Text = "Nice!",
                                 },
                                 new Comment
                                 {
                                     AuthorId = "2",
+                                    PostId = "5#1",
+                                    CommentId = "5#1#3",
                                     Text = "Super photography!",
                                 },
                             },
@@ -388,21 +493,29 @@ namespace InstagramRedesignApp.Core
                                 new Comment
                                 {
                                     AuthorId = "1",
+                                    PostId = "6#1",
+                                    CommentId = "6#1#1",
                                     Text = "🐒",
                                 },
                                 new Comment
                                 {
                                     AuthorId = "3",
+                                    PostId = "6#1",
+                                    CommentId = "6#1#2",
                                     Text = "Awesome!",
                                 },
                                 new Comment
                                 {
                                     AuthorId = "5",
+                                    PostId = "6#1",
+                                    CommentId = "6#1#3",
                                     Text = "Super photography!",
                                 },
                                 new Comment
                                 {
                                     AuthorId = "2",
+                                    PostId = "6#1",
+                                    CommentId = "6#1#4",
                                     Text = "Oh My Monkey! You are beautiful!",
                                 },
                             },
@@ -442,6 +555,14 @@ namespace InstagramRedesignApp.Core
                 comment.Author = AllUsers[comment.AuthorId];
 
             return comments.ToList();
+        }
+
+        public IList<Activity> AssignUsers(IEnumerable<Activity> activities)
+        {
+            foreach (var activity in activities)
+                activity.User = AllUsers[activity.UserId];
+
+            return activities.ToList();
         }
     }
 }

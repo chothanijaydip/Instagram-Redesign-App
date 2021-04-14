@@ -10,5 +10,6 @@ namespace InstagramRedesignApp.Core
         IList<User> GetUsersByIds(IEnumerable<string> userIds);
         IList<Post> AssignUsers(IEnumerable<Post> posts);
         IList<Comment> AssignUsers(IEnumerable<Comment> comments);
+        IList<Activity> AssignUsers(IEnumerable<Activity> activities);
     }
 }

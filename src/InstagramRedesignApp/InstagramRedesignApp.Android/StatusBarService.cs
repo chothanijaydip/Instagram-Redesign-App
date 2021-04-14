@@ -20,6 +20,22 @@ namespace InstagramRedesignApp.Droid
             return statusBarHeight;
         }
 
+        public void SetFullscreen(bool fullscreen)
+        {
+            if (fullscreen)
+            {
+                (Platform.CurrentActivity as MainActivity)?.HideSoftwareMenuBars();
+                window.AddFlags(WindowManagerFlags.LayoutNoLimits);
+            }
+            else
+            {
+                window.SetStatusBarColor(Android.Graphics.Color.Transparent);
+                (Platform.CurrentActivity as MainActivity)?.ShowSoftwareMenuBars();
+                window.AddFlags(WindowManagerFlags.TranslucentStatus);
+                window.ClearFlags(WindowManagerFlags.LayoutNoLimits);
+            }
+        }
+
         public void SetLightStatusBar(bool light)
         {
             int uiOptions = (int)window.DecorView.SystemUiVisibility;

@@ -1,14 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:InstagramRedesignApp" 
+             xmlns:core="clr-namespace:InstagramRedesignApp.Core;assembly=InstagramRedesignApp.Core" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="InstagramRedesignApp.ActivityPage"
              Style="{StaticResource BasePageStyle}">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                   BackgroundColor="Red"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+
+    <ContentPage.Resources>
+        <local:ActivityDataTemplateSelector x:Key="ActivityDataTemplateSelector">
+            <local:ActivityDataTemplateSelector.FollowDataTemplate>
+                <DataTemplate>
+                    <Grid>
+                        
+                    </Grid>
+                </DataTemplate>
+            </local:ActivityDataTemplateSelector.FollowDataTemplate>
+            <local:ActivityDataTemplateSelector.CommentDataTemplate>
+                <DataTemplate>
+                    <Grid>
+                        
+                    </Grid>
+                </DataTemplate>
+            </local:ActivityDataTemplateSelector.CommentDataTemplate>
+            <local:ActivityDataTemplateSelector.LikeDataTemplate>
+                <DataTemplate>
+                    <Grid>
+                        
+                    </Grid>
+                </DataTemplate>
+            </local:ActivityDataTemplateSelector.LikeDataTemplate>
+        </local:ActivityDataTemplateSelector>
+    </ContentPage.Resources>
+
+    <Grid Margin="{x:Static local:AppBar.AppBarPadding}">
+        <xct:TabView>
+            <xct:TabViewItem>
+                <xct:LazyView x:TypeArguments="local:AllActivityView" CompressedLayout.IsHeadless="True"/>
+            </xct:TabViewItem>
+            <xct:TabViewItem>
+                <xct:LazyView x:TypeArguments="local:AllActivityView" CompressedLayout.IsHeadless="True"/>
+            </xct:TabViewItem>
+            <xct:TabViewItem>
+                <xct:LazyView x:TypeArguments="local:AllActivityView" CompressedLayout.IsHeadless="True"/>
+            </xct:TabViewItem>
+            <xct:TabViewItem>
+                <xct:LazyView x:TypeArguments="local:AllActivityView" CompressedLayout.IsHeadless="True"/>
+            </xct:TabViewItem>
+        </xct:TabView>
+    </Grid>
 </ContentPage>

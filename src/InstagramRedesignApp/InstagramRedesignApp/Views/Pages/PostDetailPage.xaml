@@ -58,8 +58,7 @@
                 <local:HeartView VerticalOptions="Center" HorizontalOptions="Center"/>
 
                 <StackLayout VerticalOptions="End" Orientation="Horizontal" Margin="25,0,20,12"
-                             HeightRequest="38"
-                             CompressedLayout.IsHeadless="True">
+                             HeightRequest="38">
                     <Label Text="{Binding CurrentPost.Description}" LineBreakMode="TailTruncation" 
                            HorizontalOptions="FillAndExpand" VerticalOptions="Center"
                            TextColor="White" FontAttributes="Bold"/>
@@ -150,10 +149,11 @@
         </Grid>
         
         <sh:Shadows x:Name="entryShadows" CornerRadius="30" Shades="{sh:SingleShade Color=Black, Opacity=0.3, BlurRadius=40}" VerticalOptions="End"
-                    Margin="0,0,0,-2">
-            <Grid>
+                    Margin="0,0,0,-2" InputTransparent="False">
+            <Grid InputTransparent="False">
                 <BoxView Background="{AppThemeBinding Dark={StaticResource DarkTabBarBrush}, Light={StaticResource LightTabBarBrush}, Default={StaticResource LightTabBarBrush}}" 
-                         VerticalOptions="End" HeightRequest="80" CornerRadius="30,30,0,0"/>
+                         VerticalOptions="End" HeightRequest="80" CornerRadius="30,30,0,0"
+                         InputTransparent="False"/>
 
                 <BoxView BackgroundColor="{AppThemeBinding Dark={StaticResource DarkMidColor}, Light={StaticResource LightEntryColor}, Default={StaticResource LightEntryColor}}" 
                          VerticalOptions="Start" HeightRequest="60" CornerRadius="25"
@@ -167,7 +167,7 @@
                                         Source="{Binding CurrentUser.ProfileImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"/>
                     </Frame>
 
-                    <Entry Grid.Column="1" Placeholder="Add comment" FontAttributes="Bold" FontSize="15"
+                    <Entry x:Name="entry" Grid.Column="1" Placeholder="Add comment" FontAttributes="Bold" FontSize="15"
                            TextColor="{AppThemeBinding Dark={StaticResource LightEntryColor}, Light={StaticResource DarkMidColor}, Default={StaticResource DarkMidColor}}" 
                            PlaceholderColor="Gray"
                            VerticalOptions="Center"/>
@@ -177,6 +177,9 @@
                           WidthRequest="20" HeightRequest="20"
                           Fill="{AppThemeBinding Dark={StaticResource MidBrush}, Light={StaticResource DarkTabBarBrush}, Default={StaticResource DarkTabBarBrush}}"/>
                 </Grid>
+                <Grid.GestureRecognizers>
+                    <PanGestureRecognizer />
+                </Grid.GestureRecognizers>
             </Grid>
         </sh:Shadows>
     </Grid>

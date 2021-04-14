@@ -4,5 +4,6 @@
     {
         int GetHeight();
         void SetLightStatusBar(bool light);
+        void SetFullscreen(bool fullscreen);
     }
 }
