@@ -28,10 +28,10 @@ The application works only on Android.
 </p>
 
 ### Features
-- Only the [Xamarin.Forms Shapes API](https://docs.microsoft.com/cs-cz/xamarin/xamarin-forms/user-interface/shapes/) is used for custom 2D graphics
+- Only the [Xamarin.Forms Shapes API](https://docs.microsoft.com/cs-cz/xamarin/xamarin-forms/user-interface/shapes) is used for custom 2D graphics
 - Custom tab bar and app bar with Shell navigation
 - Dark and light theme
-- Shared trasitions using [Xamarin.Plugin.SharedTransitions](https://github.com/GiampaoloGabba/Xamarin.Plugin.SharedTransitions)
+- Shared trasitions using [Xamarin.Plugin.SharedTransitions](https://www.nuget.org/packages/Xamarin.Plugin.SharedTransitions)
 - Fullscreen design on Android (transparent status bar)
 - Overlapping items in the CollectionView
 - TabView from [Xamarin.CommunityToolkit](https://www.nuget.org/packages/Xamarin.CommunityToolkit/)
@@ -44,14 +44,14 @@ Feel free to take this code, but please make sure you acknowledge myself and als
 
 [Xamarin.Essentials](https://www.nuget.org/packages/Xamarin.Essentials)
 
-[Xamarin.Plugin.SharedTransitions](https://github.com/GiampaoloGabba/Xamarin.Plugin.SharedTransitions)
+[Xamarin.Plugin.SharedTransitions](https://www.nuget.org/packages/Xamarin.Plugin.SharedTransitions)
 
-[Xamarin.CommunityToolkit](https://www.nuget.org/packages/Xamarin.CommunityToolkit/)
+[Xamarin.CommunityToolkit](https://www.nuget.org/packages/Xamarin.CommunityToolkit)
 
-[Sharpnado.Shadows](https://www.nuget.org/packages/Sharpnado.Shadows/)
+[Sharpnado.Shadows](https://www.nuget.org/packages/Sharpnado.Shadows)
 
 [Sharpnado.MaterialFrame](https://www.nuget.org/packages/Sharpnado.MaterialFrame)
 
 [Xamarin.FFImageLoading.Forms](https://www.nuget.org/packages/Xamarin.FFImageLoading.Forms)
 
-[Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/)
+[Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection)
