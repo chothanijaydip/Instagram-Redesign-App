@@ -37,11 +37,14 @@ namespace InstagramRedesignApp
             entry.Unfocus();
         }
 
-        private void Entry_Focused(object sender, FocusEventArgs e)
+        private async void Entry_Focused(object sender, FocusEventArgs e)
         {
             // I have to turn off fullscreen to move the entry up (above the keyboard) when the entry is focused
             if (e.IsFocused)
+            {
+                await Task.Delay(150);
                 DependencyService.Get<IStatusBar>().SetFullscreen(false);
+            }
             else
                 DependencyService.Get<IStatusBar>().SetFullscreen(true);
         }

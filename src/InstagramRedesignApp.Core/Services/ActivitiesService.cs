@@ -22,9 +22,6 @@ namespace InstagramRedesignApp.Core
 
             List<Activity> activities = new List<Activity>();
 
-            foreach (var userId in usersService.CurrentUser.FollowedUsersIds)
-                activities.Add(new FollowActivity { UserId = userId });
-
             foreach (var post in usersService.CurrentUser.Posts)
             {
                 foreach (var comment in post.Comments)
@@ -32,14 +29,16 @@ namespace InstagramRedesignApp.Core
                     if (usersService.CurrentUser.UserId == comment.AuthorId)
                         continue;
 
-                    activities.Add(new CommentActivity { UserId = comment.AuthorId, CommentId = comment.CommentId, Comment = comment, PostId = comment.PostId, Post = post });
+                    activities.Add(new LikeActivity { UserId = comment.AuthorId, PostId = comment.PostId, Post = post });
 
-                    if (!activities.Any(a => a.UserId == comment.AuthorId))
-                        activities.Add(new LikeActivity { UserId = comment.AuthorId, PostId = comment.PostId, Post = post });
+                    activities.Add(new CommentActivity { UserId = comment.AuthorId, CommentId = comment.CommentId, Comment = comment, PostId = comment.PostId, Post = post });
                 }
             }
 
-            return allActivities = usersService.AssignUsers(activities);
+            foreach (var userId in usersService.CurrentUser.FollowedUsersIds)
+                activities.Add(new FollowActivity { UserId = userId });
+
+            return allActivities = usersService.AssignUsers(activities).Shuffle();
         }
 
         public IList<Activity> GetCommentActivities(IEnumerable<Activity> activities)

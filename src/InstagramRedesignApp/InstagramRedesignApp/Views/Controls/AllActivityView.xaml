@@ -1,10 +1,23 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InstagramRedesignApp.AllActivityView">
-  <ContentView.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
-  </ContentView.Content>
+             xmlns:core="clr-namespace:InstagramRedesignApp.Core;assembly=InstagramRedesignApp.Core"
+             xmlns:local="clr-namespace:InstagramRedesignApp"
+             x:Class="InstagramRedesignApp.AllActivityView"
+             
+             x:DataType="{x:Type core:IActivityPageViewModel}">
+    
+    <CollectionView ItemsSource="{Binding AllActivities}"
+                    ItemTemplate="{DynamicResource ActivityDataTemplateSelector}">
+        <CollectionView.Header>
+            <Grid>
+                <Label Text="{Binding AllActivities.Count, StringFormat='New ({0})'}"
+                       TextColor="{AppThemeBinding Dark=White, Light=Black, Default=Black}"
+                       FontAttributes="Bold" FontSize="18" Margin="16,10,0,5"/>
+            </Grid>
+        </CollectionView.Header>
+        <CollectionView.Footer>
+            <BoxView VerticalOptions="Start" HeightRequest="80" BackgroundColor="Transparent"/>
+        </CollectionView.Footer>
+    </CollectionView>
 </ContentView>

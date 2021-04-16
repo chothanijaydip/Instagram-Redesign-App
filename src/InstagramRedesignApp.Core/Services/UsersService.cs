@@ -48,30 +48,16 @@ namespace InstagramRedesignApp.Core
                                 },
                                 new Comment
                                 {
-                                    AuthorId = "3",
-                                    PostId = "1#1",
-                                    CommentId = "1#1#2",
-                                    Text = "Awesome!",
-                                },
-                                new Comment
-                                {
-                                    AuthorId = "5",
-                                    PostId = "1#1",
-                                    CommentId = "1#1#3",
-                                    Text = "Super photography!",
-                                },
-                                new Comment
-                                {
                                     AuthorId = "6",
                                     PostId = "1#1",
-                                    CommentId = "1#1#4",
+                                    CommentId = "1#1#2",
                                     Text = "Oh My Monkey! Nice!",
                                 },
                                 new Comment
                                 {
                                     AuthorId = "4",
                                     PostId = "1#1",
-                                    CommentId = "1#1#5",
+                                    CommentId = "1#1#3",
                                     Text = "🍌",
                                 },
                             },
@@ -103,7 +89,7 @@ namespace InstagramRedesignApp.Core
                                     AuthorId = "5",
                                     PostId = "1#2",
                                     CommentId = "1#2#3",
-                                    Text = "Awesome photography!",
+                                    Text = "Nice picture!",
                                 },
                                 new Comment
                                 {
@@ -144,6 +130,23 @@ namespace InstagramRedesignApp.Core
                             PostId = "1#5",
                             Images = new[]{ "Jan.5.jpg" },
                             NumberOfLikes = random.Next(0,100000),
+                            Comments = new List<Comment>
+                            {
+                                new Comment
+                                {
+                                    AuthorId = "3",
+                                    PostId = "1#5",
+                                    CommentId = "1#5#1",
+                                    Text = "Awesome!",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "5",
+                                    PostId = "1#5",
+                                    CommentId = "1#5#2",
+                                    Text = "Cute! 🥰",
+                                },
+                            },
                         },
                         new Post
                         {
@@ -151,6 +154,23 @@ namespace InstagramRedesignApp.Core
                             PostId = "1#6",
                             Images = new[]{ "Jan.6.jpg" },
                             NumberOfLikes = random.Next(0,10000),
+                            Comments = new List<Comment>
+                            {
+                                new Comment
+                                {
+                                    AuthorId = "2",
+                                    PostId = "1#6",
+                                    CommentId = "1#6#1",
+                                    Text = "🐵",
+                                },
+                                new Comment
+                                {
+                                    AuthorId = "5",
+                                    PostId = "1#6",
+                                    CommentId = "1#6#2",
+                                    Text = "Awesome Xamariners!",
+                                },
+                            },
                         },
                         new Post
                         {

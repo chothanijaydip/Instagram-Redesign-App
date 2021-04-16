@@ -3,30 +3,181 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:local="clr-namespace:InstagramRedesignApp" 
              xmlns:core="clr-namespace:InstagramRedesignApp.Core;assembly=InstagramRedesignApp.Core" 
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="InstagramRedesignApp.ActivityPage"
              Style="{StaticResource BasePageStyle}">
 
     <ContentPage.Resources>
+        <PathGeometry x:Key="AvatarGeometry">
+            <PathFigureCollection>
+                <PathFigure StartPoint="27,2" IsClosed="True">
+                    <PathSegmentCollection>
+                        <LineSegment Point="33,2"/>
+                        <QuadraticBezierSegment Point1="58,2" Point2="58,27"/>
+                        <LineSegment Point="58,33"/>
+                        <QuadraticBezierSegment Point1="58,58" Point2="33,58"/>
+                        <LineSegment Point="27,58"/>
+                        <QuadraticBezierSegment Point1="2,58" Point2="2,33"/>
+                        <LineSegment Point="2,27"/>
+                        <QuadraticBezierSegment Point1="2,2" Point2="27,2"/>
+                    </PathSegmentCollection>
+                </PathFigure>
+            </PathFigureCollection>
+        </PathGeometry>
+
+        <Style x:Key="BackgroundBoxViewStyle" TargetType="{x:Type BoxView}">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkMidColor}, Light={StaticResource LightTabBarColor}, Default={StaticResource LightTabBarColor}}"/>
+            <Setter Property="CornerRadius" Value="20"/>
+        </Style>
+
+        <Style x:Key="AvatarStrokePathStyle" TargetType="{x:Type Path}">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="StrokeThickness" Value="2.5"/>
+            <Setter Property="Grid.RowSpan" Value="2"/>
+            <Setter Property="Data" Value="{StaticResource AvatarGeometry}"/>
+            <Setter Property="Stroke" Value="{StaticResource AvatarStrokeLinearGradientBrush}"/>
+        </Style>
+
+        <Style x:Key="AvatarFrameStyle" TargetType="{x:Type Frame}">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HasShadow" Value="False"/>
+            <Setter Property="CornerRadius" Value="19"/>
+            <Setter Property="Grid.RowSpan" Value="2"/>
+            <Setter Property="WidthRequest" Value="48"/>
+            <Setter Property="HeightRequest" Value="48"/>
+        </Style>
+
+        <Style x:Key="AvatarImageStyle" TargetType="{x:Type ff:CachedImage}">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Aspect" Value="AspectFill"/>
+            <Setter Property="IsOpaque" Value="True"/>
+            <Setter Property="WidthRequest" Value="48"/>
+            <Setter Property="HeightRequest" Value="48"/>
+        </Style>
+
+        <Style x:Key="PostImageStyle" TargetType="{x:Type ff:CachedImage}" BasedOn="{StaticResource AvatarImageStyle}">
+            <Setter Property="WidthRequest" Value="75"/>
+            <Setter Property="HeightRequest" Value="75"/>
+        </Style>
+
+        <Style x:Key="PostFrameStyle" TargetType="{x:Type Frame}" BasedOn="{StaticResource AvatarFrameStyle}">
+            <Setter Property="HorizontalOptions" Value="End"/>
+            <Setter Property="WidthRequest" Value="75"/>
+            <Setter Property="HeightRequest" Value="75"/>
+            <Setter Property="Grid.RowSpan" Value="3"/>
+        </Style>
+
+        <Style x:Key="NameLabelStyle" TargetType="{x:Type Label}">
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="VerticalTextAlignment" Value="End"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource LightBackgroundColor}, Light={StaticResource DarkBackgroundColor}, Default={StaticResource DarkBackgroundColor}}"/>
+        </Style>
+
+        <Style x:Key="SecondLabelStyle" TargetType="{x:Type Label}">
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="Grid.Row" Value="1"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource MidColor}, Light={StaticResource DarkMidColor}, Default={StaticResource DarkMidColor}}"/>
+        </Style>
+
         <local:ActivityDataTemplateSelector x:Key="ActivityDataTemplateSelector">
             <local:ActivityDataTemplateSelector.FollowDataTemplate>
-                <DataTemplate>
-                    <Grid>
-                        
+                <DataTemplate x:DataType="{x:Type core:FollowActivity}">
+                    <Grid CompressedLayout.IsHeadless="True">
+                        <Grid ColumnDefinitions="76,*" RowDefinitions="36,36" Margin="16,5"
+                              RowSpacing="0">
+                            <BoxView Style="{StaticResource BackgroundBoxViewStyle}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+
+                            <Path Style="{StaticResource AvatarStrokePathStyle}"/>
+
+                            <Frame Style="{StaticResource AvatarFrameStyle}">
+                                <ff:CachedImage Source="{Binding User.ProfileImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"
+                                                Style="{StaticResource AvatarImageStyle}"/>
+                            </Frame>
+
+                            <Label Text="{Binding User.Name}" Style="{StaticResource NameLabelStyle}"/>
+                            <Label Grid.Column="1" Grid.Row="1" Text="started following you." 
+                                   FontAttributes="Bold" FontSize="13"
+                                   TextColor="{AppThemeBinding Dark={StaticResource MidColor}, Light={StaticResource DarkMidColor}, Default={StaticResource DarkMidColor}}"/>
+
+                            <Button HorizontalOptions="End" VerticalOptions="Center" HeightRequest="42" Margin="12"
+                                    Text="Follow back" TextColor="White" FontAttributes="Bold" TextTransform="None"
+                                    Grid.RowSpan="2" Grid.Column="1"
+                                    BackgroundColor="{StaticResource Blue}" Padding="16,0" CornerRadius="16"/>
+                        </Grid>
                     </Grid>
                 </DataTemplate>
             </local:ActivityDataTemplateSelector.FollowDataTemplate>
             <local:ActivityDataTemplateSelector.CommentDataTemplate>
-                <DataTemplate>
-                    <Grid>
-                        
+                <DataTemplate x:DataType="{x:Type core:CommentActivity}">
+                    <Grid CompressedLayout.IsHeadless="True">
+                        <Grid ColumnDefinitions="76,*,100" RowDefinitions="36,36,*,30" Margin="16,5"
+                              RowSpacing="0">
+                            <BoxView Style="{StaticResource BackgroundBoxViewStyle}" Grid.ColumnSpan="3" Grid.RowSpan="4"/>
+
+                            <Path Style="{StaticResource AvatarStrokePathStyle}"/>
+
+                            <Frame Style="{StaticResource AvatarFrameStyle}">
+                                <ff:CachedImage Source="{Binding User.ProfileImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"
+                                                Style="{StaticResource AvatarImageStyle}"/>
+                            </Frame>
+
+                            <Label Text="{Binding User.Name}" Style="{StaticResource NameLabelStyle}"/>
+                            <Label Style="{StaticResource SecondLabelStyle}" Text="{Binding Comment.Text, StringFormat='commented: {0}'}" LineBreakMode="WordWrap"/>
+
+                            <Frame Grid.Column="2"
+                                   Style="{StaticResource PostFrameStyle}" Margin="10,10,10,0">
+                                <ff:CachedImage Source="{Binding Post.FirstImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"
+                                                Style="{StaticResource PostImageStyle}"/>
+                            </Frame>
+
+                            <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Margin="0,0,0,10" Spacing="15">
+                                <Path Data="{StaticResource HeartGeometry}"
+                                      HorizontalOptions="Start" VerticalOptions="Center" 
+                                      WidthRequest="20" HeightRequest="20"
+                                      Fill="{AppThemeBinding Dark={StaticResource MidBrush}, Light={StaticResource DarkMidBrush}, Default={StaticResource DarkMidBrush}}"
+                                      Aspect="Uniform"/>
+                                <Path Data="{StaticResource CommentsGeometry}" 
+                                      HorizontalOptions="Start" VerticalOptions="Center" 
+                                      WidthRequest="20" HeightRequest="20"
+                                      Fill="{AppThemeBinding Dark={StaticResource MidBrush}, Light={StaticResource DarkMidBrush}, Default={StaticResource DarkMidBrush}}"
+                                      Aspect="Uniform"/>
+                            </StackLayout>
+                        </Grid>
                     </Grid>
                 </DataTemplate>
             </local:ActivityDataTemplateSelector.CommentDataTemplate>
             <local:ActivityDataTemplateSelector.LikeDataTemplate>
-                <DataTemplate>
-                    <Grid>
-                        
+                <DataTemplate x:DataType="{x:Type core:LikeActivity}">
+                    <Grid CompressedLayout.IsHeadless="True">
+                        <Grid ColumnDefinitions="76,*,100" RowDefinitions="36,36,*" Margin="16,5"
+                              RowSpacing="0">
+                            <BoxView Style="{StaticResource BackgroundBoxViewStyle}" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+
+                            <Path Style="{StaticResource AvatarStrokePathStyle}"/>
+
+                            <Frame Style="{StaticResource AvatarFrameStyle}">
+                                <ff:CachedImage Source="{Binding User.ProfileImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"
+                                                Style="{StaticResource AvatarImageStyle}"/>
+                            </Frame>
+
+                            <Label Text="{Binding User.Name}" Style="{StaticResource NameLabelStyle}"/>
+                            <Label Style="{StaticResource SecondLabelStyle}" Text="liked your post."/>
+
+                            <Frame Grid.Column="2"
+                                   Style="{StaticResource PostFrameStyle}" Margin="10">
+                                <ff:CachedImage Source="{Binding Post.FirstImage, Converter={StaticResource FFImageSourceConverter}, Mode=OneTime}"
+                                                Style="{StaticResource PostImageStyle}"/>
+                            </Frame>
+                        </Grid>
                     </Grid>
                 </DataTemplate>
             </local:ActivityDataTemplateSelector.LikeDataTemplate>
@@ -34,18 +185,65 @@
     </ContentPage.Resources>
 
     <Grid Margin="{x:Static local:AppBar.AppBarPadding}">
-        <xct:TabView>
-            <xct:TabViewItem>
+        <Grid.Resources>
+            <Style x:Key="TabViewItemTemplate" TargetType="{x:Type xct:TabViewItem}">
+                <Setter Property="ControlTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Frame BackgroundColor="{AppThemeBinding Dark={StaticResource DarkMidColor}, Light={StaticResource LightTabBarColor}, Default={StaticResource LightTabBarColor}}" 
+                                   CornerRadius="18" Padding="20,0" Margin="8,0" HasShadow="False">
+                                <Frame.Triggers>
+                                    <DataTrigger TargetType="{x:Type Frame}" Binding="{TemplateBinding IsSelected}">
+                                        <DataTrigger.Value>
+                                            <x:Boolean>True</x:Boolean>
+                                        </DataTrigger.Value>
+                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource LightTabBarColor}, Light={StaticResource DarkBackgroundColor}, Default={StaticResource DarkBackgroundColor}}"/>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="{x:Type Frame}" Binding="{TemplateBinding IsSelected}">
+                                        <DataTrigger.Value>
+                                            <x:Boolean>False</x:Boolean>
+                                        </DataTrigger.Value>
+                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkMidColor}, Light={StaticResource LightTabBarColor}, Default={StaticResource LightTabBarColor}}"/>
+                                    </DataTrigger>
+                                </Frame.Triggers>
+                                <Label x:Name="label" Text="{TemplateBinding Text}"
+                                       FontAttributes="Bold" FontSize="15"
+                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                       TextColor="{TemplateBinding TextColor}">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="{x:Type Label}" Binding="{TemplateBinding IsSelected}">
+                                            <DataTrigger.Value>
+                                                <x:Boolean>True</x:Boolean>
+                                            </DataTrigger.Value>
+                                            <Setter Property="TextColor" Value="{AppThemeBinding Dark=Black, Light=White, Default=White}"/>
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="{x:Type Label}" Binding="{TemplateBinding IsSelected}">
+                                            <DataTrigger.Value>
+                                                <x:Boolean>False</x:Boolean>
+                                            </DataTrigger.Value>
+                                            <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black, Default=Black}"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </Frame>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+        <xct:TabView TabStripHeight="40" Margin="0,5,0,0"
+                     IsSwipeEnabled="False">
+            <xct:TabViewItem Style="{StaticResource TabViewItemTemplate}" Text="All activity">
                 <xct:LazyView x:TypeArguments="local:AllActivityView" CompressedLayout.IsHeadless="True"/>
             </xct:TabViewItem>
-            <xct:TabViewItem>
-                <xct:LazyView x:TypeArguments="local:AllActivityView" CompressedLayout.IsHeadless="True"/>
+            <xct:TabViewItem Style="{StaticResource TabViewItemTemplate}" Text="Likes" TabWidth="100">
+                <xct:LazyView x:TypeArguments="local:LikesActivityView" CompressedLayout.IsHeadless="True"/>
             </xct:TabViewItem>
-            <xct:TabViewItem>
-                <xct:LazyView x:TypeArguments="local:AllActivityView" CompressedLayout.IsHeadless="True"/>
+            <xct:TabViewItem Style="{StaticResource TabViewItemTemplate}" Text="Comments">
+                <xct:LazyView x:TypeArguments="local:CommentsActivityView" CompressedLayout.IsHeadless="True"/>
             </xct:TabViewItem>
-            <xct:TabViewItem>
-                <xct:LazyView x:TypeArguments="local:AllActivityView" CompressedLayout.IsHeadless="True"/>
+            <xct:TabViewItem Style="{StaticResource TabViewItemTemplate}" Text="Follows" TabWidth="120">
+                <xct:LazyView x:TypeArguments="local:FollowsActivityView" CompressedLayout.IsHeadless="True"/>
             </xct:TabViewItem>
         </xct:TabView>
     </Grid>

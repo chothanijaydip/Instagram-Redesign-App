@@ -79,6 +79,12 @@
         <SolidColorBrush x:Key="MidBrush" Color="{StaticResource MidColor}"/>
         <SolidColorBrush x:Key="LightMidBrush" Color="{StaticResource LightMidColor}"/>
 
+        <LinearGradientBrush x:Key="AvatarStrokeLinearGradientBrush" StartPoint="0,1" EndPoint="1,0">
+            <GradientStop Offset="0.2" Color="{StaticResource Yellow}"/>
+            <GradientStop Offset="0.5" Color="{StaticResource Pink}"/>
+            <GradientStop Offset="0.8" Color="{StaticResource Purple}"/>
+        </LinearGradientBrush>
+
         <local:FFImageSourceConverter x:Key="FFImageSourceConverter"/>
         <local:ImageSourceConverter x:Key="ImageSourceConverter"/>
         <local:CollectionToLengthConverter x:Key="CollectionToLengthConverter"/>

@@ -165,6 +165,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Controls\FollowsActivityView.xaml.cs">
+      <DependentUpon>FollowsActivityView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Controls\CustomTabBar.xaml.cs">
       <DependentUpon>CustomTabBar.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\Controls\CommentsActivityView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Controls\FollowsActivityView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Controls\LikesActivityView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Controls\AllActivityView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

@@ -96,19 +96,19 @@
                                        TextColor="{AppThemeBinding Dark={StaticResource LightBackgroundColor}, Light={StaticResource DarkBackgroundColor}, Default={StaticResource DarkBackgroundColor}}"/>
                             </StackLayout>
                             <Grid Grid.Column="2" CompressedLayout.IsHeadless="True">
-                                <BoxView BackgroundColor="{StaticResource MidColor}" VerticalOptions="Center" 
+                                <BoxView BackgroundColor="{AppThemeBinding Dark={StaticResource DarkMidColor}, Light={StaticResource MidColor}, Default={StaticResource MidColor}}" VerticalOptions="Center" 
                                          HeightRequest="36" CornerRadius="18"/>
                                 <Label FontAttributes="Bold" Text="Reply" FontSize="13"
-                                       TextColor="{StaticResource DarkMidColor}"
+                                       TextColor="{AppThemeBinding Dark={StaticResource MidColor}, Light={StaticResource DarkMidColor}, Default={StaticResource DarkMidColor}}"
                                        VerticalOptions="Center" HorizontalOptions="Center"/>
                             </Grid>
                             <Grid Grid.Column="3" CompressedLayout.IsHeadless="True">
-                                <BoxView BackgroundColor="{StaticResource MidColor}" VerticalOptions="Center" 
+                                <BoxView BackgroundColor="{AppThemeBinding Dark={StaticResource DarkMidColor}, Light={StaticResource MidColor}, Default={StaticResource MidColor}}" VerticalOptions="Center" 
                                          HeightRequest="36" CornerRadius="18"/>
                                 <Path Data="{StaticResource HeartGeometry}" 
                                       HorizontalOptions="Center" VerticalOptions="Center" Aspect="Uniform"
                                       WidthRequest="20" HeightRequest="20"
-                                      Fill="{StaticResource DarkMidBrush}"/>
+                                      Fill="{AppThemeBinding Dark={StaticResource MidBrush}, Light={StaticResource DarkMidBrush}, Default={StaticResource DarkMidBrush}}"/>
                             </Grid>
                         </Grid>
                     </DataTemplate>
