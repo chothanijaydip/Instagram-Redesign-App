@@ -13,15 +13,9 @@ The application works only on Android.
 <img src="https://github.com/RadekVyM/Instagram-Redesign-App/blob/main/Images/homepage.gif" height="600" width="300" />   
 <img src="https://github.com/RadekVyM/Instagram-Redesign-App/blob/main/Images/detailpage%20light.gif" height="600" width="300" />   
 <img src="https://github.com/RadekVyM/Instagram-Redesign-App/blob/main/Images/detailpage%20dark.gif" height="600" width="300" />  
-</p>
-
-<p float="left">
 <img src="https://github.com/RadekVyM/Instagram-Redesign-App/blob/main/Images/profilepage.gif" height="600" width="300" />   
 <img src="https://github.com/RadekVyM/Instagram-Redesign-App/blob/main/Images/profilepage%20light.jpg" height="600" width="300" />  
 <img src="https://github.com/RadekVyM/Instagram-Redesign-App/blob/main/Images/profilepage2%20dark.jpg" height="600" width="300" />  
-</p>
-
-<p float="left">
 <img src="https://github.com/RadekVyM/Instagram-Redesign-App/blob/main/Images/homepage%20dark.jpg" height="600" width="300" />   
 <img src="https://github.com/RadekVyM/Instagram-Redesign-App/blob/main/Images/activitypage%20dark.jpg" height="600" width="300" />  
 <img src="https://github.com/RadekVyM/Instagram-Redesign-App/blob/main/Images/activitypage%20light.jpg" height="600" width="300" />  
